@@ -17,10 +17,30 @@ public class TheEndlessCastle extends Game
 	}
 
 	@Override
-	public void render() {		
+	public void render() {
 		super.render();
+	} 
+
+	@Override
+	public void resize (int width, int height) {
+		//TODO: implémenter ça
 	}
-	
+
+	@Override
+	public void pause () {
+		//TODO: implémenter ça
+	}
+
+	@Override
+	public void resume () {
+		//TODO: implémenter ça
+	}
+
+	@Override
+	public void dispose () {
+		//TODO: implémenter ça
+	}
+
 	public SpriteBatch getBatch() {
 		return _batch;
 	}
