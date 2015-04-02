@@ -1,0 +1,84 @@
+<img src='http://g.gravizo.com/g?
+/**
+*@opt all
+*/
+public abstract class Entity
+{ 
+	public String id;
+	public Position pos;
+	public List Components;
+	public List RenderableComponents;
+	public List UpdateableComponents;
+}
+
+/**
+*@opt all
+*/
+public abstract class Component
+{
+	public Entity Owner;
+	public Boolean IsEnabled;
+}
+
+/**
+*@opt all
+*/
+public interface RenderableComponent
+{
+	public void Render(SpriteBatch batch);
+}
+
+/**
+*@opt all
+*/
+public interface UpdateableComponent
+{
+	public void Update(Float delta);
+}
+
+/**
+*@opt all
+*/
+public class SpriteComponent extends Component implements RenderableComponent
+{
+	public Sprite Sprite;
+}
+
+/**
+*@opt all
+*/
+public class AnimatedSpriteComponent extends Component implements RenderableComponent
+{ }
+
+/**
+*@opt all
+*/
+public class BodyComponent extends Component
+{
+	public Body Body;
+}
+
+/**
+*@opt all
+*/
+public class StaticBodyComponent extends BodyComponent
+{ }
+
+/**
+*@opt all
+*/
+public class DynamicBodyComponent extends BodyComponent
+{ }
+
+/**
+*@opt all
+*/
+public class LightPointComponent extends Component
+{ }
+
+/**
+*@opt all
+*/
+public class PlayerComponent extends Component implements UpdateableComponent
+{ }
+'>
