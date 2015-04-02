@@ -12,6 +12,7 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void create() {
 		_batch = new SpriteBatch();
+		_settings = new Settings("TheEndlessCastleSettings");
 
 		setScreen(new GameScreen(this));
 	}
@@ -41,7 +42,8 @@ public class TheEndlessCastle extends Game
 
 	@Override
 	public void dispose () {
-		//TODO: implémenter ça
+		// TODO: savoir si il est mieux de saver les setting plus tôt
+		_settings.save();
 	}
 
 	public SpriteBatch getBatch() {
@@ -49,4 +51,5 @@ public class TheEndlessCastle extends Game
 	}
 
 	private SpriteBatch _batch;
+	private Settings _settings;
 }
