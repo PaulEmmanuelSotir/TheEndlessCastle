@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ressources>
+	<ressource type="music" id="menu_music_001">menu001.mp3</ressource>
+	<ressource type="music" id="game_music_001">game001.mp3</ressource>
+	<ressource type="music" id="game_music_002">game002.mp3</ressource>
+	
+	<ressource type="texture" id="noise_texture">randomNoise.png</ressource>
+	<ressource type="texture" id="sign_texture" scales="100, 80, 50">signInjury.png</ressource>
+	
+	<ressource type="shader" id="lava_shader_002">lava2.glsl</ressource>
+	
+	<ressource type="material" id="lava_material" shader="lava_shader_002" texture="noise_texture"/>
+	<ressource type="material" id="sign_material" texture="sign_texture" density="0.5f" friction="0.4" restitution="0.0f"/>
+	
+	<ressource type="font" id="icons_font">fontawesome-webfont.ttf</ressource>
+</ressources>
