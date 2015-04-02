@@ -10,6 +10,6 @@ public class Position extends Vector2
 		this.y = y;
 	}
 
-	//TODO: add getters and setters for x and y coordinates in meters
+	//TODO: add getters and setters for x and y coordinates in meters + toString in metters
 	
 }
