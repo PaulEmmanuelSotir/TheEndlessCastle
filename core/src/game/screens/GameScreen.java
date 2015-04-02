@@ -1,11 +1,11 @@
-package GDXGame.EndlessCastle.Screens;
+package game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.GL20;
-import GDXGame.EndlessCastle.TheEndlessCastle;
-import GDXGame.EndlessCastle.World;
+import game.TheEndlessCastle;
+import game.World;
 
 public class GameScreen extends ScreenAdapter
 {
@@ -15,15 +15,7 @@ public class GameScreen extends ScreenAdapter
 		_batch = game.getBatch();
 		
 		_worldListener = new World.WorldListener() {
-			@Override
-			public void moveForward() {
-				//TODO: implémenter ça (play sounds, ...)
-			}
-			
-			@Override
-			public void moveBackward() {
-				//TODO: implémenter ça (play sounds, ...)
-			}
+			// TODO: implémenter les callcack du world ici...
 		};
 		
 		_world = new World(_worldListener);
@@ -41,10 +33,7 @@ public class GameScreen extends ScreenAdapter
 	}
 	
 	private void draw()
-	{
-		Gdx.gl.glClearColor(1, 1, 0.5f, 0.125f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+	{		
 		//TODO: implémenter ça
 		
 		_batch.begin();

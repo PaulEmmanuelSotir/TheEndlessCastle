@@ -1,4 +1,4 @@
-package GDXGame.EndlessCastle;
+package game;
 
 public class Settings
 {
