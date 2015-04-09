@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ressources>
-	<ressource type="music" id="menu_music_001">menu001.mp3</ressource>
-	<ressource type="music" id="game_music_001">game001.mp3</ressource>
-	<ressource type="music" id="game_music_002">game002.mp3</ressource>
+	<ressource type="music" id="menu_music_001">Rapture.mp3</ressource>
+	<ressource type="music" id="game_music_001">CrunkKnight.mp3</ressource>
+	<ressource type="music" id="game_music_002">HeroicAge.mp3</ressource>
+	<ressource type="music" id="game_music_003">ExcitingTrailer.mp3</ressource>
 	
 	<ressource type="texture" id="noise_texture">randomNoise.png</ressource>
 	<ressource type="texture" id="sign_texture" scales="100, 80, 50">signInjury.png</ressource>
