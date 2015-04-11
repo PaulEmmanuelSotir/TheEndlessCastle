@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.GL20;
 import game.TheEndlessCastle;
 import game.World;
 
+/**
+ * Game screen class
+ */
 public class GameScreen extends ScreenAdapter
 {
 	public GameScreen(TheEndlessCastle game)
@@ -47,7 +50,9 @@ public class GameScreen extends ScreenAdapter
 		_camera.update();
 		_batch.setProjectionMatrix(_camera.combined);
 
-		_time += 1/60f;
+		if(_time > 0.8f * Float.MAX_VALUE)
+			_time = 0f;
+		_time += deltaTime;
 		//TODO: update world
 	}
 	
