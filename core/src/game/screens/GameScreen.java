@@ -23,6 +23,7 @@ public class GameScreen extends ScreenAdapter
 		};
 		
 		_world = new World(_worldListener);
+		float ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*ratio);
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
