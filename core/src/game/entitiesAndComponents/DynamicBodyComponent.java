@@ -2,7 +2,7 @@ package game.entitiesAndComponents;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class DynamicBodyComponent extends Component
+public class DynamicBodyComponent extends BodyComponent
 {
 	public DynamicBodyComponent(Entity owner)
 	{
