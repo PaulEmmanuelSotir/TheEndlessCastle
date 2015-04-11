@@ -43,6 +43,7 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void dispose () {
 		// TODO: savoir si il est mieux de saver les setting plus tôt
+		_batch.dispose();
 		_settings.save();
 	}
 
