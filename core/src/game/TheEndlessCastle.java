@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-import game.screens.GameScreen;
+import game.screens.MenuScreen;
 
 public class TheEndlessCastle extends Game
 {
@@ -16,10 +16,10 @@ public class TheEndlessCastle extends Game
 		_batch = new SpriteBatch();
 		_settings = new Settings("TheEndlessCastleSettings");
 		
-		// let shaders not use all available uniforms and attributes
+		// Let shaders not use all available uniforms and attributes
 		ShaderProgram.pedantic = false; 
 
-		setScreen(new GameScreen(this));
+		setScreen(new MenuScreen(this));
 	}
 
 	@Override
