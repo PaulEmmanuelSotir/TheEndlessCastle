@@ -1,4 +1,6 @@
-package game.entitiesAndComponents;
+package components;
+
+import game.entities.Entity;
 
 public class StaticBodyComponent extends BodyComponent
 {

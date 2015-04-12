@@ -1,4 +1,4 @@
-package game.entitiesAndComponents;
+package components;
 
 public interface IUpdateableComponent
 {

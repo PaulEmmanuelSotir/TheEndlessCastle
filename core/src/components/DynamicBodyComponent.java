@@ -1,4 +1,6 @@
-package game.entitiesAndComponents;
+package components;
+
+import game.entities.Entity;
 
 import com.badlogic.gdx.math.Vector2;
 

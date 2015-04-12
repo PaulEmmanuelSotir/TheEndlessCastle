@@ -1,4 +1,4 @@
-package game.entitiesAndComponents;
+package components;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

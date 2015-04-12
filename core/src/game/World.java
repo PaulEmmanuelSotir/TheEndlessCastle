@@ -3,9 +3,11 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import game.entitiesAndComponents.*;;
+
+import game.entities.Entity;
 
 /**
  * World class containing all objects rendered in game
