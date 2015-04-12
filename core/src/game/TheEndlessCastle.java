@@ -2,6 +2,7 @@ package game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +15,7 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void create() {
 		_batch = new SpriteBatch();
+		_assetMngr = new AssetManager();
 		_settings = new Settings("TheEndlessCastleSettings");
 		
 		// Let shaders not use all available uniforms and attributes
@@ -56,6 +58,11 @@ public class TheEndlessCastle extends Game
 		return _batch;
 	}
 
+	public AssetManager getAssetMngr() {
+		return _assetMngr;
+	}
+	
+	private AssetManager _assetMngr;
 	private SpriteBatch _batch;
 	private Settings _settings;
 }
