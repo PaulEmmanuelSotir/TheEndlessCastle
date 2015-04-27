@@ -1,5 +1,7 @@
 # THE ENDLESS CASTLE #
 
+![TheEndlessCastleCONCEPT.png](https://bitbucket.org/repo/o9xeEX/images/1114892730-TheEndlessCastleCONCEPT.png)
+
 ### Contribution guidelines ###
 
 * Que du code propre respectant l'encapsulation
