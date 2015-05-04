@@ -8,4 +8,6 @@
 	<shader Type="fragment"  fileName="rotatingRay.glsl"/>
 	<shader Type="fragment" fileName="rotatingRay.glsl"/>
 	<shader Type="vertex" fileName="vertex.glsl"/>
+	
+	<texture Name="RempartsMidde" FileName="rempartsMidde.png"/>
 </Ressources>
