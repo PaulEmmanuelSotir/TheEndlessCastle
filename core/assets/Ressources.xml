@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ressources>
+	<music Name="GameMusicKnight" fileName="CrunkKnight.mp3"/>
+	<music Name="GameMusicTrailer" fileName="ExcitingTrailer.mp3"/>
+	<music Name="GameMusicRapture" fileName="Rapture.mp3"/>
+	<music Name="MenuMusicHeroic" fileName="HeroicAge.mp3"/>
+	
+	<shader Type="fragment"  fileName="rotatingRay.glsl"/>
+	<shader Type="fragment" fileName="rotatingRay.glsl"/>
+	<shader Type="vertex" fileName="vertex.glsl"/>
+</Ressources>
