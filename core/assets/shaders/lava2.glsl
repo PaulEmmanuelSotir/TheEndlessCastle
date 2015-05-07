@@ -5,6 +5,7 @@ varying vec4 vCoord;
 uniform mat4 u_projTrans;
 uniform sampler2D u_texture;
 uniform float u_globalTime;
+uniform float u_ratio;
 
 #define time u_globalTime*0.1
 
@@ -62,7 +63,7 @@ float flow(in vec2 p)
 void main()
 {
 	//	TODO: prendre en compte la résolution pour conserver un ratio 1:1 sur la texture
-	vec2 p = vec2(vTexCoord0.x, -vTexCoord0.y - 1.);
+	vec2 p = vec2(vTexCoord0.x, -(vTexCoord0.y + 1.)*u_ratio);
 	p *= 5.;
 	float rz = flow(p);
 	

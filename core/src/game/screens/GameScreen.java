@@ -23,22 +23,23 @@ public class GameScreen extends ScreenAdapter
 		};
 		
 		_world = new World(_worldListener);
-		float ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
-		_camera = new OrthographicCamera(32f, 32f*ratio);
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
-		_camera.update();
+
+		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+		_camera = new OrthographicCamera(32f, 32f*_ratio);
 	}
 	
 	@Override
-	public void render (float delta) {
+	public void render(float delta) {
 		update(delta);
 		draw();
 	}
 	
 	@Override
-	public void resize (int width, int height) {
+	public void resize(int width, int height) {
+		_ratio = (float)height/width;
 		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * height/width;
+		_camera.viewportHeight = 32f * _ratio;
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}
 	
@@ -67,8 +68,9 @@ public class GameScreen extends ScreenAdapter
 	private TheEndlessCastle _game;
 	private SpriteBatch _batch;
 	private OrthographicCamera _camera;
-	private float _time;
 	
 	private World _world;
 	private World.WorldListener _worldListener;
+	private float _time;
+	private float _ratio;
 }

@@ -20,9 +20,9 @@ public class MenuScreen extends ScreenAdapter
 	{
 		_game = game;
 		_batch = game.getBatch();
-		
-		float ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
-		_camera = new OrthographicCamera(32f, 32f*ratio);
+
+		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+		_camera = new OrthographicCamera(32f, 32f*_ratio);
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 		
@@ -30,8 +30,8 @@ public class MenuScreen extends ScreenAdapter
 		// TODO: verifier _testShader.getLog() et _testShader.isCompiled();
 		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays.glsl"));
 		_timeLocaction  = _backgroundShader.getUniformLocation("u_globalTime");
-		_backgroundSprite = new Sprite(new Texture(Gdx.files.internal("textures/defaultTexture.png")));
-		_backgroundSprite.setSize(32f, 32f*ratio);		
+		_ratioLocaction  = _backgroundShader.getUniformLocation("u_ratio");
+		_backgroundSprite = new Sprite(new Texture(Gdx.files.internal("textures/defaultTexture.png")));	
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class MenuScreen extends ScreenAdapter
 		_time += delta;
 
 		// TODO: temporaire
-		if(_time > 0.5)
+		if(_time > 1.5)
 			_game.setScreen(new GameScreen(_game));
 		
 		_camera.update();
@@ -51,6 +51,7 @@ public class MenuScreen extends ScreenAdapter
 		// Render
 		_batch.begin();
 		// TODO: temporaire
+		_backgroundShader.setUniformf(_ratioLocaction, _ratio);
 		_backgroundShader.setUniformf(_timeLocaction, _time);
 		_batch.setShader(_backgroundShader);
 		_backgroundSprite.draw(_batch);
@@ -59,8 +60,11 @@ public class MenuScreen extends ScreenAdapter
 	
 	@Override
 	public void resize(int width, int height) {
+		_ratio = (float)height/width;
+		_backgroundSprite.setSize(32f, 32f*_ratio);
 		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * height/width;
+		_camera.viewportHeight = 32f * _ratio;
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}
 	
@@ -76,8 +80,10 @@ public class MenuScreen extends ScreenAdapter
 	
 	// TODO: temporaire
 	private Sprite _backgroundSprite;
-	private ShaderProgram _backgroundShader;	
+	private ShaderProgram _backgroundShader;
 	private int _timeLocaction;
+	private int _ratioLocaction;
 	
 	private float _time;
+	private float _ratio;
 }

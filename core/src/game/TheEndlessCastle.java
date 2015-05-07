@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
@@ -34,23 +33,24 @@ public class TheEndlessCastle extends Game
 
 	@Override
 	public void resize (int width, int height) {
-		//TODO: implémenter ça
+		getScreen().resize(width, height);
 	}
 
 	@Override
 	public void pause () {
-		//TODO: implémenter ça
+		getScreen().pause();
 	}
 
 	@Override
 	public void resume () {
-		//TODO: implémenter ça
+		getScreen().resume();
 	}
 
 	@Override
 	public void dispose () {
-		// TODO: savoir si il est mieux de saver les setting plus tôt
+		getScreen().dispose();
 		_batch.dispose();
+		// TODO: savoir si il est mieux de saver les setting plus tôt
 		_settings.save();
 	}
 

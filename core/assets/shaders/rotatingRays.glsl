@@ -5,10 +5,12 @@ varying vec4 vCoord;
 uniform mat4 u_projTrans;
 uniform sampler2D u_texture;
 uniform float u_globalTime;
+uniform float u_ratio;
 
 void main()
 {
-	vec2 p = vTexCoord0 - 0.5;
-	float f = smoothstep(-0.1, 0.1, sin(atan(p.y,p.x)*10.0 + u_globalTime));
-	gl_FragColor = vec4(mix( vec3(1.0f, 0.5f, 0.125f), vec3(1.,1.,1.0), f)*(1.0 - 0.4*length(p)), 1.);
+	vec2 p = vTexCoord0 - vec2(0.5, 1.);
+	p.y *= u_ratio;
+	float f = smoothstep(-0.02, 0.02, sin(atan(p.y,p.x)*20.0 + u_globalTime));
+	gl_FragColor = vec4(mix( vec3(0.3906f, 0.582031f, 0.925781f), vec3(1., 1., 1.), f)*(1 + 0.5*length(p)*length(p)), 1.);
 }
