@@ -13,4 +13,6 @@
 	<texture Name="RandomNoiseTexture" fileName="randomNoise.png"/>
 	<texture Name="SignInjuryTexture" fileName="signInjury.png"/>
 	<texture Name="RempartsMidde" FileName="rempartsMidde.png"/>
+
+	<icon Name="icon" Sizes="16x16;32x32;128x128" FileName="icon.png"/>
 </Ressources>
