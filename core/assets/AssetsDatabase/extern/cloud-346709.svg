@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.0//EN'  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" xml:space="preserve" height="827.85mm" width="1291.4mm" version="1.0" clip-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 129719 83158">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#00A0E3}
+    .fil1 {fill:#FFED00}
+    .fil3 {fill:url(#id0)}
+    .fil2 {fill:url(#id1)}
+    .fil4 {fill:url(#id2)}
+   ]]>
+  </style>
+  <linearGradient id="id0" y2="50%" y1="50%">
+   <stop stop-color="#EBECEC" offset="0"/>
+   <stop stop-color="#FEFEFE" offset="1"/>
+  </linearGradient>
+  <linearGradient id="id1" y2="38651" gradientUnits="userSpaceOnUse" x2="63348" y1="38651" x1="20013">
+   <stop stop-color="#FFED00" offset="0"/>
+   <stop stop-color="#EDB203" offset="1"/>
+  </linearGradient>
+  <linearGradient id="id2" y2="50%" xlink:href="#id0" x2="0%" y1="50%" x1="100%">
+  </linearGradient>
+ </defs>
+ <g id="Warstwa_x0020_1">
+  <g id="_800430592">
+   <rect width="1.2972e5" class="fil0" height="83158"/>
+    <ellipse cy="38651" cx="41680" rx="23620" class="fil1" ry="22644"/>
+    <ellipse cy="38651" cx="41680" rx="21668" class="fil2" ry="20773"/>
+     <ellipse cy="46814" cx="79834" rx="13267" class="fil3" ry="8752"/>
+     <ellipse cy="46722" cx="79696" rx="10620" class="fil4" ry="7839"/>
+     <ellipse cy="44950" cx="59855" rx="13267" class="fil3" ry="8752"/>
+     <ellipse cy="44858" cx="59717" rx="10620" class="fil4" ry="7839"/>
+     <ellipse cy="42594" cx="67354" rx="13267" class="fil3" ry="5330"/>
+     <ellipse cy="42538" cx="67216" rx="10620" class="fil4" ry="4774"/>
+     <ellipse cy="40320" cx="52337" rx="13267" class="fil3" ry="5330"/>
+     <ellipse cy="40870" cx="51618" rx="10620" class="fil4" ry="4774"/>
+     <ellipse cy="35110" cx="66220" rx="13267" class="fil3" ry="5330"/>
+     <ellipse cy="35054" cx="66082" rx="10620" class="fil4" ry="4774"/>
+     <ellipse cy="35110" cx="66220" rx="13267" class="fil3" ry="5330"/>
+     <ellipse cy="35054" cx="66082" rx="10620" class="fil4" ry="4774"/>
+     <ellipse cy="40213" cx="82095" rx="13267" class="fil3" ry="5330"/>
+     <ellipse cy="40156" cx="81957" rx="10620" class="fil4" ry="4774"/>
+     <ellipse cy="33624" cx="78965" rx="13267" class="fil3" ry="8752"/>
+     <ellipse cy="33532" cx="78827" rx="10620" class="fil4" ry="7839"/>
+     <ellipse cy="42078" cx="93435" rx="13267" class="fil3" ry="8454"/>
+     <ellipse cy="41989" cx="93296" rx="10620" class="fil4" ry="7572"/>
+  </g>
+ </g>
+</svg>
