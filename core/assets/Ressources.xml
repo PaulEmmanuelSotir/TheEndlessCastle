@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ressources>
-	<music Name="GameMusicKnight">CrunkKnight.mp3</music>
-	<music Name="GameMusicTrailer">ExcitingTrailer.mp3</music>
-	<music Name="GameMusicRapture">Rapture.mp3</music>
-	<music Name="MenuMusicHeroic">HeroicAge.mp3</music>
+	<music	Name="GameMusicKnight"
+			CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
+			Licence="">CrunkKnight.mp3</music>
+	<music 	Name="GameMusicTrailer"
+			CreditsText="'Exciting trailer' by Kevin MacLeod (incompetech.com)"
+			Licence="CCby 3.0">ExcitingTrailer.mp3</music>
+	<music 	Name="GameMusicRapture"
+			CreditsText="'Rapture', by Ross Bugden with FL Studio and Symphonic Orchestra (https://www.youtube.com/channel/UCQKGLOK2FqmVgVwYferltKQ)">Rapture.mp3</music>
+	<music 	Name="MenuMusicHeroic"
+			CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
+			Licence="CCby 3.0">HeroicAge.mp3</music>
 	
-	<shader Type="fragment" Name="RaysShader">rotatingRay.glsl</shader>
-	<shader Type="fragment" Name="Lava2Shader">lava2.glsl</shader>
+	<sound	Name="ArrowWooshSound"
+			CreditsText="Arrow whoosh sound made by smcameron (http://www.freesound.org/people/smcameron)"
+			Licence="CCby 3.0">arrowWhoosh.ogg</sound>
+	<sound	Name="VolcanoBackgroundSound"
+			CreditsText="Volcano background sound made by ItsaWaB (http://www.freesound.org/people/ItsaWaB/)"
+			Licence="CC0 1.0">lowFrequencyLayer.wav</sound>
+	<sound	Name="VolcanoBackgroundSound2"
+			CreditsText="Volcano background sound made pushtobreak (http://www.freesound.org/people/pushtobreak/)"
+			Licence="CCby 3.0">earthLowFrequancy4.aif</sound>
+	
+	<shader Type="fragment" Name="RaysShader" 
+		CreditsText="Rotating rays shader inspired from Inigo Quilez (https://www.shadertoy.com/user/iq)"
+		Licence="CCby 3.0">rotatingRay.glsl</shader>
+	<shader Type="fragment" Name="Lava2Shader"
+		CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)">lava2.glsl</shader>
 	<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>
 	
-	<texture Name="DefaultTexture">defaultTexture.png</texture>
-	<texture Name="RandomNoiseTexture">randomNoise.png</texture>
+	<texture Name="DefaultTexture" Licence="CC0 1.0">defaultTexture.png</texture>
+	<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
 	<texture Name="SignInjuryTexture">signInjury.png</texture>
-	<texture Name="RempartsMidde">rempartsMidde.png</texture>
+	<texture Name="RempartsMidde" Licence="CC0 1.0">rempartsMidde.png</texture>
 
-	<icon Name="icon" Sizes="16x16;32x32;128x128">icon.png</icon>
+	<icon Name="icon" Sizes="16x16;32x32;128x128" Licence="CC0 1.0">icon.png</icon>
+	
+	<Licences>
+		<License Name="CCby 3.0">License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
+		<License Name="CC0 1.0">CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)</License>
+	</Licences>
 </Ressources>
