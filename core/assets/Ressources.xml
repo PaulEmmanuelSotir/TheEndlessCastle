@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- #######################################################################   RESSOURCES.XML   #####################################################################################-->
+<!-- ######################### Ressources XML file lists all assets available and provide metadata about these assets (like path or liciensing information) #########################-->
+<!-- ######################### Assets names need to be unique.                                                                                              #########################-->
+<!-- ################################################################################################################################################################################-->
 <Ressources>
 	<music	Name="GameMusicKnight"
 			CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
