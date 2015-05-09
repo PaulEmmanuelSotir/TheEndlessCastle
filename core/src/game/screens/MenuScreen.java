@@ -36,7 +36,7 @@ public class MenuScreen extends ScreenAdapter
 	
 	@Override
 	public void render(float delta) {
-		// Update time and camera
+		// Update time
 		if(_time > 0.8f * Float.MAX_VALUE)
 			_time = 0f;
 		_time += delta;
@@ -45,6 +45,7 @@ public class MenuScreen extends ScreenAdapter
 		if(_time > 1.5)
 			_game.setScreen(new GameScreen(_game));
 		
+		// Update camera
 		_camera.update();
 		_batch.setProjectionMatrix(_camera.combined);
 		
