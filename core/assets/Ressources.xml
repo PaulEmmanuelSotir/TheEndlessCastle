@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Ressources>
-	<music Name="GameMusicKnight" fileName="CrunkKnight.mp3"/>
-	<music Name="GameMusicTrailer" fileName="ExcitingTrailer.mp3"/>
-	<music Name="GameMusicRapture" fileName="Rapture.mp3"/>
-	<music Name="MenuMusicHeroic" fileName="HeroicAge.mp3"/>
+	<music Name="GameMusicKnight">CrunkKnight.mp3</music>
+	<music Name="GameMusicTrailer">ExcitingTrailer.mp3</music>
+	<music Name="GameMusicRapture">Rapture.mp3</music>
+	<music Name="MenuMusicHeroic">HeroicAge.mp3</music>
 	
-	<shader Type="fragment" Name="RaysShader" fileName="rotatingRay.glsl"/>
-	<shader Type="fragment" Name="Lava2Shader" fileName="lava2.glsl"/>
-	<shader Type="vertex" Name="DefaultVertexShader" fileName="vertex.glsl"/>
+	<shader Type="fragment" Name="RaysShader">rotatingRay.glsl</shader>
+	<shader Type="fragment" Name="Lava2Shader">lava2.glsl</shader>
+	<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>
 	
-	<texture Name="DefaultTexture" fileName="defaultTexture.png"/>
-	<texture Name="RandomNoiseTexture" fileName="randomNoise.png"/>
-	<texture Name="SignInjuryTexture" fileName="signInjury.png"/>
-	<texture Name="RempartsMidde" FileName="rempartsMidde.png"/>
+	<texture Name="DefaultTexture">defaultTexture.png</texture>
+	<texture Name="RandomNoiseTexture">randomNoise.png</texture>
+	<texture Name="SignInjuryTexture">signInjury.png</texture>
+	<texture Name="RempartsMidde">rempartsMidde.png</texture>
 
-	<icon Name="icon" Sizes="16x16;32x32;128x128" FileName="icon.png"/>
+	<icon Name="icon" Sizes="16x16;32x32;128x128">icon.png</icon>
 </Ressources>
