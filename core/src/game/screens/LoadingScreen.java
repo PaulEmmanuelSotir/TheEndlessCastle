@@ -1,6 +1,7 @@
 package game.screens;
 
 import game.TheEndlessCastle;
+import DataAccessLayer.AssetsHandler;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -16,6 +17,7 @@ public class LoadingScreen extends ScreenAdapter
 	{
 		_game = game;
 		_batch = game.getBatch();
+		_assetsHndlr = game.getAssetsHandler();
 
 		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*_ratio);
@@ -30,6 +32,10 @@ public class LoadingScreen extends ScreenAdapter
 		if(_time > 0.8f * Float.MAX_VALUE)
 			_time = 0f;
 		_time += delta;
+
+		// If we are done loading, we move to the menu screen.
+		if(_assetsHndlr.update())
+			_game.setScreen(new MenuScreen(_game));
 
 		// Update camera
 		_camera.update();
@@ -57,6 +63,7 @@ public class LoadingScreen extends ScreenAdapter
 
 	private TheEndlessCastle _game;
 	private SpriteBatch _batch;
+	private AssetsHandler _assetsHndlr;
 	private OrthographicCamera _camera;
 
 	private float _time;
