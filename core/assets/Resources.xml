@@ -38,8 +38,8 @@
 		<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>
 		
 		<texture Name="DefaultTexture" Licence="CC0 1.0">defaultTexture.png</texture>
+		<texture Name="BackgroundTexture" Licence="CC0 1.0">backgroud.png</texture>
 		<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
-		<texture Name="SignInjuryTexture">signInjury.png</texture>
 		<texture Name="RempartsMidde" Licence="CC0 1.0">rempartsMidde.png</texture>
 	</Assets>
 	
