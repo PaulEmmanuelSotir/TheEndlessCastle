@@ -1,5 +1,6 @@
 package DataAccessLayer;
 
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -16,4 +17,5 @@ public class Shader implements Disposable
 		
 	}
 
+	private ShaderProgram _shaderProgram;
 }
