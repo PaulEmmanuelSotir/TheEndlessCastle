@@ -15,7 +15,7 @@ public class TheEndlessCastle extends Game
 	public void create() {
 		_batch = new SpriteBatch();
 		_assetMngr = new AssetManager();
-		_settings = new Settings("TheEndlessCastleSettings");
+		_settings = new Settings(_SETTINS_NAME);
 		
 		// Let shaders not use all available uniforms and attributes
 		ShaderProgram.pedantic = false; 
@@ -65,4 +65,5 @@ public class TheEndlessCastle extends Game
 	private AssetManager _assetMngr;
 	private SpriteBatch _batch;
 	private Settings _settings;
+	private static final String _SETTINS_NAME = "TheEndlessCastleSettings";
 }
