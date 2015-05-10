@@ -1,5 +1,6 @@
 package game;
 
+import DataAccessLayer.AssetsHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -14,7 +15,7 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void create() {
 		_batch = new SpriteBatch();
-		_assetMngr = new AssetManager();
+		_assetsHndlr = new AssetsHandler(_ASSETS_LIST_FILE_NAME);
 		_settings = new Settings(_SETTINS_NAME);
 
 		// Let shaders not use all available uniforms and attributes
@@ -58,13 +59,14 @@ public class TheEndlessCastle extends Game
 		return _batch;
 	}
 
-	public AssetManager getAssetMngr() {
-		return _assetMngr;
+	public AssetsHandler getAssetsHandler() {
+		return _assetsHndlr;
 	}
 
-	private AssetManager _assetMngr;
+	private AssetsHandler _assetsHndlr;
 	private SpriteBatch _batch;
 	private Settings _settings;
 
 	private static final String _SETTINS_NAME = "TheEndlessCastleSettings";
+	private static final String _ASSETS_LIST_FILE_NAME = "Resources.xml";
 }
