@@ -8,6 +8,7 @@
 <Resources>
 	<icon Name="icon" Resolutions="low;medium;high" Licence="CC0 1.0">icon.medium.png</icon>
 	<Assets>
+		<music	Name="DefaultMusic" Licence="CC0 1.0">Blank.mp3</music>
 		<music	Name="GameMusicKnight"
 				CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
 				Licence="">CrunkKnight.mp3</music>
@@ -20,6 +21,7 @@
 				CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
 				Licence="CCby 3.0">HeroicAge.mp3</music>
 		
+		<sound	Name="DefaultSound" Licence="CC0 1.0">blank.wav</sound>
 		<sound	Name="ArrowWooshSound"
 				CreditsText="Arrow whoosh sound made by smcameron (http://www.freesound.org/people/smcameron)"
 				Licence="CCby 3.0">arrowWhoosh.ogg</sound>
