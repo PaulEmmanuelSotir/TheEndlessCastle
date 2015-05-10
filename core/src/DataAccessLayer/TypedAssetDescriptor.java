@@ -66,7 +66,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		_ASSETS_TYPES = new ObjectMap<AssetTypeEnum, AssetType>(5);
 		_ASSETS_TYPES.put(AssetTypeEnum.music, new AssetType<Music>(Music.class, "musics/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.sound, new AssetType<Sound>(Sound.class, "sounds/"));
-		_ASSETS_TYPES.put(AssetTypeEnum.texture, new AssetType<Texture>(Texture.class, "textures"));
+		_ASSETS_TYPES.put(AssetTypeEnum.texture, new AssetType<Texture>(Texture.class, "textures/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.shader, new AssetType<Shader>(Shader.class, "shaders/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.font, new AssetType<Font>(Font.class, "fonts/"));
 	}
