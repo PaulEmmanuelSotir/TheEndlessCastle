@@ -11,7 +11,7 @@
 		<music	Name="DefaultMusic" Licence="CC0 1.0">Blank.mp3</music>
 		<music	Name="GameMusicKnight"
 				CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
-				Licence="">CrunkKnight.mp3</music>
+				Licence="CCby 3.0">CrunkKnight.mp3</music>
 		<music 	Name="GameMusicTrailer"
 				CreditsText="'Exciting trailer' by Kevin MacLeod (incompetech.com)"
 				Licence="CCby 3.0">ExcitingTrailer.mp3</music>
@@ -32,11 +32,9 @@
 				CreditsText="Volcano background sound made pushtobreak (http://www.freesound.org/people/pushtobreak/)"
 				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
 		
-		<shader Type="fragment" Name="RaysShader" 
-			CreditsText="Rotating rays shader inspired from Inigo Quilez (https://www.shadertoy.com/user/iq)"
-			Licence="CCby 3.0">rotatingRay.glsl</shader>
+		<shader Type="fragment" Name="RaysShader" Licence="CC0 1.0">rotatingRay.glsl</shader>
 		<shader Type="fragment" Name="Lava2Shader"
-			CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)">lava2.glsl</shader>
+				CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)">lava2.glsl</shader>
 		<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>
 		
 		<texture Name="DefaultTexture" Licence="CC0 1.0">defaultTexture.png</texture>
