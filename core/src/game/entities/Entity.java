@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import components.Component;
 
+import game.components.Component;
 import game.utils.Position;
 
 public abstract class Entity
