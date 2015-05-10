@@ -1,7 +1,7 @@
 package game.screens;
 
 import game.TheEndlessCastle;
-import DataAccessLayer.AssetsHandler;
+import game.dataAccessLayer.AssetsHandler;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;

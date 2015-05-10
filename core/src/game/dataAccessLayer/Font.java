@@ -1,4 +1,4 @@
-package DataAccessLayer;
+package game.dataAccessLayer;
 
 import com.badlogic.gdx.utils.Disposable;
 

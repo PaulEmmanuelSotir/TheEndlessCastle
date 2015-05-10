@@ -1,4 +1,4 @@
-package DataAccessLayer;
+package game.dataAccessLayer;
 
 public class AssetLicense
 {

@@ -1,4 +1,4 @@
-package DataAccessLayer;
+package game.dataAccessLayer;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;

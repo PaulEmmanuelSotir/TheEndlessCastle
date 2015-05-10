@@ -1,4 +1,4 @@
-package DataAccessLayer;
+package game.dataAccessLayer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
