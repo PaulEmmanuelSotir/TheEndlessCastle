@@ -16,13 +16,13 @@ public class LoadingScreen extends ScreenAdapter
 	{
 		_game = game;
 		_batch = game.getBatch();
-		
+
 		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*_ratio);
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}
-	
+
 
 	@Override
 	public void render(float delta) {
@@ -34,13 +34,13 @@ public class LoadingScreen extends ScreenAdapter
 		// Update camera
 		_camera.update();
 		_batch.setProjectionMatrix(_camera.combined);
-		
+
 		// Render
 		_batch.begin();
 		// TODO: render loading screen
 		_batch.end();
 	}
-	
+
 	@Override
 	public void resize(int width, int height) {
 		_ratio = (float)height/width;
@@ -49,7 +49,7 @@ public class LoadingScreen extends ScreenAdapter
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}
-	
+
 	@Override
 	public void dispose() {
 		// TODO: dispose disposables or die !
@@ -58,7 +58,7 @@ public class LoadingScreen extends ScreenAdapter
 	private TheEndlessCastle _game;
 	private SpriteBatch _batch;
 	private OrthographicCamera _camera;
-	
+
 	private float _time;
 	private float _ratio;
 }

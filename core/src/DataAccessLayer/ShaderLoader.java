@@ -38,14 +38,14 @@ public class ShaderLoader extends SynchronousAssetLoader<Shader, ShaderLoader.Sh
 		//TODO: load and compile shader
 		return _shader;
 	}
-	
+
 	@Override
 	public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, ShaderLoader.ShaderParameter parameter) {
 		return null;
 	}
 
 	protected Shader _shader;
-	
+
 	static public class ShaderParameter extends AssetLoaderParameters<Shader> {
 		// TODO: add or remove shader parameters
 		public boolean TimeUniformNeeded = true;

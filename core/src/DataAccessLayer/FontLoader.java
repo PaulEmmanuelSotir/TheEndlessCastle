@@ -24,7 +24,7 @@ public class FontLoader extends AsynchronousAssetLoader<Font, FontLoader.FontPar
 	@Override
 	public void loadAsync(AssetManager manager, String fileName, FileHandle file, FontParameters parameter) {
 		// TODO: loadAsync a bitmap font after creating bitmaps dynamically
-		
+
 	}
 
 	@Override
@@ -37,12 +37,12 @@ public class FontLoader extends AsynchronousAssetLoader<Font, FontLoader.FontPar
 	public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, FontParameters parameter) {
 		return null;
 	}
-	
+
 	private Font _font;
 
 	static public class FontParameters extends AssetLoaderParameters<Font>
 	{
 		// TODO: add or remove font parameters or extend bitmapfont parameters !!
 	}
-	
+
 }

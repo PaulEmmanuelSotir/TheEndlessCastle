@@ -24,7 +24,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 	public TypedAssetDescriptor(String assetName, String fileName, AssetTypeEnum assetType, AssetLoaderParameters<T> params) {
 		this(assetName, fileName, assetType, params, null);
 	}
-	
+
 	public TypedAssetDescriptor(String assetName, String fileName, AssetTypeEnum assetType, AssetLoaderParameters<T> params, AssetLicense license) {
 		// AssetDescriptor<T>.FileName is actually an internal path >.<
 		super(_ASSETS_TYPES.get(assetType).directory + fileName, _ASSETS_TYPES.get(assetType).assetClass, params);
@@ -32,7 +32,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		AssetName = assetName;
 		License = license;
 	}
-	
+
 	/**
 	 * 'toString()' method can be used for game credits according to assets licenses.
 	 */
@@ -56,7 +56,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		}
 		return buffer.toString();
 	}
-	
+
 	/**
 	 * Lists all available asset types with their respective directory
 	 */
@@ -82,7 +82,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		public String directory;
 		public Class<T> assetClass;
 	}
-	
+
 	public enum AssetTypeEnum
 	{
 		music,

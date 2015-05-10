@@ -9,12 +9,12 @@ import com.badlogic.gdx.utils.Disposable;
 public class Shader implements Disposable
 {
 	public Shader() {
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		
+
 	}
 
 	private ShaderProgram _shaderProgram;

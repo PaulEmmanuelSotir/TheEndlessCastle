@@ -16,7 +16,7 @@ public class TheEndlessCastle extends Game
 		_batch = new SpriteBatch();
 		_assetMngr = new AssetManager();
 		_settings = new Settings(_SETTINS_NAME);
-		
+
 		// Let shaders not use all available uniforms and attributes
 		ShaderProgram.pedantic = false; 
 
@@ -27,7 +27,7 @@ public class TheEndlessCastle extends Game
 	public void render() {
 		Gdx.gl.glClearColor(1.0f, 0.5f, 0.125f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		super.render();
 	} 
 
@@ -61,9 +61,10 @@ public class TheEndlessCastle extends Game
 	public AssetManager getAssetMngr() {
 		return _assetMngr;
 	}
-	
+
 	private AssetManager _assetMngr;
 	private SpriteBatch _batch;
 	private Settings _settings;
+
 	private static final String _SETTINS_NAME = "TheEndlessCastleSettings";
 }
