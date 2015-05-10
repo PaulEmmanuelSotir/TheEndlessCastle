@@ -28,7 +28,7 @@
 				Licence="CC0 1.0">lowFrequencyLayer.wav</sound>
 		<sound	Name="VolcanoBackgroundSound2"
 				CreditsText="Volcano background sound made pushtobreak (http://www.freesound.org/people/pushtobreak/)"
-				Licence="CCby 3.0">earthLowFrequancy4.aif</sound>
+				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
 		
 		<shader Type="fragment" Name="RaysShader" 
 			CreditsText="Rotating rays shader inspired from Inigo Quilez (https://www.shadertoy.com/user/iq)"
