@@ -1,6 +1,8 @@
 package game.components;
 
+import game.World;
+
 public interface IUpdateableComponent
 {
-	public void update(float delta);
+	public void update(World world);
 }
