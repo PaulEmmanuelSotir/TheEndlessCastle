@@ -7,6 +7,8 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -41,7 +43,7 @@ public class AssetsHandler implements Disposable
 		_assets = new ObjectMap<String, TypedAssetDescriptor>();
 
 		_assetsManager.setLoader(Shader.class, new ShaderLoader(new InternalFileHandleResolver()));
-		_assetsManager.setLoader(Font.class, new FontLoader(new InternalFileHandleResolver()));
+		_assetsManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 
 		// XML assets list parsing (TODO: do it in background thread?)
 		try
