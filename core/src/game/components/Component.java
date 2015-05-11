@@ -6,6 +6,7 @@ public abstract class Component
 {
 	public Component(Entity owner) {
 		_owner = owner;
+		_isEnabled = true;
 	}
 
 	public void setOwner(Entity owner) {
