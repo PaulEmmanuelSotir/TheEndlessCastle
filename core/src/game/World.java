@@ -17,7 +17,10 @@ public class World
 	public interface WorldListener {
 		// TODO: mettre les évenements du world ici...
 	}
-	
+
+	public static final float PIXELS_TO_METERS = .3125f;
+	public static final float METERS_TO_PIXELS = 32f;
+
 	public World(WorldListener listener)
 	{
 		_listener = listener;
