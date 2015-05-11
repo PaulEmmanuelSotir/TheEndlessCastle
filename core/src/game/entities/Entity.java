@@ -8,22 +8,42 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import game.World;
 import game.components.Component;
+import game.components.IRenderableComponent;
+import game.components.IUpdateableComponent;
 import game.utils.Position;
 
 public abstract class Entity
 {
-	protected Entity(float x, float y, float width, float height) {
-		_position = new Position(x, y);
-		_bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
+	protected Entity(String name, Rectangle bounds, Position position) {
+		_name = name;
+		_position = position;
+		_bounds = bounds;
 		_components = new ArrayList<Component>();
+		_renderableComponents = new ArrayList<IRenderableComponent>();
+		_updateableComponents = new ArrayList<IUpdateableComponent>();
+	}
+
+	protected void addComponent(Component component)
+	{
+		if(component != null)
+		{
+			_components.add(component);
+			if(component instanceof IRenderableComponent)
+				_renderableComponents.add((IRenderableComponent)component);
+			if(component instanceof IUpdateableComponent)
+				_updateableComponents.add((IUpdateableComponent)component);
+		}
+
 	}
 
 	public void render(SpriteBatch batch) {
-		//TODO: implémenter ça
+		for(IRenderableComponent compo : _renderableComponents)
+			compo.render(batch);
 	}
 
 	public void update(World world) {
-		//TODO: implémenter ça
+		for(IUpdateableComponent compo : _updateableComponents)
+			compo.update(world);;
 	}
 
 	public Position getPosition() {
@@ -43,11 +63,13 @@ public abstract class Entity
 	}
 
 	public String toString() {
-		return _id + "_pos=" + _position;
+		return _name + "_pos=" + _position;
 	}
 
-	private String _id;
-	private Position _position;
-	private Rectangle _bounds;
-	private List<Component> _components;
+	private String _name;
+	protected Position _position;
+	protected Rectangle _bounds;
+	protected List<Component> _components;
+	protected List<IRenderableComponent> _renderableComponents;
+	protected List<IUpdateableComponent> _updateableComponents;
 }
