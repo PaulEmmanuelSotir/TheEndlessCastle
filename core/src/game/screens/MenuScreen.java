@@ -13,18 +13,12 @@ import game.TheEndlessCastle;
 /**
  * Menu screen class
  */
-public class MenuScreen extends ScreenAdapter
+public class MenuScreen  extends Screen
 {
 
 	public MenuScreen(TheEndlessCastle game)
 	{
-		_game = game;
-		_batch = game.getBatch();
-
-		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
-		_camera = new OrthographicCamera(32f, 32f*_ratio);
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
-		_camera.update();
+		super(game);
 
 		// TODO: temporaire
 		// TODO: verifier _testShader.getLog() et _testShader.isCompiled();
@@ -35,38 +29,27 @@ public class MenuScreen extends ScreenAdapter
 	}
 
 	@Override
-	public void render(float delta) {
-		// Update time
-		if(_time > 0.8f * Float.MAX_VALUE)
-			_time = 0f;
-		_time += delta;
-
+	protected void update()
+	{
 		// TODO: temporaire
 		if(_time > 1.5)
 			_game.setScreen(new GameScreen(_game));
+	}
 
-		// Update camera
-		_camera.update();
-		_batch.setProjectionMatrix(_camera.combined);
-
-		// Render
-		_batch.begin();
+	@Override
+	protected void draw()
+	{
 		// TODO: temporaire
 		_backgroundShader.setUniformf(_ratioLocaction, _ratio);
 		_backgroundShader.setUniformf(_timeLocaction, _time);
 		_batch.setShader(_backgroundShader);
 		_backgroundSprite.draw(_batch);
-		_batch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		_ratio = (float)height/width;
+		super.resize(width, height);
 		_backgroundSprite.setSize(32f, 32f*_ratio);
-		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * _ratio;
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
-		_camera.update();
 	}
 
 	@Override
@@ -75,16 +58,9 @@ public class MenuScreen extends ScreenAdapter
 		_backgroundSprite.getTexture().dispose();
 	}
 
-	private TheEndlessCastle _game;
-	private SpriteBatch _batch;
-	private OrthographicCamera _camera;
-
 	// TODO: temporaire
 	private Sprite _backgroundSprite;
 	private ShaderProgram _backgroundShader;
 	private int _timeLocaction;
 	private int _ratioLocaction;
-
-	private float _time;
-	private float _ratio;
 }

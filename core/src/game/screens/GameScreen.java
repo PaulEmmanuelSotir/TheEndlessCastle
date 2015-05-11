@@ -1,9 +1,9 @@
 package game.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.GL20;
 
 import game.TheEndlessCastle;
@@ -12,67 +12,37 @@ import game.World;
 /**
  * Game screen class
  */
-public class GameScreen extends ScreenAdapter
+public class GameScreen extends Screen
 {
 	public GameScreen(TheEndlessCastle game)
 	{
-		_game = game;
-		_batch = game.getBatch();
-
+		super(game);
+		
 		_worldListener = new World.WorldListener() {
 			// TODO: implémenter les callcack du world ici...
 		};
 		_world = new World(_worldListener);
 
-		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
-		_camera = new OrthographicCamera(32f, 32f*_ratio);
-
 	}
 
 	@Override
-	public void render(float delta) {
-		update(delta);
-		draw();
+	protected void update()
+	{
+		//TODO: update world
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		_ratio = (float)height/width;
-		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * _ratio;
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
-		_camera.update();
+	protected void draw()
+	{
+
+		//TODO: render world
 	}
 
 	@Override
 	public void dispose() {
 	}
 
-	private void update(float deltaTime)
-	{
-		_camera.update();
-		_batch.setProjectionMatrix(_camera.combined);
-
-		if(_time > 0.8f * Float.MAX_VALUE)
-			_time = 0f;
-		_time += deltaTime;
-		//TODO: update world
-	}
-
-	private void draw()
-	{
-		_batch.begin();
-		//TODO: render world
-		_batch.end();
-	}
-
-	private TheEndlessCastle _game;
-	private SpriteBatch _batch;
-	private OrthographicCamera _camera;
 
 	private World _world;
 	private World.WorldListener _worldListener;
-
-	private float _time;
-	private float _ratio;
 }
