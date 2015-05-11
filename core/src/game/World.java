@@ -32,6 +32,16 @@ public class World
 		//TODO: Charger le début du niveau déssiné à la main
 	}
 	
+	public void update(float time)
+	{
+		_time = time;
+	}
+	
+	public float GetTime()
+	{
+		return _time;
+	}
+	
 	/**
 	 * Generates randomly a new part of the level.
 	 */
@@ -44,6 +54,7 @@ public class World
 	private int _score;
 	private long _distanceTraveled;
 	private Difficulty _difficultyLevel;
+	private float _time;
 	
 	private List<Sprite> _foregroundSprites;
 	private List<Sprite> _backgroundSprites;

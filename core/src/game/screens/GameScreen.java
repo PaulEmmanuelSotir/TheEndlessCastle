@@ -28,7 +28,7 @@ public class GameScreen extends Screen
 	@Override
 	protected void update()
 	{
-		//TODO: update world
+		_world.update(_time);
 	}
 
 	@Override
