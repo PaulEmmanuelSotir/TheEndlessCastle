@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 
 import game.TheEndlessCastle;
 import game.World;
+import game.utils.Position;
 
 /**
  * Game screen class
@@ -17,7 +18,7 @@ public class GameScreen extends Screen
 	public GameScreen(TheEndlessCastle game)
 	{
 		super(game);
-		
+
 		_worldListener = new World.WorldListener() {
 			// TODO: implémenter les callcack du world ici...
 		};
@@ -28,7 +29,7 @@ public class GameScreen extends Screen
 	@Override
 	protected void update()
 	{
-		_world.update(_time);
+		_world.update(_time, new Position(_camera.position.x, _camera.position.y));
 	}
 
 	@Override
