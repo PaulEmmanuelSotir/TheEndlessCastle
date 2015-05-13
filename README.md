@@ -1,6 +1,6 @@
 # THE ENDLESS CASTLE #
 
-![TheEndlessCastleCONCEPT.png](https://bitbucket.org/repo/o9xeEX/images/1114892730-TheEndlessCastleCONCEPT.png)
+![TheEndlessCastleCONCEPT.png](http://i.imgur.com/4S5ilq0.png)
 
 ### Contribution guidelines ###
 
