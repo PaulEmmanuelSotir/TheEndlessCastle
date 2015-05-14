@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- #######################################################################   RESOURCES.XML   #####################################################################################-->
-<!-- ######################### Resources XML file lists all assets available and provide metadata about these assets (like path or liciensing information) #########################-->
+<!-- ######################### Resources XML file lists all assets available and provide meta-data about these assets (like path or licensing information) #########################-->
 <!-- ######################### Assets names need to be unique.                                                                                             #########################-->
-<!-- ######################### Assets resolution (optional attribute) can be any combination of 'low', 'medium' and 'high':                                #########################-->
+<!-- ######################### NOTE: Assets resolution (optional attribute) can be any combination of 'low', 'medium' and 'high':                          #########################-->
 <!-- ######################### 		For example: Resolutions="high;medium" or "low;medium;high"                                                            #########################-->
 <!-- ################################################################################################################################################################################-->
 <Resources>
 	<icon Name="icon" Resolutions="low;medium;high" Licence="CC0 1.0">icon.medium.png</icon>
 	<Assets>
+		<!-- MUSICS -->
 		<music	Name="DefaultMusic" Licence="CC0 1.0">Blank.mp3</music>
 		<music	Name="GameMusicKnight"
 				CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
@@ -21,6 +22,7 @@
 				CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
 				Licence="CCby 3.0">HeroicAge.mp3</music>
 		
+		<!-- SOUNDS -->
 		<sound	Name="DefaultSound" Licence="CC0 1.0">blank.wav</sound>
 		<sound	Name="ArrowWooshSound"
 				CreditsText="Arrow whoosh sound made by smcameron (http://www.freesound.org/people/smcameron)"
@@ -32,21 +34,30 @@
 				CreditsText="Volcano background sound made pushtobreak (http://www.freesound.org/people/pushtobreak/)"
 				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
 		
+		<!-- SHADERS -->
 		<shader Type="fragment" Name="RaysShader" Licence="CC0 1.0">rotatingRay.glsl</shader>
 		<shader Type="fragment" Name="Lava2Shader"
 				CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)">lava2.glsl</shader>
 		<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>
 		
+		<!-- TEXTURES -->
 		<texture Name="DefaultTexture" Licence="CC0 1.0">defaultTexture.png</texture>
 		<texture Name="BackgroundTexture" Licence="CC0 1.0">background.png</texture>
 		<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
 		<texture Name="RempartsMiddeTexture" Licence="CC0 1.0">rempartsMidde.png</texture>
 		<texture Name="OpenSourceLogoTexture" Licence="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
+		<texture Name="INSALyonLogoTexture" Licence="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
+		
+		<!-- FONTS -->
+		<!-- <font Name=""></font> -->
+		
 	</Assets>
 	
+	<!-- LICENSES USED BY ASSETS -->
 	<Licences>
 		<License Name="CCby 4.0">Creative Commons Attribution 4.0 International License. (http://creativecommons.org/licenses/by/4.0/)</License>
 		<License Name="CCby 3.0">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
 		<License Name="CC0 1.0">CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)</License>
+		<License Name="CCTM">In France, its availability is authorized within the limits of the rights granted by Article L713-6 paragraph b (http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=BE5CC4D47D73FC59871198E99A0BA8B7.tpdjo04v_1?idArticle=LEGIARTI000006279714&amp;cidTexte=LEGITEXT000006069414&amp;dateTexte=20130906) of the Code of intellectual property and is reproduced here under these rights. In the United States of America, the use of this asset is supported as fair use within the legal framework defined by the fair use (http://fr.wikipedia.org/wiki/Fair_use) . However, such legal permission may not exist in all countries.</License>
 	</Licences>
 </Resources>
