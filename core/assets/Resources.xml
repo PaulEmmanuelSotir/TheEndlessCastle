@@ -41,11 +41,12 @@
 		<texture Name="BackgroundTexture" Licence="CC0 1.0">background.png</texture>
 		<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
 		<texture Name="RempartsMiddeTexture" Licence="CC0 1.0">rempartsMidde.png</texture>
-		<texture Name="OpenSourceLogoTexture" Licence="CC0 1.0">openSourceInitiative.png</texture>
+		<texture Name="OpenSourceLogoTexture" Licence="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
 	</Assets>
 	
 	<Licences>
-		<License Name="CCby 3.0">License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
+		<License Name="CCby 4.0">Creative Commons Attribution 4.0 International License. (http://creativecommons.org/licenses/by/4.0/)</License>
+		<License Name="CCby 3.0">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
 		<License Name="CC0 1.0">CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)</License>
 	</Licences>
 </Resources>
