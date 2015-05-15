@@ -2,6 +2,7 @@ package game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,13 @@ public class MenuScreen  extends Screen
 		_timeLocaction = _backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = _backgroundShader.getUniformLocation("u_ratio");
 		_backgroundSprite = new Sprite(new Texture(Gdx.files.internal("textures/defaultTexture.png")));	
+
+		_menuMusic = _assetsHndlr.get(_MENU_MUSIC_NAME);
+		if(_menuMusic != null)
+		{
+			_menuMusic.setLooping(true);
+			_menuMusic.play();
+		}
 	}
 
 	@Override
@@ -33,7 +41,10 @@ public class MenuScreen  extends Screen
 	{
 		// TODO: temporaire
 		if(_time > 1.5)
+		{
+			_menuMusic.stop();
 			_game.setScreen(new GameScreen(_game));
+		}
 	}
 
 	@Override
@@ -54,6 +65,8 @@ public class MenuScreen  extends Screen
 
 	@Override
 	public void dispose() {
+		if(_menuMusic != null)
+			_menuMusic.stop();
 		// TODO: temporaire
 		_backgroundSprite.getTexture().dispose();
 	}
@@ -63,4 +76,8 @@ public class MenuScreen  extends Screen
 	private ShaderProgram _backgroundShader;
 	private int _timeLocaction;
 	private int _ratioLocaction;
+
+	private Music _menuMusic;
+
+	private static final String _MENU_MUSIC_NAME = "MenuMusicHeroic";
 }
