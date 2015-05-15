@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.GL20;
 
+import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
 import game.World;
 import game.utils.Position;
@@ -24,6 +25,8 @@ public class GameScreen extends Screen
 		};
 		_world = new World(_worldListener);
 
+		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
+		_randomPlaylist.Start();
 	}
 
 	@Override
@@ -41,8 +44,10 @@ public class GameScreen extends Screen
 
 	@Override
 	public void dispose() {
+		_randomPlaylist.Stop();
 	}
 
+	private RandomMusicPlaylist _randomPlaylist;
 
 	private World _world;
 	private World.WorldListener _worldListener;
