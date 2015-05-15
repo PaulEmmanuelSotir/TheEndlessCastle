@@ -57,6 +57,11 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		}
 		return buffer.toString();
 	}
+	
+	public static <T> Class<T> getAssetClass(AssetTypeEnum type)
+	{
+		return _ASSETS_TYPES.get(type).assetClass;
+	}
 
 	/**
 	 * Lists all available asset types with their respective directory
