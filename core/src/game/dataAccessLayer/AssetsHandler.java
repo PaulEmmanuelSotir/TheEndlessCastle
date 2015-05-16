@@ -53,7 +53,7 @@ public class AssetsHandler implements Disposable
 		try
 		{
 			DocumentBuilder DBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document AssetsDoc = DBuilder.parse(Gdx.files.internal(AssetsListFileName).file());
+			Document AssetsDoc = DBuilder.parse(Gdx.files.internal(AssetsListFileName).path());
 			AssetsDoc.getDocumentElement().normalize();
 
 			// TODO: take resolution into account
