@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import game.dataAccessLayer.AssetsHandler;
 import game.entities.Entity;
 import game.utils.Position;
 
@@ -22,9 +25,10 @@ public class World
 	public static final float PIXELS_TO_METERS = .3125f;
 	public static final float METERS_TO_PIXELS = 32f;
 
-	public World(WorldListener listener)
+	public World(WorldListener listener, AssetsHandler assetsHandler)
 	{
 		_listener = listener;
+		_assetsHndlr = assetsHandler;
 
 		_foregroundSprites = new ArrayList<Sprite>();
 		_backgroundSprites = new ArrayList<Sprite>();
@@ -40,6 +44,10 @@ public class World
 	{
 		_time = time;
 		_cameraPos = cameraPos;
+	}
+	
+	public void render(SpriteBatch batch)
+	{
 	}
 
 	public float GetTime()
@@ -60,6 +68,7 @@ public class World
 	}
 
 	private WorldListener _listener;
+	private AssetsHandler _assetsHndlr;
 
 	private int _score;
 	private long _distanceTraveled;

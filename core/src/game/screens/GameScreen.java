@@ -23,7 +23,7 @@ public class GameScreen extends Screen
 		_worldListener = new World.WorldListener() {
 			// TODO: implémenter les callcack du world ici...
 		};
-		_world = new World(_worldListener);
+		_world = new World(_worldListener, _assetsHndlr);
 
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
 		_randomPlaylist.Start();
@@ -38,8 +38,7 @@ public class GameScreen extends Screen
 	@Override
 	protected void draw()
 	{
-
-		//TODO: render world
+		_world.render(_batch);
 	}
 
 	@Override
