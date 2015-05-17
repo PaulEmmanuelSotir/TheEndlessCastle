@@ -45,7 +45,18 @@ public abstract class Entity
 			if(component instanceof IUpdateableComponent)
 				_updateableComponents.add((IUpdateableComponent)component);
 		}
-
+	}
+	
+	protected void removeComponent(Component component)
+	{
+		if(component != null)
+		{
+			_components.remove(component);
+			if(component instanceof IRenderableComponent)
+				_renderableComponents.remove((IRenderableComponent)component);
+			if(component instanceof IUpdateableComponent)
+				_updateableComponents.remove((IUpdateableComponent)component);
+		}
 	}
 
 	/**
@@ -63,7 +74,7 @@ public abstract class Entity
 	 */
 	public void update(World world) {
 		for(IUpdateableComponent compo : _updateableComponents)
-			compo.update(world);;
+			compo.update(world);
 	}
 
 	public Position getPosition() {
@@ -72,6 +83,11 @@ public abstract class Entity
 
 	public void setPosition(Position position) {
 		_position = position;
+	}
+	
+	public String getName()
+	{
+		return _name;
 	}
 	
 	public String toString() {
