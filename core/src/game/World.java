@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import game.dataAccessLayer.AssetsHandler;
+import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
 import game.utils.Position;
 
@@ -30,6 +31,8 @@ public class World
 		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
+		
+		_entities = new ArrayList<Entity>();
 
 		_foregroundSprites = new ArrayList<Sprite>();
 		_backgroundSprites = new ArrayList<Sprite>();
@@ -37,6 +40,9 @@ public class World
 
 		_obstacles = new ArrayList<Entity>();
 		_movingObstacles = new ArrayList<Entity>();
+		
+		_backgroundLayer = new BackgroundLayerEntity(_assetsHndlr);
+		_entities.add(_backgroundLayer);
 
 		//TODO: Charger le début du niveau déssiné à la main
 	}
@@ -45,15 +51,20 @@ public class World
 	{
 		_time = time;
 		_cameraPos = cameraPos;
+
+		for(Entity e : _entities)
+			e.update(this);
 	}
 	
 	public void render(SpriteBatch batch)
 	{
+		_backgroundLayer.render(batch);
 	}
 	
 	public void setCameraRatio(float ratio)
 	{
 		_ratio = ratio;
+		_backgroundLayer.ScaleToHeight(32f*_ratio);
 	}
 
 	public float GetTime()
@@ -86,9 +97,12 @@ public class World
 	private List<Sprite> _foregroundSprites;
 	private List<Sprite> _backgroundSprites;
 	private List<Sprite> _centerSprites;
+	private BackgroundLayerEntity _backgroundLayer;
 
 	private List<Entity> _obstacles;
 	private List<Entity> _movingObstacles;
+	
+	private ArrayList<Entity> _entities;
 
 	private static final Vector2 GRAVITY = new Vector2(0.0f, -9.81f);
 }

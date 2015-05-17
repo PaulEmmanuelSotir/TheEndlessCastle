@@ -40,7 +40,15 @@ public class GameScreen extends Screen
 	@Override
 	protected void draw()
 	{
+		_batch.setShader(null);
 		_world.render(_batch);
+	}
+	
+	@Override
+	public void resize(int width, int height)
+	{
+		super.resize(width, height);
+		_world.setCameraRatio(_ratio);
 	}
 
 	@Override
