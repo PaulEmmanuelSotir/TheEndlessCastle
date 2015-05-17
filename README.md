@@ -27,6 +27,7 @@
 * [Memory management and pooling](https://github.com/libgdx/libgdx/wiki/Memory-management)
 * [Pack your Textures on the fly](http://www.badlogicgames.com/wordpress/?p=2297)
 * [2D animation on blender tutorial](https://www.youtube.com/watch?v=34ybq05esdY)
+
 #### Assets ####
 * [Free 2D game assets](http://wimi5.com/best-free-2d-game-assets-html5-game-developers/)
 * [Big list of royalty free graphics](http://www.pixelprospector.com/the-big-list-of-royalty-free-graphics/)
