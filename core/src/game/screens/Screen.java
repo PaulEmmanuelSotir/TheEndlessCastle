@@ -37,7 +37,6 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		update();
 
 		// Render
-		// TODO: savoir si il faudrait pas laisser _batch.begin(); et _batch.end(); dans draw
 		_batch.begin();
 		draw();
 		_batch.end();
