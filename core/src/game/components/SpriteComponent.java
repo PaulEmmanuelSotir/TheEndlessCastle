@@ -44,11 +44,31 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
 	}
 	
+	public void SetSize(float width, float height)
+	{
+		_sprite.setSize(width, height);
+	}
+	
+	public void SetOrigin(Position origin)
+	{
+		_sprite.setOrigin(origin.x, origin.y);
+	}
+	
 	public Sprite GetSprite()
 	{
 		return _sprite;
 	}
+	
+	public float GetWidth()
+	{
+		return _sprite.getWidth();
+	}
 
+	public float GetHeight()
+	{
+		return _sprite.getHeight();
+	}
+	
 	@Override
 	public void render(SpriteBatch batch) {
 		if(_isEnabled)
