@@ -6,9 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 
 public class DynamicBodyComponent extends BodyComponent
 {
-	public DynamicBodyComponent(Entity owner)
+	public DynamicBodyComponent(String name, Entity owner)
 	{
-		super(owner);
+		super(name, owner);
 		
 		_speed = new Vector2();
 		_accel = new Vector2();

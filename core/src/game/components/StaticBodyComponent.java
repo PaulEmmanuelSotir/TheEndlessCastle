@@ -4,8 +4,8 @@ import game.entities.Entity;
 
 public class StaticBodyComponent extends BodyComponent
 {
-	public StaticBodyComponent(Entity owner) {
-		super(owner);
+	public StaticBodyComponent(String name, Entity owner) {
+		super(name, owner);
 	}
 
 }

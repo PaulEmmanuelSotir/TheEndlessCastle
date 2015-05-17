@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class BodyComponent extends Component
 {
-	public BodyComponent(Entity owner) {
-		super(owner);
+	public BodyComponent(String name, Entity owner) {
+		super(name, owner);
 	}
 	
 	public Body getBody() {

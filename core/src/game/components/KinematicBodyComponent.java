@@ -4,7 +4,7 @@ import game.entities.Entity;
 
 public class KinematicBodyComponent extends BodyComponent
 {
-	public KinematicBodyComponent(Entity owner) {
-		super(owner);
+	public KinematicBodyComponent(String name, Entity owner) {
+		super(name, owner);
 	}
 }

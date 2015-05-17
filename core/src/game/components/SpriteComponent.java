@@ -16,8 +16,8 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 	 * Creates a new sprite component with the given entity as owner
 	 * @param owner
 	 */
-	public SpriteComponent(Entity owner) {
-		super(owner);
+	public SpriteComponent(String name, Entity owner) {
+		super(name, owner);
 		_sprite = new Sprite();
 	}
 
@@ -26,8 +26,8 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 	 * @param owner
 	 * @param texture
 	 */
-	public SpriteComponent(Entity owner, Texture texture) {
-		super(owner);
+	public SpriteComponent(String name, Entity owner, Texture texture) {
+		super(name, owner);
 		_sprite = new Sprite(texture);
 	}
 

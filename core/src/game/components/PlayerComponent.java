@@ -4,8 +4,8 @@ import game.entities.Entity;
 
 public class PlayerComponent extends Component
 {
-	public PlayerComponent(Entity owner) {
-		super(owner);
+	public PlayerComponent(String name, Entity owner) {
+		super(name, owner);
 	}
 
 }
