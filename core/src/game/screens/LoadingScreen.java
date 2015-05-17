@@ -2,6 +2,7 @@ package game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import game.TheEndlessCastle;
@@ -18,8 +19,12 @@ public class LoadingScreen extends Screen
 		super(game);
 
 		// We need to use raw path to assets and load it without assetsHandler as we are loading assets and reading ressources xml file
-		_INSALogoSprite = new Sprite(new Texture(Gdx.files.internal(_INSA_LOGO_TEXTURE_PATH)));
-		_openLogoSprite = new Sprite(new Texture(Gdx.files.internal(_OPEN_LOGO_TEXTURE_PATH)));
+		Texture INSATexture = new Texture(Gdx.files.internal(_INSA_LOGO_TEXTURE_PATH), true);
+		INSATexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+		Texture OpenTexture = new Texture(Gdx.files.internal(_OPEN_LOGO_TEXTURE_PATH), true);
+		OpenTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+		_INSALogoSprite = new Sprite(INSATexture);
+		_openLogoSprite = new Sprite(OpenTexture);
 		_openLogoSprite.setSize(7, 7f *_openLogoSprite.getHeight()/_openLogoSprite.getWidth());
 		_INSALogoSprite.setSize(7, 7f *_INSALogoSprite.getHeight()/_INSALogoSprite.getWidth());
 		_INSALogoSprite.setPosition(World.METERS_TO_PIXELS/2f*_ratio, 1.5f);
