@@ -9,9 +9,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
+import game.entities.RotatingRaysEntity;
+import game.entities.SpriteEntity;
 import game.utils.Position;
 
 /**
@@ -32,6 +35,7 @@ public class World
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
 		
+		//TODO: make tis list orderest to control z index
 		_entities = new ArrayList<Entity>();
 
 		_foregroundSprites = new ArrayList<Sprite>();
@@ -40,9 +44,13 @@ public class World
 
 		_obstacles = new ArrayList<Entity>();
 		_movingObstacles = new ArrayList<Entity>();
+
+		_rotatingRaysSpriteEntity = new RotatingRaysEntity("RotatingRaysSpriteEntity", _assetsHndlr);
+		_entities.add(_rotatingRaysSpriteEntity);
 		
 		_backgroundLayer = new BackgroundLayerEntity(_assetsHndlr);
 		_entities.add(_backgroundLayer);
+
 
 		//TODO: Charger le début du niveau déssiné à la main
 	}
@@ -58,13 +66,20 @@ public class World
 	
 	public void render(SpriteBatch batch)
 	{
-		_backgroundLayer.render(batch);
+		for(Entity e : _entities)
+			e.render(batch);
 	}
 	
 	public void setCameraRatio(float ratio)
 	{
 		_ratio = ratio;
 		_backgroundLayer.ScaleToHeight(32f*_ratio);
+		_rotatingRaysSpriteEntity.resize(METERS_TO_PIXELS, _ratio);
+	}
+	
+	public float getCameraRatio()
+	{
+		return _ratio;
 	}
 
 	public float GetTime()
@@ -93,6 +108,8 @@ public class World
 	private float _time;
 	private Position _cameraPos;
 	private float _ratio;
+	
+	private RotatingRaysEntity _rotatingRaysSpriteEntity;
 
 	private List<Sprite> _foregroundSprites;
 	private List<Sprite> _backgroundSprites;
@@ -104,5 +121,5 @@ public class World
 	
 	private ArrayList<Entity> _entities;
 
-	private static final Vector2 GRAVITY = new Vector2(0.0f, -9.81f);
+	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 }
