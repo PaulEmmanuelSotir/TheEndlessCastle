@@ -1,5 +1,6 @@
 package game.components;
 
+import game.World;
 import game.entities.Entity;
 import game.utils.Position;
 
@@ -10,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Renderable Sprite component
  */
-public class SpriteComponent extends Component implements IRenderableComponent {
+public class SpriteComponent extends Component implements IRenderableComponent, IUpdateableComponent {
 
 	/**
 	 * Creates a new sprite component with the given entity as owner
@@ -18,6 +19,7 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 	 */
 	public SpriteComponent(String name, Entity owner) {
 		super(name, owner);
+		_relativePosition = new Position(0, 0);
 		_sprite = new Sprite();
 	}
 
@@ -28,6 +30,7 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 	 */
 	public SpriteComponent(String name, Entity owner, Texture texture) {
 		super(name, owner);
+		_relativePosition = new Position(0, 0);
 		_sprite = new Sprite(texture);
 	}
 
@@ -38,20 +41,17 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 
 	public void SetRelativePosition(Position pos)
 	{
-		_relativePosition = pos;
-		Position OwnerPos = _owner.getPosition();
-		
-		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
+		_relativePosition = pos;		
+	}
+	
+	public Position GetRelativePosition()
+	{
+		return _relativePosition;		
 	}
 	
 	public void SetSize(float width, float height)
 	{
 		_sprite.setSize(width, height);
-	}
-	
-	public void SetPosition(Position pos)
-	{
-		_sprite.setPosition(pos.x, pos.y);
 	}
 	
 	public void SetOrigin(Position origin)
@@ -80,6 +80,12 @@ public class SpriteComponent extends Component implements IRenderableComponent {
 			_sprite.draw(batch);
 	}
 
+	@Override
+	public void update(World world) {
+		// Update position
+		Position OwnerPos = _owner.getPosition();
+		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
+	}
 	protected Sprite _sprite;
 	protected Position _relativePosition;
 }
