@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class SpriteEntity extends Entity
 {
 	/**
+	 * SpriteEntity constructor
 	 * @param name
 	 * @param bounds
 	 * @param position
@@ -23,11 +24,28 @@ public class SpriteEntity extends Entity
 		super(name, position, assetsHndlr);
 	}
 	
+	/**
+	 * SpriteEntity constructor with texture name
+	 * @param name
+	 * @param position
+	 * @param assetsHndlr
+	 * @param textureName
+	 */
+	public SpriteEntity(String name, Position position, AssetsHandler assetsHndlr, String textureName) {
+		super(name, position, assetsHndlr);
+		SetSprite(textureName);
+	}
+	
 	@Override
 	public void update(World world) {
 		super.update(world);
 	}
 
+	/**
+	 * Set sprite from texture name
+	 * @param textureName
+	 * @return
+	 */
 	public SpriteComponent SetSprite(String textureName)
 	{
 		SpriteComponent NewComponent = new SpriteComponent(getName() + "_" + textureName, this, _assetsHndlr.<Texture>get(textureName));
