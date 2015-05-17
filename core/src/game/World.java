@@ -27,6 +27,7 @@ public class World
 
 	public World(WorldListener listener, AssetsHandler assetsHandler)
 	{
+		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
 
@@ -48,6 +49,11 @@ public class World
 	
 	public void render(SpriteBatch batch)
 	{
+	}
+	
+	public void setCameraRatio(float ratio)
+	{
+		_ratio = ratio;
 	}
 
 	public float GetTime()
@@ -75,6 +81,7 @@ public class World
 	private Difficulty _difficultyLevel;
 	private float _time;
 	private Position _cameraPos;
+	private float _ratio;
 
 	private List<Sprite> _foregroundSprites;
 	private List<Sprite> _backgroundSprites;

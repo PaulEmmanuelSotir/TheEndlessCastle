@@ -1,6 +1,7 @@
 package game.screens;
 
 import game.TheEndlessCastle;
+import game.World;
 import game.dataAccessLayer.AssetsHandler;
 
 import com.badlogic.gdx.Gdx;
@@ -48,8 +49,8 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 	@Override
 	public void resize(int width, int height) {
 		_ratio = (float)height/width;
-		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * _ratio;
+		_camera.viewportWidth = World.METERS_TO_PIXELS;
+		_camera.viewportHeight = World.METERS_TO_PIXELS * _ratio;
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}
