@@ -54,7 +54,7 @@ public class BackgroundLayerEntity extends LayerEntity {
 	private long _backgroundLandscapeCount;
 	private float _landscapeWidth;
 
-	private static final float _BACKGROUND_PARALLLAX = -1f;
+	private static final float _BACKGROUND_PARALLLAX = 0.5f;
 	private static final String _BACKGROUND_LAYER_NAME = "BackgroundLandscapeLayer";
 	private static final String _BACKGROUND_TEXTURE_NAME = "BackgroundTexture";
 }

@@ -1,5 +1,8 @@
 package game.dataAccessLayer;
 
+import game.dataAccessLayer.TypedAssetDescriptor.AssetType;
+import game.dataAccessLayer.TypedAssetDescriptor.AssetTypeEnum;
+
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -9,7 +12,9 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.utils.Array;
@@ -72,8 +77,23 @@ public class AssetsHandler implements Disposable
 					Node AssetNode = AssetsNodes.item(i);
 					if(AssetNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element AssetElement = (Element)AssetNode;
-						TypedAssetDescriptor assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), TypedAssetDescriptor.AssetTypeEnum.valueOf(AssetElement.getTagName()));
+						TypedAssetDescriptor assetDescriptor;
+						AssetTypeEnum type = TypedAssetDescriptor.AssetTypeEnum.valueOf(AssetElement.getTagName());
+						
+						if(type == AssetTypeEnum.texture)
+						{
+							// Loads texture so that it is filtered correctly
+							TextureParameter param = new TextureParameter();
+							param.minFilter = TextureFilter.MipMapLinearLinear;
+							param.magFilter = TextureFilter.Linear;
+							param.genMipMaps = true;
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, param);
+						}
+						else
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type);
+						
 						_assetsManager.load(assetDescriptor);
+						
 						_assets.put(assetDescriptor.AssetName, assetDescriptor);
 						//_assetsByType.get(assetDescriptor.AssetType).add(assetDescriptor);
 					}				
