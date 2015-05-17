@@ -32,6 +32,8 @@ public class GameScreen extends Screen
 	@Override
 	protected void update()
 	{
+		// Temporary continuous camera scrolling
+		_camera.position.x = _time + _camera.viewportWidth / 2f;
 		_world.update(_time, new Position(_camera.position.x, _camera.position.y));
 	}
 
