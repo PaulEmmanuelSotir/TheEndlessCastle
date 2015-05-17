@@ -13,6 +13,7 @@ public class DesktopLauncher
 		
 		config.title = "The endless castle";
 		//config.fullscreen = true;
+		config.samples = 5;
 
 		config.addIcon("icon.medium.png", FileType.Internal);
 		
