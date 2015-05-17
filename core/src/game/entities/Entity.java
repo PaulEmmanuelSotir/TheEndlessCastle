@@ -22,11 +22,10 @@ public abstract class Entity
 	 * @param position
 	 * @param assetsHndlr
 	 */
-	protected Entity(String name, Rectangle bounds, Position position, AssetsHandler assetsHndlr) {
+	protected Entity(String name, Position position, AssetsHandler assetsHndlr) {
 		_assetsHndlr = assetsHndlr;
 		_name = name;
 		_position = position;
-		_bounds = bounds;
 		_components = new ArrayList<Component>();
 		_renderableComponents = new ArrayList<IRenderableComponent>();
 		_updateableComponents = new ArrayList<IUpdateableComponent>();
@@ -74,15 +73,7 @@ public abstract class Entity
 	public void setPosition(Position position) {
 		_position = position;
 	}
-
-	public Rectangle getBounds() {
-		return _bounds;
-	}
-
-	public void setBounds(Rectangle bounds) {
-		_bounds = bounds;
-	}
-
+	
 	public String toString() {
 		return _name + "_pos=" + _position;
 	}
@@ -90,7 +81,6 @@ public abstract class Entity
 	private String _name;
 	protected AssetsHandler _assetsHndlr;
 	protected Position _position;
-	protected Rectangle _bounds;
 	protected List<Component> _components;
 	protected List<IRenderableComponent> _renderableComponents;
 	protected List<IUpdateableComponent> _updateableComponents;
