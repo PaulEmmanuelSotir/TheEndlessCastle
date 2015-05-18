@@ -6,15 +6,13 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 
-import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
 import game.entities.RotatingRaysEntity;
-import game.entities.SpriteEntity;
 import game.utils.Position;
 
 /**
@@ -35,7 +33,7 @@ public class World
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
 		
-		//TODO: make tis list orderest to control z index
+		//TODO: make this list ordered to control z index
 		_entities = new ArrayList<Entity>();
 
 		_foregroundSprites = new ArrayList<Sprite>();
@@ -50,7 +48,6 @@ public class World
 		
 		_backgroundLayer = new BackgroundLayerEntity(_assetsHndlr);
 		_entities.add(_backgroundLayer);
-
 
 		//TODO: Charger le début du niveau déssiné à la main
 	}
@@ -67,7 +64,7 @@ public class World
 	public void render(SpriteBatch batch)
 	{
 		for(Entity e : _entities)
-			e.render(batch);
+			e.render(batch, this);
 	}
 	
 	public void setCameraRatio(float ratio)
@@ -91,6 +88,16 @@ public class World
 	{
 		return _cameraPos;
 	}
+	
+	public ShaderProgram GetCurrentShader()
+	{
+		return _currentShader;
+	}
+	
+	public void SetCurrentShader(ShaderProgram shader)
+	{
+		_currentShader = shader;
+	}
 
 	/**
 	 * Generates randomly a new part of the level.
@@ -108,6 +115,8 @@ public class World
 	private float _time;
 	private Position _cameraPos;
 	private float _ratio;
+	
+	private ShaderProgram _currentShader;
 	
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
 

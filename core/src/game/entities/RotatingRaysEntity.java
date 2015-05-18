@@ -19,9 +19,10 @@ public class RotatingRaysEntity extends SpriteEntity
 		SpriteComponent compo = SetSprite(_RANDOM_TEXTURE_NAME);
 		
 		// Temporary
-		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays2.glsl"));
-		_timeLocaction = _backgroundShader.getUniformLocation("u_globalTime");
-		_ratioLocaction = _backgroundShader.getUniformLocation("u_ratio");
+		SetShader(new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays2.glsl")));
+		ShaderProgram backgroundShader = GetShader();
+		_timeLocaction = backgroundShader.getUniformLocation("u_globalTime");
+		_ratioLocaction = backgroundShader.getUniformLocation("u_ratio");
 	}
 	
 	@Override
@@ -34,22 +35,18 @@ public class RotatingRaysEntity extends SpriteEntity
 		_time = world.GetTime();
 		_ratio = world.getCameraRatio();
 	}
+
+	@Override
+	public void draw(SpriteBatch batch, World world, ShaderProgram shader) {
+		shader.setUniformf(_ratioLocaction, _ratio);
+		shader.setUniformf(_timeLocaction, _time);
+	}
 	
 	public void resize(float WorldSize, float ratio)
 	{
 		((SpriteComponent)this._components.get(0)).SetSize(WorldSize, WorldSize*ratio);
 	}
-
-	@Override
-	public void render(SpriteBatch batch) {
-		batch.setShader(_backgroundShader);
-		_backgroundShader.setUniformf(_ratioLocaction, _ratio);
-		_backgroundShader.setUniformf(_timeLocaction, _time);
-		super.render(batch);
-		batch.setShader(null);
-	}
 	
-	private ShaderProgram _backgroundShader;
 	private int _timeLocaction;
 	private int _ratioLocaction;
 	private float _time;

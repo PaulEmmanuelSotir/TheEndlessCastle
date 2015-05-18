@@ -40,7 +40,6 @@ public class GameScreen extends Screen
 	@Override
 	protected void draw()
 	{
-		_batch.setShader(null);
 		_world.render(_batch);
 	}
 	

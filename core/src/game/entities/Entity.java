@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.World;
 import game.components.Component;
@@ -63,9 +64,49 @@ public abstract class Entity
 	 * Renders entity's renderable components
 	 * @param batch
 	 */
-	public void render(SpriteBatch batch) {
+	public void render(SpriteBatch batch, World world) {
+		BeginShader(batch, world);
+		
+		draw(batch, world, _shader);
+		
 		for(IRenderableComponent compo : _renderableComponents)
 			compo.render(batch);
+	}
+
+	/**
+	 * Draws entity.
+	 * Shader is already set when this method is called.
+	 * Override this if, for example, you want to supply uniforms to the shader
+	 * @param batch
+	 * @param world
+	 * @param shader
+	 */
+	protected void draw(SpriteBatch batch, World world, ShaderProgram shader) {
+		
+	}
+
+	/**
+	 * Sets the batch shader and verify if the shader is already set before doing dumb things (unlike batch)
+	 * @param batch
+	 * @param world
+	 */
+	private void BeginShader(SpriteBatch batch, World world)
+	{
+		if(world.GetCurrentShader() != _shader)
+		{
+			world.SetCurrentShader(_shader);
+			batch.setShader(_shader);
+		}
+	}
+	
+	public void SetShader(ShaderProgram shader)
+	{
+		_shader = shader;
+	}
+	
+	public ShaderProgram GetShader()
+	{
+		return _shader;
 	}
 
 	/**
@@ -94,6 +135,7 @@ public abstract class Entity
 		return _name + "_pos=" + _position;
 	}
 
+	private ShaderProgram _shader;
 	private String _name;
 	protected AssetsHandler _assetsHndlr;
 	protected Position _position;
