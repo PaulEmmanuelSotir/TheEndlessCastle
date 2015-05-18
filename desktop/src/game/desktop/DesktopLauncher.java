@@ -13,6 +13,7 @@ public class DesktopLauncher
 		
 		config.title = "The endless castle";
 		//config.fullscreen = true;
+		//TODO: set minimal ratio/resolution
 		config.samples = 4;
 		config.height = 720;
 		config.width = 1280;		
