@@ -27,8 +27,8 @@ public class LoadingScreen extends Screen
 		_openLogoSprite = new Sprite(OpenTexture);
 		_openLogoSprite.setSize(7, 7f *_openLogoSprite.getHeight()/_openLogoSprite.getWidth());
 		_INSALogoSprite.setSize(7, 7f *_INSALogoSprite.getHeight()/_INSALogoSprite.getWidth());
-		_INSALogoSprite.setPosition(World.METERS_TO_PIXELS/2f*_ratio, 1.5f);
-		_openLogoSprite.setPosition(World.METERS_TO_PIXELS/2f*_ratio, 7f);
+		_INSALogoSprite.setCenter(_camera.viewportWidth/2f, 2.5f);
+		_openLogoSprite.setCenter(_camera.viewportWidth/2f, 11f);
 	}
 
 	@Override
