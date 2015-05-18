@@ -35,11 +35,6 @@ public class SpriteEntity extends Entity
 		super(name, position, assetsHndlr);
 		SetSprite(textureName);
 	}
-	
-	@Override
-	public void update(World world) {
-		super.update(world);
-	}
 
 	/**
 	 * Set sprite from texture name
