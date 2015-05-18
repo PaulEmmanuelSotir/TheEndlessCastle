@@ -9,14 +9,25 @@ import game.utils.Position;
 
 public class PlayerComponent extends Component implements InputProcessor, IUpdateableComponent
 {
-	boolean leftMove;
-	boolean rightMove;
-
 	public PlayerComponent(String name, Entity owner) {
 		super(name, owner);
 	}
 
+	@Override
+	public void update(World world) {
+		Position pos = _owner.getPosition();
+		if(leftMove) {
+			_owner.setPosition(new Position(pos.x - _STEP, pos.y));
+			leftMove = false;
+		}
 
+		if(rightMove) {
+			_owner.setPosition(new Position(pos.x + _STEP, pos.y));
+			rightMove = false;
+		}
+
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode)
@@ -71,20 +82,8 @@ public class PlayerComponent extends Component implements InputProcessor, IUpdat
 		return false;
 	}
 
-	@Override
-	public void update(World world) {
-		Position pos = _owner.getPosition();
-		if(leftMove){
-			_owner.setPosition(new Position(pos.x - 0.2f, pos.y));
-			leftMove=false;
-		}
-
-		if(rightMove){
-			_owner.setPosition(new Position(pos.x + 0.2f, pos.y));
-			rightMove=false;
-		}
-
-	}
-
-
+	private boolean leftMove;
+	private boolean rightMove;	
+	
+	private static final float _STEP = 0.2f;
 }
