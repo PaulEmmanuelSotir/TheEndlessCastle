@@ -1,6 +1,7 @@
 package game.desktop;
 
 import com.badlogic.gdx.Files.FileType;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -12,11 +13,8 @@ public class DesktopLauncher
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
 		config.title = "The endless castle";
-		//config.fullscreen = true;
-		//TODO: set minimal ratio/resolution
-		config.samples = 4;
-		config.height = 720;
-		config.width = 1280;		
+		//config.setFromDisplayMode(LwjglApplicationConfiguration.getDesktopDisplayMode());
+		config.samples = 4;	
 		config.addIcon("icon.medium.png", FileType.Internal);
 		
 		new LwjglApplication(new TheEndlessCastle(), config);
