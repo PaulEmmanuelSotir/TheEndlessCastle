@@ -31,9 +31,12 @@
 				CreditsText="Volcano background sound made by ItsaWaB (http://www.freesound.org/people/ItsaWaB/)"
 				Licence="CC0 1.0">lowFrequencyLayer.wav</sound>
 		<sound	Name="VolcanoBackgroundSound2"
-				CreditsText="Volcano background sound made pushtobreak (http://www.freesound.org/people/pushtobreak/)"
+				CreditsText="Volcano background sound made by pushtobreak (http://www.freesound.org/people/pushtobreak/)"
 				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
-		
+		<sound	Name="ScreamSound"
+				CreditsText="Scream sound made by LittleRobotSoundFactory (http://www.freesound.org/people/LittleRobotSoundFactory/)"
+				Licence="CCby 3.0">scream.wav</sound>	
+
 		<!-- SHADERS -->
 		<shader Type="fragment" Name="MenuRaysShader" Licence="CC0 1.0">rotatingRay.glsl</shader>
 		<shader Type="fragment" Name="GameRaysShader" Licence="CC0 1.0">rotatingRay2.glsl</shader>
