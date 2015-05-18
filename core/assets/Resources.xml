@@ -35,7 +35,8 @@
 				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
 		
 		<!-- SHADERS -->
-		<shader Type="fragment" Name="RaysShader" Licence="CC0 1.0">rotatingRay.glsl</shader>
+		<shader Type="fragment" Name="MenuRaysShader" Licence="CC0 1.0">rotatingRay.glsl</shader>
+		<shader Type="fragment" Name="GameRaysShader" Licence="CC0 1.0">rotatingRay2.glsl</shader>
 		<shader Type="fragment" Name="Lava2Shader"
 				CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)">lava2.glsl</shader>
 		<shader Type="vertex" Name="DefaultVertexShader">vertex.glsl</shader>

@@ -19,7 +19,7 @@ public class RotatingRaysEntity extends SpriteEntity
 		SpriteComponent compo = SetSprite(_RANDOM_TEXTURE_NAME);
 		
 		// Temporary
-		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays.glsl"));
+		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays2.glsl"));
 		_timeLocaction = _backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = _backgroundShader.getUniformLocation("u_ratio");
 	}
