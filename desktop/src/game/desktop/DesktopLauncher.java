@@ -13,8 +13,9 @@ public class DesktopLauncher
 		
 		config.title = "The endless castle";
 		//config.fullscreen = true;
-		config.samples = 5;
-
+		config.samples = 4;
+		config.height = 720;
+		config.width = 1280;		
 		config.addIcon("icon.medium.png", FileType.Internal);
 		
 		new LwjglApplication(new TheEndlessCastle(), config);
