@@ -1,5 +1,6 @@
 package game.components;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
@@ -11,6 +12,7 @@ public class PlayerComponent extends Component implements InputProcessor, IUpdat
 {
 	public PlayerComponent(String name, Entity owner) {
 		super(name, owner);
+		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override

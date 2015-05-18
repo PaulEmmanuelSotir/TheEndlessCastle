@@ -12,6 +12,5 @@ public class KnightEntity extends Entity
 		addComponent(new PlayerComponent(_PLAYERCOMPONENTNAME, this));
 	}
 	
-	
 	private final String _PLAYERCOMPONENTNAME = getName() + "_PlayerComponent";
 }
