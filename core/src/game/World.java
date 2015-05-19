@@ -1,6 +1,8 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -32,24 +34,30 @@ public class World
 		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
-		
-		//TODO: make this list ordered to control z index
 		_entities = new ArrayList<Entity>();
 
-		_foregroundSprites = new ArrayList<Sprite>();
-		_backgroundSprites = new ArrayList<Sprite>();
-		_centerSprites = new ArrayList<Sprite>();
+		//_foregroundSprites = new ArrayList<Sprite>();
+		//_backgroundSprites = new ArrayList<Sprite>();
+		//_centerSprites = new ArrayList<Sprite>();
 
-		_obstacles = new ArrayList<Entity>();
-		_movingObstacles = new ArrayList<Entity>();
+		//_obstacles = new ArrayList<Entity>();
+		//_movingObstacles = new ArrayList<Entity>();
 
 		_rotatingRaysSpriteEntity = new RotatingRaysEntity("RotatingRaysSpriteEntity", _assetsHndlr);
+		_rotatingRaysSpriteEntity.setZIndex(0);
 		_entities.add(_rotatingRaysSpriteEntity);
 		
 		_backgroundLayer = new BackgroundLayerEntity(_assetsHndlr);
+		_backgroundLayer.setZIndex(1);
 		_entities.add(_backgroundLayer);
-
-		//TODO: Charger le début du niveau déssiné à la main
+		
+		// Sort entities by their Zindex so that we draw them in the right order
+		Collections.sort(_entities, new Comparator<Entity>() {
+			@Override
+			public int compare(Entity e1, Entity e2) {
+				return (e2.getZIndex() > e1.getZIndex()) ? -1 : 1;
+			}
+		});
 	}
 
 	public void update(float time, Position cameraPos)
@@ -120,13 +128,13 @@ public class World
 	
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
 
-	private List<Sprite> _foregroundSprites;
-	private List<Sprite> _backgroundSprites;
-	private List<Sprite> _centerSprites;
+	//private List<Sprite> _foregroundSprites;
+	//private List<Sprite> _backgroundSprites;
+	//private List<Sprite> _centerSprites;
 	private BackgroundLayerEntity _backgroundLayer;
 
-	private List<Entity> _obstacles;
-	private List<Entity> _movingObstacles;
+	//private List<Entity> _obstacles;
+	//private List<Entity> _movingObstacles;
 	
 	private ArrayList<Entity> _entities;
 

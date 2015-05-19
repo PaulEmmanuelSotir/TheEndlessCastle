@@ -131,12 +131,23 @@ public abstract class Entity
 		return _name;
 	}
 	
+	public int getZIndex()
+	{
+		return _zIndex;
+	}
+
+	public void setZIndex(int zIndex)
+	{
+		_zIndex = zIndex;
+	}
+	
 	public String toString() {
 		return _name + "_pos=" + _position;
 	}
 
 	private ShaderProgram _shader;
 	private String _name;
+	protected int _zIndex;
 	protected AssetsHandler _assetsHndlr;
 	protected Position _position;
 	protected List<Component> _components;
