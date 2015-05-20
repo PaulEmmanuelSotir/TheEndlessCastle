@@ -18,7 +18,7 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 
 		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*_ratio);
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 3f);
 		_camera.update();
 	}
 
