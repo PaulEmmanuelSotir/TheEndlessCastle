@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
+import game.entities.KnightEntity;
 import game.entities.RotatingRaysEntity;
 import game.utils.Position;
 
@@ -47,9 +49,11 @@ public class World
 		_rotatingRaysSpriteEntity.setZIndex(0);
 		_entities.add(_rotatingRaysSpriteEntity);
 		
-		_backgroundLayer = new BackgroundLayerEntity(_assetsHndlr);
-		_backgroundLayer.setZIndex(1);
-		_entities.add(_backgroundLayer);
+		_backgroundLayerEntity = new BackgroundLayerEntity(_assetsHndlr);
+		_backgroundLayerEntity.setZIndex(1);
+		_entities.add(_backgroundLayerEntity);
+		
+		_knightEntity = new KnightEntity("", new Position(0, 0), _assetsHndlr);
 		
 		// Sort entities by their Zindex so that we draw them in the right order
 		Collections.sort(_entities, new Comparator<Entity>() {
@@ -78,7 +82,7 @@ public class World
 	public void setCameraRatio(float ratio)
 	{
 		_ratio = ratio;
-		_backgroundLayer.ScaleToHeight(32f*_ratio);
+		_backgroundLayerEntity.ScaleToHeight(32f*_ratio);
 		_rotatingRaysSpriteEntity.resize(METERS_TO_PIXELS, _ratio);
 	}
 	
@@ -90,6 +94,11 @@ public class World
 	public float GetTime()
 	{
 		return _time;
+	}
+	
+	public float GetDeltaTime()
+	{
+		return Gdx.graphics.getDeltaTime(); 
 	}
 
 	public Position GetCameraPosition()
@@ -125,18 +134,19 @@ public class World
 	private float _ratio;
 	
 	private ShaderProgram _currentShader;
+
+	private ArrayList<Entity> _entities;
 	
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
+	private KnightEntity _knightEntity;
+	private BackgroundLayerEntity _backgroundLayerEntity;
 
 	//private List<Sprite> _foregroundSprites;
 	//private List<Sprite> _backgroundSprites;
 	//private List<Sprite> _centerSprites;
-	private BackgroundLayerEntity _backgroundLayer;
-
+	
 	//private List<Entity> _obstacles;
 	//private List<Entity> _movingObstacles;
 	
-	private ArrayList<Entity> _entities;
-
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 }
