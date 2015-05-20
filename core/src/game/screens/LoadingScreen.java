@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import game.TheEndlessCastle;
-import game.World;
+import game.GameWorld;
 import game.utils.Position;
 
 /**

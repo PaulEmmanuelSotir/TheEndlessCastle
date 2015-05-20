@@ -20,9 +20,9 @@ import game.entities.RotatingRaysEntity;
 import game.utils.Position;
 
 /**
- * World class containing all objects rendered in game
+ * GameWorld class containing all objects rendered in game and their corresponding Box2D bodies
  */
-public class World
+public class GameWorld
 {
 	public interface WorldListener {
 		// TODO: mettre les évenements du world ici...
@@ -31,7 +31,7 @@ public class World
 	public static final float PIXELS_TO_METERS = .3125f;
 	public static final float METERS_TO_PIXELS = 32f;
 
-	public World(WorldListener listener, AssetsHandler assetsHandler)
+	public GameWorld(WorldListener listener, AssetsHandler assetsHandler)
 	{
 		_ratio = 1f;
 		_listener = listener;

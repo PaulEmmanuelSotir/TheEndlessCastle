@@ -1,6 +1,6 @@
 package game.entities;
 
-import game.World;
+import game.GameWorld;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
@@ -35,7 +35,7 @@ public class BackgroundLayerEntity extends LayerEntity {
 	}
 
 	@Override
-	public void update(World world)
+	public void update(GameWorld world)
 	{
 		super.update(world);
 		if(world.GetCameraPosition().x > _position.x + _landscapeWidth/2f - world.METERS_TO_PIXELS/2f + Math.max(_backSpriteComponent1.GetRelativePosition().x, _backSpriteComponent2.GetRelativePosition().x))

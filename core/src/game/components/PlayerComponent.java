@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
-import game.World;
+import game.GameWorld;
 import game.entities.Entity;
 import game.utils.Position;
 
@@ -16,7 +16,7 @@ public class PlayerComponent extends Component implements InputProcessor, IUpdat
 	}
 
 	@Override
-	public void update(World world) {
+	public void update(GameWorld world) {
 		Position pos = _owner.getPosition();
 		if(leftMove) {
 			_owner.setPosition(new Position(pos.x - _STEP, pos.y));

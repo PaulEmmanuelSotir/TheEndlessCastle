@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-import game.World;
+import game.GameWorld;
 import game.components.Component;
 import game.components.IRenderableComponent;
 import game.components.IUpdateableComponent;
@@ -64,7 +64,7 @@ public abstract class Entity
 	 * Renders entity's renderable components
 	 * @param batch
 	 */
-	public void render(SpriteBatch batch, World world) {
+	public void render(SpriteBatch batch, GameWorld world) {
 		BeginShader(batch, world);
 		
 		draw(batch, world, _shader);
@@ -81,7 +81,7 @@ public abstract class Entity
 	 * @param world
 	 * @param shader
 	 */
-	protected void draw(SpriteBatch batch, World world, ShaderProgram shader) {
+	protected void draw(SpriteBatch batch, GameWorld world, ShaderProgram shader) {
 		
 	}
 
@@ -90,7 +90,7 @@ public abstract class Entity
 	 * @param batch
 	 * @param world
 	 */
-	private void BeginShader(SpriteBatch batch, World world)
+	private void BeginShader(SpriteBatch batch, GameWorld world)
 	{
 		if(world.GetCurrentShader() != _shader)
 		{
@@ -113,7 +113,7 @@ public abstract class Entity
 	 * Updates entity's updateable components
 	 * @param world
 	 */
-	public void update(World world) {
+	public void update(GameWorld world) {
 		for(IUpdateableComponent compo : _updateableComponents)
 			compo.update(world);
 	}

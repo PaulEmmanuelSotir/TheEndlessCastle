@@ -1,6 +1,6 @@
 package game.entities;
 
-import game.World;
+import game.GameWorld;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;

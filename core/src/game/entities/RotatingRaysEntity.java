@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-import game.World;
+import game.GameWorld;
 import game.components.IRenderableComponent;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
@@ -26,7 +26,7 @@ public class RotatingRaysEntity extends SpriteEntity
 	}
 	
 	@Override
-	public void update(World world) {
+	public void update(GameWorld world) {
 		super.update(world);
 		Position pos = world.GetCameraPosition();
 		pos.x -= world.METERS_TO_PIXELS/2f;
@@ -37,7 +37,7 @@ public class RotatingRaysEntity extends SpriteEntity
 	}
 
 	@Override
-	public void draw(SpriteBatch batch, World world, ShaderProgram shader) {
+	public void draw(SpriteBatch batch, GameWorld world, ShaderProgram shader) {
 		shader.setUniformf(_ratioLocaction, _ratio);
 		shader.setUniformf(_timeLocaction, _time);
 	}

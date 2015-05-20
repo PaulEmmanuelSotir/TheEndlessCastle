@@ -3,7 +3,7 @@ package game.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.World;
+import game.GameWorld;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
@@ -41,7 +41,7 @@ public class LayerEntity extends Entity
 	}
 	
 	@Override
-	public void update(World world) {
+	public void update(GameWorld world) {
 		super.update(world);
 		
 		// Apply parallax effect on x axis

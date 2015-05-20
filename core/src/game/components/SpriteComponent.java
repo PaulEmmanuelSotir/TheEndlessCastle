@@ -1,6 +1,6 @@
 package game.components;
 
-import game.World;
+import game.GameWorld;
 import game.entities.Entity;
 import game.utils.Position;
 
@@ -85,7 +85,7 @@ public class SpriteComponent extends Component implements IRenderableComponent, 
 	}
 
 	@Override
-	public void update(World world) {
+	public void update(GameWorld world) {
 		// Update position
 		Position OwnerPos = _owner.getPosition();
 		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
