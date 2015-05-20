@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
 import game.World;
+import game.entities.SpriteEntity;
 import game.utils.Position;
 
 /**

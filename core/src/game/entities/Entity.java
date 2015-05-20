@@ -23,7 +23,7 @@ public abstract class Entity
 	 * @param position
 	 * @param assetsHndlr
 	 */
-	protected Entity(String name, Position position, AssetsHandler assetsHndlr) {
+	public Entity(String name, Position position, AssetsHandler assetsHndlr) {
 		_assetsHndlr = assetsHndlr;
 		_name = name;
 		_position = position;
