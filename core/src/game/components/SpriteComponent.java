@@ -9,13 +9,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- * Renderable Sprite component
+ * Sprite component class
  */
 public class SpriteComponent extends Component implements IRenderableComponent, IUpdateableComponent {
 
 	/**
 	 * Creates a new sprite component with the given entity as owner
-	 * @param owner
+	 * @param name Sprite component name
+	 * @param owner Sprite component owner entity
 	 */
 	public SpriteComponent(String name, Entity owner) {
 		super(name, owner);
@@ -25,8 +26,9 @@ public class SpriteComponent extends Component implements IRenderableComponent, 
 
 	/**
 	 * Creates a new sprite component from a given texture
-	 * @param owner
-	 * @param texture
+	 * @param name Sprite component name
+	 * @param owner Sprite component owner entity
+	 * @param texture Sprite component texture
 	 */
 	public SpriteComponent(String name, Entity owner, Texture texture) {
 		super(name, owner);
@@ -37,16 +39,6 @@ public class SpriteComponent extends Component implements IRenderableComponent, 
 	public void SetTexture(Texture texture)
 	{
 		_sprite.setTexture(texture);
-	}
-
-	public void SetRelativePosition(Position pos)
-	{
-		_relativePosition = pos;		
-	}
-	
-	public Position GetRelativePosition()
-	{
-		return _relativePosition;		
 	}
 	
 	public void SetSize(float width, float height)
@@ -81,11 +73,24 @@ public class SpriteComponent extends Component implements IRenderableComponent, 
 	}
 
 	@Override
+	public void SetRelativePosition(Position pos)
+	{
+		_relativePosition = pos;		
+	}
+
+	@Override
+	public Position GetRelativePosition()
+	{
+		return _relativePosition;		
+	}
+
+	@Override
 	public void update(World world) {
 		// Update position
 		Position OwnerPos = _owner.getPosition();
 		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
 	}
+	
 	protected Sprite _sprite;
 	protected Position _relativePosition;
 }
