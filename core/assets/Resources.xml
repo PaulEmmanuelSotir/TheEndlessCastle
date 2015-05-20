@@ -46,6 +46,9 @@
 		<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
 		<texture Name="RempartsMiddeTexture" Licence="CC0 1.0">rempartsMidde.png</texture>
 		<texture Name="TourDepartTexture" Licence="CC0 1.0">tourdepart.png</texture>
+		<texture Name="ProjectilePieu" Licence="CC0 1.0">projectile_pieu.png</texture>
+		<texture Name="ProjectilePierre" Licence="CC0 1.0">projectile_pierre.png</texture>
+		<texture Name="ProjectileFleche" Licence="CC0 1.0">projectile_fleche.png</texture>
 		<texture Name="OpenSourceLogoTexture" Licence="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
 		<texture Name="INSALyonLogoTexture" Licence="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		
