@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -30,11 +31,12 @@ public class GameWorld
 		// TODO: mettre les évenements du world ici...
 	}
 
-	public GameWorld(WorldListener listener, AssetsHandler assetsHandler)
+	public GameWorld(WorldListener listener, AssetsHandler assetsHandler, Camera camera)
 	{
 		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
+		_camera = camera;
 
 
 		// Entities initialization
@@ -43,13 +45,13 @@ public class GameWorld
 		_rotatingRaysSpriteEntity = new RotatingRaysEntity("RotatingRaysSpriteEntity", _assetsHndlr);
 		_rotatingRaysSpriteEntity.setZIndex(0);
 		_entities.add(_rotatingRaysSpriteEntity);
-		
+
 		_backgroundLayerEntity = new BackgroundLayerEntity(_assetsHndlr);
 		_backgroundLayerEntity.setZIndex(1);
 		_entities.add(_backgroundLayerEntity);
-		
-		_knightEntity = new KnightEntity("", new Position(0, 0), _assetsHndlr);
-		
+
+		_knightEntity = new KnightEntity("KnightEntity", new Position(0, 0), _assetsHndlr);
+
 		// Sort entities by their Zindex so that we draw them in the right order
 		Collections.sort(_entities, new Comparator<Entity>() {
 			@Override
@@ -59,29 +61,28 @@ public class GameWorld
 		});
 	}
 
-	public void update(float time, Position cameraPos)
+	public void update(float time)
 	{
 		_time = time;
-		_cameraPos = cameraPos;
 
 		for(Entity e : _entities)
 			e.update(this);
 	}
-	
+
 	public void render(SpriteBatch batch)
 	{
 		for(Entity e : _entities)
 			e.render(batch, this);
 	}
 
-	public void setCameraRatio(float ratio)
+	public void setViewRatio(float ratio)
 	{
 		_ratio = ratio;
 		_backgroundLayerEntity.ScaleToHeight(32f*_ratio);
 		_rotatingRaysSpriteEntity.resize(WORLD_VIEW_WIDTH, _ratio);
 	}
 
-	public float getCameraRatio()
+	public float getViewRatio()
 	{
 		return _ratio;
 	}
@@ -98,7 +99,7 @@ public class GameWorld
 
 	public Position GetCameraPosition()
 	{
-		return _cameraPos;
+		return new Position(_camera.position);
 	}
 
 	public ShaderProgram GetCurrentShader()
@@ -120,12 +121,12 @@ public class GameWorld
 
 	private WorldListener _listener;
 	private AssetsHandler _assetsHndlr;
+	private Camera _camera;
 
 	private int _score;
 	private long _distanceTraveled;
 	private Difficulty _difficultyLevel;
 	private float _time;
-	private Position _cameraPos;
 	private float _ratio;
 	private ShaderProgram _currentShader;
 
