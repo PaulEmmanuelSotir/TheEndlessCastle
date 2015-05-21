@@ -24,26 +24,21 @@ import game.utils.Position;
  */
 public class GameWorld
 {
+	public static final float WORLD_VIEW_WIDTH = 32f;
+
 	public interface WorldListener {
 		// TODO: mettre les évenements du world ici...
 	}
-
-	public static final float PIXELS_TO_METERS = .3125f;
-	public static final float METERS_TO_PIXELS = 32f;
 
 	public GameWorld(WorldListener listener, AssetsHandler assetsHandler)
 	{
 		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
+
+
+		// Entities initialization
 		_entities = new ArrayList<Entity>();
-
-		//_foregroundSprites = new ArrayList<Sprite>();
-		//_backgroundSprites = new ArrayList<Sprite>();
-		//_centerSprites = new ArrayList<Sprite>();
-
-		//_obstacles = new ArrayList<Entity>();
-		//_movingObstacles = new ArrayList<Entity>();
 
 		_rotatingRaysSpriteEntity = new RotatingRaysEntity("RotatingRaysSpriteEntity", _assetsHndlr);
 		_rotatingRaysSpriteEntity.setZIndex(0);
@@ -78,14 +73,14 @@ public class GameWorld
 		for(Entity e : _entities)
 			e.render(batch, this);
 	}
-	
+
 	public void setCameraRatio(float ratio)
 	{
 		_ratio = ratio;
 		_backgroundLayerEntity.ScaleToHeight(32f*_ratio);
-		_rotatingRaysSpriteEntity.resize(METERS_TO_PIXELS, _ratio);
+		_rotatingRaysSpriteEntity.resize(WORLD_VIEW_WIDTH, _ratio);
 	}
-	
+
 	public float getCameraRatio()
 	{
 		return _ratio;
@@ -95,7 +90,7 @@ public class GameWorld
 	{
 		return _time;
 	}
-	
+
 	public float GetDeltaTime()
 	{
 		return Gdx.graphics.getDeltaTime(); 
@@ -105,19 +100,19 @@ public class GameWorld
 	{
 		return _cameraPos;
 	}
-	
+
 	public ShaderProgram GetCurrentShader()
 	{
 		return _currentShader;
 	}
-	
+
 	public void SetCurrentShader(ShaderProgram shader)
 	{
 		_currentShader = shader;
 	}
 
 	/**
-	 * Generates randomly a new part of the level.
+	 * Generates randomly a new part of the level by choosing a Segment next the current one
 	 */
 	private void GenerateMoreWorld() {
 		//TODO: implémenter ça
@@ -132,21 +127,12 @@ public class GameWorld
 	private float _time;
 	private Position _cameraPos;
 	private float _ratio;
-	
 	private ShaderProgram _currentShader;
 
 	private ArrayList<Entity> _entities;
-	
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
 	private KnightEntity _knightEntity;
 	private BackgroundLayerEntity _backgroundLayerEntity;
 
-	//private List<Sprite> _foregroundSprites;
-	//private List<Sprite> _backgroundSprites;
-	//private List<Sprite> _centerSprites;
-	
-	//private List<Entity> _obstacles;
-	//private List<Entity> _movingObstacles;
-	
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 }

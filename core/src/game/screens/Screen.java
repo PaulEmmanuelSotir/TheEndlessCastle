@@ -48,8 +48,8 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 	@Override
 	public void resize(int width, int height) {
 		_ratio = (float)height/width;
-		_camera.viewportWidth = GameWorld.METERS_TO_PIXELS;
-		_camera.viewportHeight = GameWorld.METERS_TO_PIXELS * _ratio;
+		_camera.viewportWidth = GameWorld.WORLD_VIEW_WIDTH;
+		_camera.viewportHeight = GameWorld.WORLD_VIEW_WIDTH * _ratio;
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}

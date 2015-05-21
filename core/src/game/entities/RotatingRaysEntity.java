@@ -28,8 +28,8 @@ public class RotatingRaysEntity extends SpriteEntity
 	public void update(GameWorld world) {
 		super.update(world);
 		Position pos = world.GetCameraPosition();
-		pos.x -= world.METERS_TO_PIXELS/2f;
-		pos.y -= world.getCameraRatio()*world.METERS_TO_PIXELS/2f;
+		pos.x -= world.WORLD_VIEW_WIDTH/2f;
+		pos.y -= world.getCameraRatio()*world.WORLD_VIEW_WIDTH/2f;
 		this.setPosition(pos);
 		_time = world.GetTime();
 		_ratio = world.getCameraRatio();
