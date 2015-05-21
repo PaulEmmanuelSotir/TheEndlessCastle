@@ -21,9 +21,7 @@ public class MenuScreen  extends Screen
 	{
 		super(game);
 
-		// TODO: temporaire
-		// TODO: verifier _testShader.getLog() et _testShader.isCompiled();
-		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays.glsl"));
+		_backgroundShader = _assetsHndlr.get("MenuRaysShader");
 		_timeLocaction = _backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = _backgroundShader.getUniformLocation("u_ratio");
 		_backgroundSprite = new Sprite(new Texture(Gdx.files.internal("textures/defaultTexture.png")));	

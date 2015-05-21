@@ -1,12 +1,9 @@
 package game.dataAccessLayer;
 
-import game.dataAccessLayer.TypedAssetDescriptor.AssetType;
+import game.dataAccessLayer.ShaderLoader.ShaderParameter;
 import game.dataAccessLayer.TypedAssetDescriptor.AssetTypeEnum;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.EnumMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
@@ -17,9 +14,9 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.ObjectMap;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -46,7 +43,7 @@ public class AssetsHandler implements Disposable
 	public void Load(String AssetsListFileName)
 	{
 		_assetsManager = new AssetManager();
-		_assetsManager.setLoader(Shader.class, new ShaderLoader(new InternalFileHandleResolver()));
+		_assetsManager.setLoader(ShaderProgram.class, new ShaderLoader(new InternalFileHandleResolver()));
 		_assetsManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 		
 		_assets = new HashMap<String, TypedAssetDescriptor>();
@@ -80,20 +77,26 @@ public class AssetsHandler implements Disposable
 						TypedAssetDescriptor assetDescriptor;
 						AssetTypeEnum type = TypedAssetDescriptor.AssetTypeEnum.valueOf(AssetElement.getTagName());
 						
-						if(type == AssetTypeEnum.texture)
+						switch(type)
 						{
+						case texture:
 							// Loads texture so that it is filtered correctly
-							TextureParameter param = new TextureParameter();
-							param.minFilter = TextureFilter.MipMapLinearLinear;
-							param.magFilter = TextureFilter.Linear;
-							param.genMipMaps = true;
-							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, param);
-						}
-						else
+							TextureParameter TextureParam = new TextureParameter();
+							TextureParam.minFilter = TextureFilter.MipMapLinearLinear;
+							TextureParam.magFilter = TextureFilter.Linear;
+							TextureParam.genMipMaps = true;
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, TextureParam);
+							break;
+						case shader:
+							ShaderParameter shaderParam = new ShaderParameter();
+							shaderParam.VertexShaderPath = TypedAssetDescriptor._ASSETS_TYPES.get(AssetTypeEnum.shader).directory + AssetElement.getAttribute(_SHADER_VERTEX_ATTRIBUTE_NAME);
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, shaderParam);
+							break;
+						default:
 							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type);
-						
+						}
+
 						_assetsManager.load(assetDescriptor);
-						
 						_assets.put(assetDescriptor.AssetName, assetDescriptor);
 						//_assetsByType.get(assetDescriptor.AssetType).add(assetDescriptor);
 					}				
@@ -188,6 +191,7 @@ public class AssetsHandler implements Disposable
 	protected final static String _NAME_ATTRIBUTE = "Name";
 	protected final static String _ASSETS_TAG_NAME = "Assets";
 	protected final static String _ICON_TAG_NAME = "icon";
+	protected final static String _SHADER_VERTEX_ATTRIBUTE_NAME = "VertexShaderFileName";
 
 	public enum resolution
 	{
