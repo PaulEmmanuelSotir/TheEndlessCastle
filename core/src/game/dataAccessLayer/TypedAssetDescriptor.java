@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -76,6 +77,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		_ASSETS_TYPES.put(AssetTypeEnum.texture, new AssetType<Texture>(Texture.class, "textures/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.shader, new AssetType<ShaderProgram>(ShaderProgram.class, "shaders/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.font, new AssetType<FreeTypeFontGenerator>(FreeTypeFontGenerator.class, "fonts/"));
+		_ASSETS_TYPES.put(AssetTypeEnum.model, new AssetType<Model>(Model.class, "models/"));
 	}
 
 	protected static class AssetType<T>
@@ -96,6 +98,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		sound,
 		shader,
 		texture,
-		font
+		font,
+		model
 	}
 }
