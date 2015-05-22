@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
@@ -37,6 +39,10 @@ public class GameWorld
 		_assetsHndlr = assetsHandler;
 		_camera = camera;
 
+		// Box 2D initialization
+		_box2DWorld = new World(_GRAVITY, true);
+		if(_DEBUG_RENDERING_ENABLED)
+			_debugRenderer = new Box2DDebugRenderer();
 
 		// Entities initialization
 		_entities = new ArrayList<Entity>();
@@ -66,6 +72,7 @@ public class GameWorld
 	public void update(float time)
 	{
 		_time = time;
+		_box2DWorld.step(1/300f, 6, 2);
 
 		for(Entity e : _entities)
 			e.update(this);
@@ -73,10 +80,15 @@ public class GameWorld
 
 	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch)
 	{
+		if(!_DEBUG_RENDERING_ENABLED)
+		{
 			spriteBatch.begin();
 			for(Entity e : _entities)
 				e.render(spriteBatch, modelBatch, this);
 			endBatch(spriteBatch, modelBatch);
+		}
+		else
+			_debugRenderer.render(_box2DWorld, _camera.combined);
 	}
 
 	public void setViewRatio(float ratio)
@@ -175,10 +187,14 @@ public class GameWorld
 	private ShaderProgram _currentShader;
 	private boolean _isModelBatch;
 
+	private World _box2DWorld;
+	private Box2DDebugRenderer _debugRenderer;
+
 	private ArrayList<Entity> _entities;
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
 	private KnightEntity _knightEntity;
 	private BackgroundLayerEntity _backgroundLayerEntity;
 
+	private static final boolean _DEBUG_RENDERING_ENABLED = false;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 }
