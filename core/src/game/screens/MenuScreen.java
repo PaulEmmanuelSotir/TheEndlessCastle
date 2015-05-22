@@ -48,11 +48,13 @@ public class MenuScreen  extends Screen
 	@Override
 	protected void draw()
 	{
+		_spriteBatch.begin();
 		// TODO: temporaire
 		_backgroundShader.setUniformf(_ratioLocaction, _ratio);
 		_backgroundShader.setUniformf(_timeLocaction, _time);
-		_batch.setShader(_backgroundShader);
-		_backgroundSprite.draw(_batch);
+		_spriteBatch.setShader(_backgroundShader);
+		_backgroundSprite.draw(_spriteBatch);
+		_spriteBatch.end();
 	}
 
 	@Override

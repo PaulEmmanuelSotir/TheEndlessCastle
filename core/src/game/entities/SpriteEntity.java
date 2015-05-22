@@ -1,14 +1,10 @@
 package game.entities;
 
-import game.GameWorld;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Sprite entity class
@@ -35,6 +31,11 @@ public class SpriteEntity extends Entity
 	public SpriteEntity(String name, Position position, AssetsHandler assetsHndlr, String textureName) {
 		super(name, position, assetsHndlr);
 		SetSprite(textureName);
+	}
+
+	@Override
+	public boolean IsUsingSpriteBatch() {
+		return true;
 	}
 
 	/**

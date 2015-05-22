@@ -2,9 +2,9 @@ package game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.dataAccessLayer.AssetsHandler;
@@ -15,7 +15,8 @@ public class TheEndlessCastle extends Game
 {
 	@Override
 	public void create() {
-		_batch = new SpriteBatch();
+		_spriteBatch = new SpriteBatch();
+		_modelBatch = new ModelBatch();
 		_assetsHndlr = new AssetsHandler(_ASSETS_LIST_FILE_NAME);
 		_settings = new Settings(_SETTINS_NAME);
 
@@ -28,7 +29,7 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(0.93333f, 0.921569f, 0.90980f, 1.0f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		super.render();
 	} 
@@ -51,13 +52,18 @@ public class TheEndlessCastle extends Game
 	@Override
 	public void dispose () {
 		getScreen().dispose();
-		_batch.dispose();
+		_spriteBatch.dispose();
+		_modelBatch.dispose();
 		// TODO: savoir si il est mieux de saver les setting plus tôt
 		_settings.save();
 	}
 
-	public SpriteBatch getBatch() {
-		return _batch;
+	public SpriteBatch getSpriteBatch() {
+		return _spriteBatch;
+	}
+	
+	public ModelBatch getModelBatch() {
+		return _modelBatch;
 	}
 
 	public AssetsHandler getAssetsHandler() {
@@ -65,7 +71,8 @@ public class TheEndlessCastle extends Game
 	}
 
 	private AssetsHandler _assetsHndlr;
-	private SpriteBatch _batch;
+	private SpriteBatch _spriteBatch;
+	private ModelBatch _modelBatch;
 	private Settings _settings;
 
 	private static final String _SETTINS_NAME = "TheEndlessCastleSettings";

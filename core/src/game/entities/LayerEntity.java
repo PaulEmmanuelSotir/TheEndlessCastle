@@ -48,6 +48,11 @@ public class LayerEntity extends Entity
 		Position camPos = world.GetCameraPosition();
 		_position.x = camPos.x*_parallax;
 	}
+
+	@Override
+	public boolean IsUsingSpriteBatch() {
+		return true;
+	}
 	
 	/**
 	 * Set parallax

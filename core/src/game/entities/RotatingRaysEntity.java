@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.GameWorld;
-import game.components.IRenderableComponent;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
@@ -36,9 +36,14 @@ public class RotatingRaysEntity extends SpriteEntity
 	}
 
 	@Override
-	public void draw(SpriteBatch batch, GameWorld world, ShaderProgram shader) {
+	public void draw(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world, ShaderProgram shader) {
 		shader.setUniformf(_ratioLocaction, _ratio);
 		shader.setUniformf(_timeLocaction, _time);
+	}
+	
+	@Override
+	public boolean IsUsingSpriteBatch() {
+		return true;
 	}
 	
 	public void resize(float WorldSize, float ratio)

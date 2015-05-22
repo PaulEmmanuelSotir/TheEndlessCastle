@@ -5,12 +5,15 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.GameWorld;
 import game.components.Component;
 import game.components.IRenderableComponent;
 import game.components.IUpdateableComponent;
+import game.components.ModelComponent;
+import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
 
@@ -28,7 +31,8 @@ public abstract class Entity
 		_name = name;
 		_position = position;
 		_components = new ArrayList<Component>();
-		_renderableComponents = new ArrayList<IRenderableComponent>();
+		_renderableSpriteComponents = new ArrayList<SpriteComponent>();
+		_renderableModelComponents = new ArrayList<ModelComponent>();
 		_updateableComponents = new ArrayList<IUpdateableComponent>();
 	}
 
@@ -41,10 +45,13 @@ public abstract class Entity
 		if(component != null)
 		{
 			_components.add(component);
-			if(component instanceof IRenderableComponent)
-				_renderableComponents.add((IRenderableComponent)component);
 			if(component instanceof IUpdateableComponent)
 				_updateableComponents.add((IUpdateableComponent)component);
+			
+			if(component instanceof SpriteComponent)
+				_renderableSpriteComponents.add((SpriteComponent)component);
+			else if(component instanceof ModelComponent)
+				_renderableModelComponents.add((ModelComponent)component);
 		}
 	}
 	
@@ -53,24 +60,37 @@ public abstract class Entity
 		if(component != null)
 		{
 			_components.remove(component);
-			if(component instanceof IRenderableComponent)
-				_renderableComponents.remove((IRenderableComponent)component);
 			if(component instanceof IUpdateableComponent)
 				_updateableComponents.remove((IUpdateableComponent)component);
+			
+			if(component instanceof SpriteComponent)
+				_renderableSpriteComponents.remove((SpriteComponent)component);
+			else if(component instanceof ModelComponent)
+				_renderableModelComponents.remove((ModelComponent)component);
 		}
 	}
+	
+	public abstract boolean IsUsingSpriteBatch();
 
 	/**
 	 * Renders entity's renderable components
 	 * @param batch
 	 */
-	public void render(SpriteBatch batch, GameWorld world) {
-		BeginShader(batch, world);
+	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world) {
+		if(IsUsingSpriteBatch())
+		{
+			world.SetCurrentBatchToSprite(spriteBatch, modelBatch);
+			BeginSpriteShader(spriteBatch, world);
+		}
+		else
+			world.SetCurrentBatchToModel(spriteBatch, modelBatch);
 		
-		draw(batch, world, _shader);
+		draw(spriteBatch, modelBatch, world, _shader);
 		
-		for(IRenderableComponent compo : _renderableComponents)
-			compo.render(batch);
+		for(SpriteComponent compo : _renderableSpriteComponents)
+			compo.render(spriteBatch);
+		for(ModelComponent compo : _renderableModelComponents)
+			compo.render(modelBatch);
 	}
 
 	/**
@@ -81,16 +101,16 @@ public abstract class Entity
 	 * @param world
 	 * @param shader
 	 */
-	protected void draw(SpriteBatch batch, GameWorld world, ShaderProgram shader) {
+	protected void draw(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world, ShaderProgram shader) {
 		
 	}
 
 	/**
-	 * Sets the batch shader and verify if the shader is already set before doing dumb things (unlike batch)
+	 * Sets the sprite batch shader and verify if the shader is already set before doing dumb things (unlike batch)
 	 * @param batch
 	 * @param world
 	 */
-	private void BeginShader(SpriteBatch batch, GameWorld world)
+	private void BeginSpriteShader(SpriteBatch batch, GameWorld world)
 	{
 		if(world.GetCurrentShader() != _shader)
 		{
@@ -151,6 +171,7 @@ public abstract class Entity
 	protected AssetsHandler _assetsHndlr;
 	protected Position _position;
 	protected List<Component> _components;
-	protected List<IRenderableComponent> _renderableComponents;
+	protected List<SpriteComponent> _renderableSpriteComponents;
+	protected List<ModelComponent> _renderableModelComponents;
 	protected List<IUpdateableComponent> _updateableComponents;
 }

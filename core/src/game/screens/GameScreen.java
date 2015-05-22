@@ -8,14 +8,12 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
 import game.GameWorld;
-import game.entities.SpriteEntity;
-import game.utils.Position;
 
 /**
  * Game screen class
  */
 public class GameScreen extends Screen
-{
+{	
 	public GameScreen(TheEndlessCastle game)
 	{
 		super(game);
@@ -26,7 +24,7 @@ public class GameScreen extends Screen
 		_world = new GameWorld(_worldListener, _assetsHndlr, _camera);
 
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
-		_randomPlaylist.Start();
+		//_randomPlaylist.Start();
 	}
 
 	@Override
@@ -41,7 +39,7 @@ public class GameScreen extends Screen
 	@Override
 	protected void draw()
 	{
-		_world.render(_batch);
+		_world.render(_spriteBatch, _modelBatch);
 	}
 	
 	@Override
@@ -53,7 +51,7 @@ public class GameScreen extends Screen
 
 	@Override
 	public void dispose() {
-		_randomPlaylist.Stop();
+		//_randomPlaylist.Stop();
 	}
 
 	private RandomMusicPlaylist _randomPlaylist;

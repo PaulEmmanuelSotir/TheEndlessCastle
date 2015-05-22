@@ -22,6 +22,11 @@ public class Position extends Vector2
 		this.x = pos.x;
 		this.y = pos.y;
 	}
+	
+	public static Position add(Position pos1, Position pos2)
+	{
+		return new Position(pos1.x + pos2.x, pos1.y + pos2.y);
+	}
 
 	//TODO: add getters and setters for x and y coordinates in meters + toString in metters
 	

@@ -14,7 +14,7 @@ public class DesktopLauncher
 		
 		config.title = "The endless castle";
 		//config.setFromDisplayMode(LwjglApplicationConfiguration.getDesktopDisplayMode());
-		config.samples = 4;	
+		config.samples = 6;	
 		config.addIcon("icon.medium.png", FileType.Internal);
 		
 		new LwjglApplication(new TheEndlessCastle(), config);

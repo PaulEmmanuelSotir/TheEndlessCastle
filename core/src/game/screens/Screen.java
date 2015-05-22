@@ -7,18 +7,20 @@ import game.dataAccessLayer.AssetsHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 
 public abstract class Screen implements com.badlogic.gdx.Screen
 {
 	public Screen(TheEndlessCastle game)
 	{
 		_game = game;
-		_batch = game.getBatch();
+		_spriteBatch = game.getSpriteBatch();
+		_modelBatch = game.getModelBatch();
 		_assetsHndlr = game.getAssetsHandler();
 
 		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*_ratio);
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 3f);
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 10f);
 		_camera.update();
 	}
 
@@ -32,14 +34,12 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		
 		// Update camera
 		_camera.update();
-		_batch.setProjectionMatrix(_camera.combined);
+		_spriteBatch.setProjectionMatrix(_camera.combined);
 
 		update();
 
 		// Render
-		_batch.begin();
 		draw();
-		_batch.end();
 	}
 	
 	protected abstract void update();
@@ -50,7 +50,7 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		_ratio = (float)height/width;
 		_camera.viewportWidth = GameWorld.WORLD_VIEW_WIDTH;
 		_camera.viewportHeight = GameWorld.WORLD_VIEW_WIDTH * _ratio;
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 10f);
 		_camera.update();
 	}
 
@@ -80,7 +80,8 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 	}
 
 	protected TheEndlessCastle _game;
-	protected SpriteBatch _batch;
+	protected SpriteBatch _spriteBatch;
+	protected ModelBatch _modelBatch;
 	protected AssetsHandler _assetsHndlr;
 	protected OrthographicCamera _camera;
 

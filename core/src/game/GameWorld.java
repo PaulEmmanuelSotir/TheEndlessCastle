@@ -3,13 +3,12 @@ package game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 
@@ -51,6 +50,9 @@ public class GameWorld
 		_entities.add(_backgroundLayerEntity);
 
 		_knightEntity = new KnightEntity("KnightEntity", new Position(0, 0), _assetsHndlr);
+		_knightEntity.setPosition(new Position(20, 0));
+		_knightEntity.setZIndex(10);
+		_entities.add(_knightEntity);
 
 		// Sort entities by their Zindex so that we draw them in the right order
 		Collections.sort(_entities, new Comparator<Entity>() {
@@ -69,10 +71,12 @@ public class GameWorld
 			e.update(this);
 	}
 
-	public void render(SpriteBatch batch)
+	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch)
 	{
-		for(Entity e : _entities)
-			e.render(batch, this);
+			spriteBatch.begin();
+			for(Entity e : _entities)
+				e.render(spriteBatch, modelBatch, this);
+			endBatch(spriteBatch, modelBatch);
 	}
 
 	public void setViewRatio(float ratio)
@@ -106,12 +110,52 @@ public class GameWorld
 	{
 		return _currentShader;
 	}
-
-	public void SetCurrentShader(ShaderProgram shader)
+	
+	public void SetCurrentShader(ShaderProgram currentShader)
 	{
-		_currentShader = shader;
+		_currentShader = currentShader;
 	}
 
+	public boolean IsCurrentModelBatch()
+	{
+		return _isModelBatch;
+	}
+	
+	public boolean IsCurrentSpriteBatch()
+	{
+		return !_isModelBatch;
+	}
+	
+	public void SetCurrentBatchToModel(SpriteBatch spriteBatch, ModelBatch modelBatch)
+	{
+		if(!_isModelBatch)
+		{
+			if(spriteBatch.isDrawing())
+				spriteBatch.end();
+			modelBatch.begin(_camera);
+			_isModelBatch = true;
+		}
+	}
+
+	public void SetCurrentBatchToSprite(SpriteBatch spriteBatch, ModelBatch modelBatch)
+	{
+		if(_isModelBatch)
+		{
+			modelBatch.end();
+			if(!spriteBatch.isDrawing())
+				spriteBatch.begin();
+			_isModelBatch = false;
+		}
+	}
+	
+	private void endBatch(SpriteBatch spriteBatch, ModelBatch modelBatch)
+	{
+		if(_isModelBatch)
+			modelBatch.end();
+		else if(spriteBatch.isDrawing())
+			spriteBatch.end();
+	}
+	
 	/**
 	 * Generates randomly a new part of the level by choosing a Segment next the current one
 	 */
@@ -129,6 +173,7 @@ public class GameWorld
 	private float _time;
 	private float _ratio;
 	private ShaderProgram _currentShader;
+	private boolean _isModelBatch;
 
 	private ArrayList<Entity> _entities;
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;
