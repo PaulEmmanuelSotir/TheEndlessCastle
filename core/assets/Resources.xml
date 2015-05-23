@@ -6,50 +6,51 @@
 <!-- ######################### 		For example: Resolutions="high;medium" or "low;medium;high"                                                            #########################-->
 <!-- ################################################################################################################################################################################-->
 <Resources>
-	<icon Name="icon" Resolutions="low;medium;high" Licence="CC0 1.0">icon.medium.png</icon>
+	<icon Name="icon" Resolutions="low;medium;high" License="CC0 1.0">icon.medium.png</icon>
 	<Assets>
 		<!-- MUSICS -->
-		<music	Name="DefaultMusic" Licence="CC0 1.0">Blank.mp3</music>
+		<music	Name="DefaultMusic" License="CC0 1.0">Blank.mp3</music>
 		<music	Name="GameMusicKnight"
 				CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
-				Licence="CCby 3.0">CrunkKnight.mp3</music>
+				License="CCby 3.0">CrunkKnight.mp3</music>
 		<music 	Name="GameMusicTrailer"
 				CreditsText="'Exciting trailer' by Kevin MacLeod (incompetech.com)"
-				Licence="CCby 3.0">ExcitingTrailer.mp3</music>
+				License="CCby 3.0">ExcitingTrailer.mp3</music>
 		<music 	Name="GameMusicRapture"
+				License="CCby 3.0" 
 				CreditsText="'Rapture', by Ross Bugden with FL Studio and Symphonic Orchestra (https://www.youtube.com/channel/UCQKGLOK2FqmVgVwYferltKQ)">Rapture.mp3</music>
 		<music 	Name="MenuMusicHeroic"
 				CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
-				Licence="CCby 3.0">HeroicAge.mp3</music>
+				License="CCby 3.0">HeroicAge.mp3</music>
 		
 		<!-- SOUNDS -->
-		<sound	Name="DefaultSound" Licence="CC0 1.0">blank.wav</sound>
+		<sound	Name="DefaultSound" License="CC0 1.0">blank.wav</sound>
 		<sound	Name="ArrowWooshSound"
 				CreditsText="Arrow whoosh sound made by smcameron (http://www.freesound.org/people/smcameron)"
-				Licence="CCby 3.0">arrowWhoosh.ogg</sound>
+				License="CCby 3.0">arrowWhoosh.ogg</sound>
 		<sound	Name="VolcanoBackgroundSound"
 				CreditsText="Volcano background sound made by ItsaWaB (http://www.freesound.org/people/ItsaWaB/)"
-				Licence="CC0 1.0">lowFrequencyLayer.wav</sound>
+				License="CC0 1.0">lowFrequencyLayer.wav</sound>
 		<sound	Name="VolcanoBackgroundSound2"
 				CreditsText="Volcano background sound made by pushtobreak (http://www.freesound.org/people/pushtobreak/)"
-				Licence="CCby 3.0">earthLowFrequency4.wav</sound>
+				License="CCby 3.0">earthLowFrequency4.wav</sound>
 		<sound	Name="ScreamSound"
 				CreditsText="Scream sound made by LittleRobotSoundFactory (http://www.freesound.org/people/LittleRobotSoundFactory/)"
-				Licence="CCby 3.0">scream.wav</sound>	
+				License="CCby 3.0">scream.wav</sound>	
 
 		<!-- SHADERS -->
-		<shader Name="MenuRaysShader" Licence="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays.glsl</shader>
-		<shader Name="GameRaysShader" Licence="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays2.glsl</shader>
-		<shader Name="Lava2Shader" CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)" VertexShaderFileName="vertex.glsl">lava2.glsl</shader>
+		<shader Name="MenuRaysShader" License="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays.glsl</shader>
+		<shader Name="GameRaysShader" License="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays2.glsl</shader>
+		<shader Name="Lava2Shader" License="CCby 3.0" CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)" VertexShaderFileName="vertex.glsl">lava2.glsl</shader>
 		
 		<!-- TEXTURES -->
-		<texture Name="DefaultTexture" Licence="CC0 1.0">defaultTexture.png</texture>
-		<texture Name="BackgroundTexture" Licence="CC0 1.0">background.png</texture>
-		<texture Name="RandomNoiseTexture" Licence="CC0 1.0">randomNoise.png</texture>
-		<texture Name="RempartsMiddeTexture" Licence="CC0 1.0">rempartsMidde.png</texture>
-		<texture Name="TourDepartTexture" Licence="CC0 1.0">tourdepart.png</texture>
-		<texture Name="OpenSourceLogoTexture" Licence="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
-		<texture Name="INSALyonLogoTexture" Licence="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
+		<texture Name="DefaultTexture" License="CC0 1.0">defaultTexture.png</texture>
+		<texture Name="BackgroundTexture" License="CC0 1.0">background.png</texture>
+		<texture Name="RandomNoiseTexture" License="CC0 1.0">randomNoise.png</texture>
+		<texture Name="RempartsMiddeTexture" License="CC0 1.0">rempartsMidde.png</texture>
+		<texture Name="TourDepartTexture" License="CC0 1.0">tourdepart.png</texture>
+		<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
+		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		
 		<!-- FONTS -->
 		<!-- <font Name=""></font> -->
@@ -60,10 +61,10 @@
 	</Assets>
 	
 	<!-- LICENSES USED BY ASSETS -->
-	<Licences>
+	<Licenses>
 		<License Name="CCby 4.0">Creative Commons Attribution 4.0 International License. (http://creativecommons.org/licenses/by/4.0/)</License>
 		<License Name="CCby 3.0">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
 		<License Name="CC0 1.0">CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)</License>
 		<License Name="CCTM">In France, its availability is authorized within the limits of the rights granted by Article L713-6 paragraph b (http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=BE5CC4D47D73FC59871198E99A0BA8B7.tpdjo04v_1?idArticle=LEGIARTI000006279714&amp;cidTexte=LEGITEXT000006069414&amp;dateTexte=20130906) of the Code of intellectual property and is reproduced here under these rights. In the United States of America, the use of this asset is supported as fair use within the legal framework defined by the fair use (http://fr.wikipedia.org/wiki/Fair_use) . However, such legal permission may not exist in all countries.</License>
-	</Licences>
+	</Licenses>
 </Resources>
