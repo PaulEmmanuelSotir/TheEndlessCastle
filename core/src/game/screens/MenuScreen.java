@@ -60,7 +60,7 @@ public class MenuScreen  extends Screen
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		_backgroundSprite.setSize(32f, 32f*_ratio);
+		_backgroundSprite.setSize(_camera.viewportWidth, _camera.viewportHeight);
 	}
 
 	@Override
