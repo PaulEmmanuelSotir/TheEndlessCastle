@@ -41,21 +41,20 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 	 */
 	@Override
 	public String toString () {
+
+		if(License != null)
+			if(License.CreditsText != null)
+				return License.CreditsText + "  (" + License.LicenseShortName + ")";
+		
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(AssetName);
 		buffer.append(", (");
-		buffer.append(type.getName().toUpperCase());
+		buffer.append(AssetType.name());
 		buffer.append(") ");
 		if(License != null)
 		{
 			buffer.append("\t License: ");
 			buffer.append(License.LicenseSummary);
-			if(License.Hyperlink != null)
-			{
-				buffer.append(" (");
-				buffer.append(License.Hyperlink);
-				buffer.append(")");
-			}
 		}
 		return buffer.toString();
 	}
