@@ -45,6 +45,7 @@
 		
 		<!-- TEXTURES -->
 		<texture Name="DefaultTexture" License="CC0 1.0">defaultTexture.png</texture>
+		<texture Name="CreditsStoneTexture" License="CC0 1.0">creditsStone.png</texture>
 		<texture Name="BackgroundTexture" License="CC0 1.0">background.png</texture>
 		<texture Name="RandomNoiseTexture" License="CC0 1.0">randomNoise.png</texture>
 		<texture Name="RempartsMiddeTexture" License="CC0 1.0">rempartsMidde.png</texture>
