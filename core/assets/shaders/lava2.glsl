@@ -30,10 +30,10 @@ float flow(in vec2 p)
 	for (float i= 1.;i < 7.;i++ )
 	{
 		//primary flow speed
-		p += time*.6;
+		p -= time*.6;
 		
 		//secondary flow speed (speed of the perceived flow)
-		bp += time*1.9;
+		bp -= time*1.9;
 		
 		//displacement field (try changing time multiplier)
 		vec2 gr = gradn(i*p*.34+time*1.);
