@@ -3,15 +3,21 @@ package game.dataAccessLayer;
 import game.dataAccessLayer.ShaderLoader.ShaderParameter;
 import game.dataAccessLayer.TypedAssetDescriptor.AssetTypeEnum;
 
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
@@ -20,6 +26,7 @@ import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.UBJsonReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,7 +38,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class AssetsHandler implements Disposable
-{	
+{
 	/**
 	 * AssetsHandler constructor
 	 * @param AssetsListFileName The name of the XML file listing all assets to be loaded by assets handler.
@@ -49,6 +56,7 @@ public class AssetsHandler implements Disposable
 		_assetsManager = new AssetManager();
 		_assetsManager.setLoader(ShaderProgram.class, new ShaderLoader(new InternalFileHandleResolver()));
 		_assetsManager.setLoader(Model.class, new G3dModelLoader(new UBJsonReader()));
+		_assetsManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 		
 		_assets = new HashMap<String, TypedAssetDescriptor>();
 		//_assetsByType = new EnumMap<TypedAssetDescriptor.AssetTypeEnum, ArrayList<TypedAssetDescriptor>>(TypedAssetDescriptor.AssetTypeEnum.class);
@@ -62,24 +70,42 @@ public class AssetsHandler implements Disposable
 			Document AssetsDoc = DBuilder.parse(Gdx.files.internal(AssetsListFileName).path());
 			AssetsDoc.getDocumentElement().normalize();
 
+			// Logo
 			// TODO: take resolution into account
 			NodeList IconNodes =  AssetsDoc.getElementsByTagName(_ICON_TAG_NAME);
 			if(IconNodes.getLength() > 0)
 				_iconPath = IconNodes.item(0).getTextContent();
+			
+			// Licenses
+			NodeList LicenseNodes =  AssetsDoc.getElementsByTagName(_LICENSE_TAG_NAME);
+			_licenses = new ObjectMap<String, String>(LicenseNodes.getLength());
+			for(int idx = 0; idx < LicenseNodes.getLength(); idx++)
+			{
+				Element LicenseNode = (Element)LicenseNodes.item(idx);
+				_licenses.put(LicenseNode.getAttribute(_NAME_ATTRIBUTE), LicenseNode.getTextContent());
+			}
 
+			// Assets
 			NodeList AssetsOwnerNodes = AssetsDoc.getElementsByTagName(_ASSETS_TAG_NAME);
 			if(AssetsOwnerNodes.getLength() > 0)
 			{
 				NodeList AssetsNodes = AssetsOwnerNodes.item(0).getChildNodes();
 
 				// Load assets and store their description
-				// TODO: store licensing information
 				for (int i = 0; i < AssetsNodes.getLength(); i++) {
 					Node AssetNode = AssetsNodes.item(i);
 					if(AssetNode.getNodeType() == Node.ELEMENT_NODE) {
 						Element AssetElement = (Element)AssetNode;
 						TypedAssetDescriptor assetDescriptor;
 						AssetTypeEnum type = TypedAssetDescriptor.AssetTypeEnum.valueOf(AssetElement.getTagName());
+						
+						AssetLicense AssetLicense;
+						String LicenseName = AssetElement.getAttribute(_LICENSE_ATTRIBUTE_NAME);
+						String Credits = AssetElement.getAttribute(_CREDITS_TEXT_ATTRIBUTE_NAME);
+						if(Credits != null && Credits != "")
+							AssetLicense = new AssetLicense(LicenseName, _licenses.get(LicenseName), Credits);
+						else
+							AssetLicense = new AssetLicense(LicenseName, _licenses.get(LicenseName));
 						
 						switch(type)
 						{
@@ -89,15 +115,15 @@ public class AssetsHandler implements Disposable
 							TextureParam.minFilter = TextureFilter.MipMapLinearLinear;
 							TextureParam.magFilter = TextureFilter.Linear;
 							TextureParam.genMipMaps = true;
-							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, TextureParam);
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, TextureParam, AssetLicense);
 							break;
 						case shader:
 							ShaderParameter shaderParam = new ShaderParameter();
 							shaderParam.VertexShaderPath = TypedAssetDescriptor._ASSETS_TYPES.get(AssetTypeEnum.shader).directory + AssetElement.getAttribute(_SHADER_VERTEX_ATTRIBUTE_NAME);
-							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, shaderParam);
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, shaderParam, AssetLicense);
 							break;
 						default:
-							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type);
+							assetDescriptor = new TypedAssetDescriptor(AssetElement.getAttribute(_NAME_ATTRIBUTE), AssetElement.getTextContent(), type, AssetLicense);
 						}
 
 						_assetsManager.load(assetDescriptor);
@@ -126,6 +152,11 @@ public class AssetsHandler implements Disposable
 	public synchronized String GetAssetPath(String name)
 	{
 		return _assets.get(name).fileName;
+	}
+	
+	public ArrayList<TypedAssetDescriptor> GetAssetsDescriptors()
+	{
+		return new ArrayList<TypedAssetDescriptor>(_assets.values());
 	}
 
 	public String GetIconPath(resolution res)
@@ -188,15 +219,19 @@ public class AssetsHandler implements Disposable
 	}
 
 	protected AssetManager _assetsManager;
+	protected ObjectMap<String, String> _licenses;
 	protected Map<String, TypedAssetDescriptor> _assets;
 	//protected EnumMap<TypedAssetDescriptor.AssetTypeEnum, ArrayList<TypedAssetDescriptor>> _assetsByType;
 	protected String _iconPath;
 
 	protected final static String _NAME_ATTRIBUTE = "Name";
+	protected final static String _CREDITS_TEXT_ATTRIBUTE_NAME = "CreditsText";
+	protected final static String _LICENSE_ATTRIBUTE_NAME = "License";
+	protected final static String _LICENSE_TAG_NAME = "License";
 	protected final static String _ASSETS_TAG_NAME = "Assets";
 	protected final static String _ICON_TAG_NAME = "icon";
 	protected final static String _SHADER_VERTEX_ATTRIBUTE_NAME = "VertexShaderFileName";
-
+	
 	public enum resolution
 	{
 		low,
