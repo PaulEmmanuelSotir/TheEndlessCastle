@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Sprite component class
  */
-public class SpriteComponent extends Component implements IRenderableComponent, IUpdateableComponent {
+public class SpriteComponent extends Component implements IRenderableComponent<SpriteBatch>, IUpdateableComponent {
 
 	/**
 	 * Creates a new sprite component with the given entity as owner
@@ -75,7 +75,8 @@ public class SpriteComponent extends Component implements IRenderableComponent, 
 	@Override
 	public void SetRelativePosition(Position pos)
 	{
-		_relativePosition = pos;		
+		if(pos != null)
+			_relativePosition = pos;		
 	}
 
 	@Override

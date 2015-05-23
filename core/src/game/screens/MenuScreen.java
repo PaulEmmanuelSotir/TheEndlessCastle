@@ -21,9 +21,7 @@ public class MenuScreen  extends Screen
 	{
 		super(game);
 
-		// TODO: temporaire
-		// TODO: verifier _testShader.getLog() et _testShader.isCompiled();
-		_backgroundShader = new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays.glsl"));
+		_backgroundShader = _assetsHndlr.get("MenuRaysShader");
 		_timeLocaction = _backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = _backgroundShader.getUniformLocation("u_ratio");
 		_backgroundSprite = new Sprite(new Texture(Gdx.files.internal("textures/defaultTexture.png")));	
@@ -50,17 +48,19 @@ public class MenuScreen  extends Screen
 	@Override
 	protected void draw()
 	{
+		_spriteBatch.begin();
 		// TODO: temporaire
 		_backgroundShader.setUniformf(_ratioLocaction, _ratio);
 		_backgroundShader.setUniformf(_timeLocaction, _time);
-		_batch.setShader(_backgroundShader);
-		_backgroundSprite.draw(_batch);
+		_spriteBatch.setShader(_backgroundShader);
+		_backgroundSprite.draw(_spriteBatch);
+		_spriteBatch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		_backgroundSprite.setSize(32f, 32f*_ratio);
+		_backgroundSprite.setSize(_camera.viewportWidth, _camera.viewportHeight);
 	}
 
 	@Override

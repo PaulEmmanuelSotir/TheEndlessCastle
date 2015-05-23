@@ -38,7 +38,7 @@ public class BackgroundLayerEntity extends LayerEntity {
 	public void update(GameWorld world)
 	{
 		super.update(world);
-		if(world.GetCameraPosition().x > _position.x + _landscapeWidth/2f - world.METERS_TO_PIXELS/2f + Math.max(_backSpriteComponent1.GetRelativePosition().x, _backSpriteComponent2.GetRelativePosition().x))
+		if(world.GetCameraPosition().x > _position.x + _landscapeWidth/2f - world.WORLD_VIEW_WIDTH/2f + Math.max(_backSpriteComponent1.GetRelativePosition().x, _backSpriteComponent2.GetRelativePosition().x))
 		{
 			if(_backSpriteComponent1.GetRelativePosition().x < _backSpriteComponent2.GetRelativePosition().x)
 				_backSpriteComponent1.SetRelativePosition(new Position(_backgroundLandscapeCount*_landscapeWidth, 0));

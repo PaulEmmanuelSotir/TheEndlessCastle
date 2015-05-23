@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.GameWorld;
-import game.components.IRenderableComponent;
 import game.components.SpriteComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
@@ -18,8 +18,7 @@ public class RotatingRaysEntity extends SpriteEntity
 		super(name, new Position(0, 0), assetsHndlr);
 		SpriteComponent compo = SetSprite(_RANDOM_TEXTURE_NAME);
 		
-		// Temporary
-		SetShader(new ShaderProgram(Gdx.files.internal("shaders/vertex.glsl"), Gdx.files.internal("shaders/rotatingRays2.glsl")));
+		SetShader((ShaderProgram)_assetsHndlr.get("GameRaysShader"));
 		ShaderProgram backgroundShader = GetShader();
 		_timeLocaction = backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = backgroundShader.getUniformLocation("u_ratio");
@@ -28,18 +27,23 @@ public class RotatingRaysEntity extends SpriteEntity
 	@Override
 	public void update(GameWorld world) {
 		super.update(world);
+		_ratio = world.getViewRatio();
 		Position pos = world.GetCameraPosition();
-		pos.x -= world.METERS_TO_PIXELS/2f;
-		pos.y -= world.getCameraRatio()*world.METERS_TO_PIXELS/2f;
+		pos.x -= world.WORLD_VIEW_WIDTH/2f;
+		pos.y -= _ratio*world.WORLD_VIEW_WIDTH/2f;
 		this.setPosition(pos);
 		_time = world.GetTime();
-		_ratio = world.getCameraRatio();
 	}
 
 	@Override
-	public void draw(SpriteBatch batch, GameWorld world, ShaderProgram shader) {
+	public void draw(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world, ShaderProgram shader) {
 		shader.setUniformf(_ratioLocaction, _ratio);
 		shader.setUniformf(_timeLocaction, _time);
+	}
+	
+	@Override
+	public boolean IsUsingSpriteBatch() {
+		return true;
 	}
 	
 	public void resize(float WorldSize, float ratio)

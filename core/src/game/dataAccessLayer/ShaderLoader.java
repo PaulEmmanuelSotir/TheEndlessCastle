@@ -1,5 +1,6 @@
 package game.dataAccessLayer;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
@@ -9,12 +10,15 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Shader asset loader
  */
-public class ShaderLoader extends SynchronousAssetLoader<Shader, ShaderLoader.ShaderParameter> {
+public class ShaderLoader extends SynchronousAssetLoader<ShaderProgram, ShaderLoader.ShaderParameter> {
 
 	/**
 	 * Shader loader constructor
@@ -22,10 +26,6 @@ public class ShaderLoader extends SynchronousAssetLoader<Shader, ShaderLoader.Sh
 	 */
 	public ShaderLoader(FileHandleResolver resolver) {
 		super(resolver);
-
-		// TODO: determiner l'utilité de ce test (pooling ??) (vu dans un exemple de AssetLoader)
-		if(_shader == null)
-			_shader = new Shader();
 	}
 
 	/** Loads the asset.
@@ -34,8 +34,13 @@ public class ShaderLoader extends SynchronousAssetLoader<Shader, ShaderLoader.Sh
 	 * @param file the resolved file to load
 	 * @param parameter */
 	@Override
-	public Shader load(AssetManager assetManager, String fileName, FileHandle file, ShaderParameter parameter) {
-		//TODO: load and compile shader
+	public ShaderProgram load(AssetManager assetManager, String fileName, FileHandle file, ShaderParameter parameter) {
+		// TODO: verifier _testShader.getLog() et _testShader.isCompiled();
+		if(parameter != null)
+			_shader = new ShaderProgram(Gdx.files.internal(parameter.VertexShaderPath), Gdx.files.internal(fileName));
+		else
+			_shader = new ShaderProgram(Gdx.files.internal(parameter.VertexShaderPath).readString(), DefaultShader.getDefaultVertexShader());
+		
 		return _shader;
 	}
 
@@ -44,11 +49,9 @@ public class ShaderLoader extends SynchronousAssetLoader<Shader, ShaderLoader.Sh
 		return null;
 	}
 
-	protected Shader _shader;
+	protected ShaderProgram _shader;
 
-	public static class ShaderParameter extends AssetLoaderParameters<Shader> {
-		// TODO: add or remove shader parameters
-		public boolean TimeUniformNeeded = true;
-		public boolean RatioUniformNeeded = true;
+	public static class ShaderParameter extends AssetLoaderParameters<ShaderProgram> {
+		public String VertexShaderPath;
 	}
 }

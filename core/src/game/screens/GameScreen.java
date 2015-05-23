@@ -4,19 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.graphics.GL20;
 
 import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
 import game.GameWorld;
-import game.entities.SpriteEntity;
-import game.utils.Position;
 
 /**
  * Game screen class
  */
 public class GameScreen extends Screen
-{
+{	
 	public GameScreen(TheEndlessCastle game)
 	{
 		super(game);
@@ -24,10 +21,10 @@ public class GameScreen extends Screen
 		_worldListener = new GameWorld.WorldListener() {
 			// TODO: implémenter les callcack du world ici...
 		};
-		_world = new GameWorld(_worldListener, _assetsHndlr);
+		_world = new GameWorld(_worldListener, _assetsHndlr, _camera);
 
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
-		_randomPlaylist.Start();
+		//_randomPlaylist.Start();
 	}
 
 	@Override
@@ -35,25 +32,26 @@ public class GameScreen extends Screen
 	{
 		// Temporary continuous camera scrolling
 		_camera.position.x = _time + _camera.viewportWidth/2f;
-		_world.update(_time, new Position(_camera.position.x, _camera.position.y));
+		
+		_world.update(_time);
 	}
 
 	@Override
 	protected void draw()
 	{
-		_world.render(_batch);
+		_world.render(_spriteBatch, _modelBatch);
 	}
 	
 	@Override
 	public void resize(int width, int height)
 	{
 		super.resize(width, height);
-		_world.setCameraRatio(_ratio);
+		_world.setViewRatio(_ratio);
 	}
 
 	@Override
 	public void dispose() {
-		_randomPlaylist.Stop();
+		//_randomPlaylist.Stop();
 	}
 
 	private RandomMusicPlaylist _randomPlaylist;

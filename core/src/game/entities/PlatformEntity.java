@@ -34,6 +34,11 @@ public class PlatformEntity extends Entity
 		super(name, position, assetsHndlr);
 	}
 
+	@Override
+	public boolean IsUsingSpriteBatch() {
+		return true;
+	}
+
 	/**
 	 * Set sprite from texture name
 	 * @param textureName Platform texture name

@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import game.TheEndlessCastle;
-import game.GameWorld;
-import game.utils.Position;
 
 /**
  * Loading screen showing at the beginning of the game when AssetHandler loads assets
@@ -40,8 +38,10 @@ public class LoadingScreen extends Screen
 
 	@Override
 	protected void draw() {
-		_INSALogoSprite.draw(_batch);
-		_openLogoSprite.draw(_batch);
+		_spriteBatch.begin();
+		_INSALogoSprite.draw(_spriteBatch);
+		_openLogoSprite.draw(_spriteBatch);
+		_spriteBatch.end();
 	}
 
 	Sprite _INSALogoSprite;

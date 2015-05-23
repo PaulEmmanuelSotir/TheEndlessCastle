@@ -6,6 +6,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
@@ -39,21 +41,20 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 	 */
 	@Override
 	public String toString () {
+
+		if(License != null)
+			if(License.CreditsText != null)
+				return License.CreditsText + "  (" + License.LicenseShortName + ")";
+		
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(AssetName);
 		buffer.append(", (");
-		buffer.append(type.getName().toUpperCase());
+		buffer.append(AssetType.name());
 		buffer.append(") ");
 		if(License != null)
 		{
 			buffer.append("\t License: ");
 			buffer.append(License.LicenseSummary);
-			if(License.Hyperlink != null)
-			{
-				buffer.append(" (");
-				buffer.append(License.Hyperlink);
-				buffer.append(")");
-			}
 		}
 		return buffer.toString();
 	}
@@ -73,8 +74,9 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		_ASSETS_TYPES.put(AssetTypeEnum.music, new AssetType<Music>(Music.class, "musics/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.sound, new AssetType<Sound>(Sound.class, "sounds/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.texture, new AssetType<Texture>(Texture.class, "textures/"));
-		_ASSETS_TYPES.put(AssetTypeEnum.shader, new AssetType<Shader>(Shader.class, "shaders/"));
+		_ASSETS_TYPES.put(AssetTypeEnum.shader, new AssetType<ShaderProgram>(ShaderProgram.class, "shaders/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.font, new AssetType<FreeTypeFontGenerator>(FreeTypeFontGenerator.class, "fonts/"));
+		_ASSETS_TYPES.put(AssetTypeEnum.model, new AssetType<Model>(Model.class, "models/"));
 	}
 
 	protected static class AssetType<T>
@@ -95,6 +97,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		sound,
 		shader,
 		texture,
-		font
+		font,
+		model
 	}
 }
