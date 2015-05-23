@@ -53,7 +53,7 @@
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		
 		<!-- FONTS -->
-		<!-- <font Name=""></font> -->
+		<font Name="XoloniumFont" License="GNU GPL 3.0">Xolonium-Regular.otf</font>
 		
 		<!-- MODELS -->
 		<model Name="KnightModel" License="CCby 3.0" CreditsText="'SNES-Style Knight' model by SecondBake (http://www.blendswap.com/blends/view/67701)">knight.g3db</model>
@@ -66,5 +66,6 @@
 		<License Name="CCby 3.0">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by/3.0/)</License>
 		<License Name="CC0 1.0">CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)</License>
 		<License Name="CCTM">In France, its availability is authorized within the limits of the rights granted by Article L713-6 paragraph b (http://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=BE5CC4D47D73FC59871198E99A0BA8B7.tpdjo04v_1?idArticle=LEGIARTI000006279714&amp;cidTexte=LEGITEXT000006069414&amp;dateTexte=20130906) of the Code of intellectual property and is reproduced here under these rights. In the United States of America, the use of this asset is supported as fair use within the legal framework defined by the fair use (http://fr.wikipedia.org/wiki/Fair_use) . However, such legal permission may not exist in all countries.</License>
+		<License Name="GNU GPL 3.0">GNU General Public License v3.0</License>
 	</Licenses>
 </Resources>
