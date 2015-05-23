@@ -46,6 +46,11 @@ public class SpriteComponent extends Component implements IRenderableComponent<S
 		_sprite.setSize(width, height);
 	}
 	
+	public void SetScale(float scale)
+	{
+		_sprite.setScale(scale);
+	}
+	
 	public void SetOrigin(Position origin)
 	{
 		_sprite.setOrigin(origin.x, origin.y);

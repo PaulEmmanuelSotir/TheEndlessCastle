@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
@@ -43,6 +46,9 @@ public class GameWorld
 		_box2DWorld = new World(_GRAVITY, true);
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer = new Box2DDebugRenderer();
+		// Input multiplexer
+		_inputMultiplexer = new InputMultiplexer();
+		Gdx.input.setInputProcessor(_inputMultiplexer);
 
 		// Entities initialization
 		_entities = new ArrayList<Entity>();
@@ -55,8 +61,7 @@ public class GameWorld
 		_backgroundLayerEntity.setZIndex(1);
 		_entities.add(_backgroundLayerEntity);
 
-		_knightEntity = new KnightEntity("KnightEntity", new Position(0, 0), _assetsHndlr);
-		_knightEntity.setPosition(new Position(20, 0));
+		_knightEntity = new KnightEntity("KnightEntity", new Position(20, 0), _assetsHndlr, _inputMultiplexer);
 		_knightEntity.setZIndex(10);
 		_entities.add(_knightEntity);
 
@@ -127,6 +132,11 @@ public class GameWorld
 	{
 		_currentShader = currentShader;
 	}
+	
+	public InputMultiplexer GetInputMultiplexer()
+	{
+		return _inputMultiplexer;
+	}
 
 	public boolean IsCurrentModelBatch()
 	{
@@ -189,6 +199,8 @@ public class GameWorld
 
 	private World _box2DWorld;
 	private Box2DDebugRenderer _debugRenderer;
+	
+	private InputMultiplexer _inputMultiplexer;
 
 	private ArrayList<Entity> _entities;
 	private RotatingRaysEntity _rotatingRaysSpriteEntity;

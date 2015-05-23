@@ -38,7 +38,7 @@ public class MenuScreen  extends Screen
 	protected void update()
 	{
 		// TODO: temporaire
-		if(_time > 1.5)
+		if(_time > 0.5)
 		{
 			_menuMusic.stop();
 			_game.setScreen(new GameScreen(_game));

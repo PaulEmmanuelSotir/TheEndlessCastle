@@ -1,5 +1,6 @@
 package game.entities;
 
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
@@ -59,6 +60,24 @@ public class KnightEntity extends Entity
 		private AnimationDesc _jumpBackAnimation;
 	}
 
+	public KnightEntity(String name, Position position, AssetsHandler assetsHndlr, InputMultiplexer inPlexer) {
+		super(name, position, assetsHndlr);
+
+		// Animated model component
+		AnimatedModelComponent modelCompo = new AnimatedModelComponent(_MODEL_COMPONENT_NAME, this, (Model)_assetsHndlr.get(_KNIGHT_MODEL_NAME), new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1.0f));
+		_controller = modelCompo.GetAnimationController();
+		modelCompo.SetScale(2f);
+		addComponent(modelCompo);
+		_controller.setAnimation(_KNIGHT_BREATHE_ANIMATION, -1, 1f, null);
+		_controller.animate(_KNIGHT_START_ANIMATION, 0f);
+		
+		// Player control component
+		PlayerComponent playerCompo = new PlayerComponent(_PLAYER_COMPONENT_NAME, this);
+		inPlexer.addProcessor(playerCompo);
+		playerCompo.SetMoveListenner(new PlayerMoveListener());
+		addComponent(playerCompo);
+	}
+
 	public void update(GameWorld world)
 	{
 		if(_breathForeNow)
@@ -73,23 +92,6 @@ public class KnightEntity extends Entity
 		}
 
 		super.update(world);
-	}
-
-	public KnightEntity(String name, Position position, AssetsHandler assetsHndlr) {
-		super(name, position, assetsHndlr);
-
-		// Animated model component
-		AnimatedModelComponent modelCompo = new AnimatedModelComponent(_MODEL_COMPONENT_NAME, this, (Model)_assetsHndlr.get(_KNIGHT_MODEL_NAME), new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1.0f));
-		_controller = modelCompo.GetAnimationController();
-		modelCompo.SetScale(2f);
-		addComponent(modelCompo);
-		_controller.setAnimation(_KNIGHT_BREATHE_ANIMATION, -1, 1f, null);
-		_controller.animate(_KNIGHT_START_ANIMATION, 0f);
-		
-		// Player control component
-		PlayerComponent playerCompo = new PlayerComponent(_PLAYER_COMPONENT_NAME, this);
-		playerCompo.SetMoveListenner(new PlayerMoveListener());
-		addComponent(playerCompo);
 	}
 
 	@Override

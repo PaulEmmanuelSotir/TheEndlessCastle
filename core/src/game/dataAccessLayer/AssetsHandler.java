@@ -55,7 +55,6 @@ public class AssetsHandler implements Disposable
 	{
 		_assetsManager = new AssetManager();
 		_assetsManager.setLoader(ShaderProgram.class, new ShaderLoader(new InternalFileHandleResolver()));
-		_assetsManager.setLoader(Model.class, new G3dModelLoader(new UBJsonReader()));
 		_assetsManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 		
 		_assets = new HashMap<String, TypedAssetDescriptor>();

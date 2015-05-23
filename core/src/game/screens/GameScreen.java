@@ -1,10 +1,5 @@
 package game.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-
 import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
 import game.GameWorld;
@@ -22,7 +17,7 @@ public class GameScreen extends Screen
 			// TODO: implémenter les callcack du world ici...
 		};
 		_world = new GameWorld(_worldListener, _assetsHndlr, _camera);
-
+		
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
 		//_randomPlaylist.Start();
 	}
