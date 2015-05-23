@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 
 import game.RandomMusicPlaylist;
 import game.TheEndlessCastle;
-import game.World;
+import game.GameWorld;
+import game.entities.SpriteEntity;
 import game.utils.Position;
 
 /**
@@ -20,10 +21,10 @@ public class GameScreen extends Screen
 	{
 		super(game);
 
-		_worldListener = new World.WorldListener() {
+		_worldListener = new GameWorld.WorldListener() {
 			// TODO: implémenter les callcack du world ici...
 		};
-		_world = new World(_worldListener, _assetsHndlr);
+		_world = new GameWorld(_worldListener, _assetsHndlr);
 
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
 		_randomPlaylist.Start();
@@ -32,6 +33,8 @@ public class GameScreen extends Screen
 	@Override
 	protected void update()
 	{
+		// Temporary continuous camera scrolling
+		_camera.position.x = _time + _camera.viewportWidth/2f;
 		_world.update(_time, new Position(_camera.position.x, _camera.position.y));
 	}
 
@@ -39,6 +42,13 @@ public class GameScreen extends Screen
 	protected void draw()
 	{
 		_world.render(_batch);
+	}
+	
+	@Override
+	public void resize(int width, int height)
+	{
+		super.resize(width, height);
+		_world.setCameraRatio(_ratio);
 	}
 
 	@Override
@@ -48,6 +58,6 @@ public class GameScreen extends Screen
 
 	private RandomMusicPlaylist _randomPlaylist;
 
-	private World _world;
-	private World.WorldListener _worldListener;
+	private GameWorld _world;
+	private GameWorld.WorldListener _worldListener;
 }

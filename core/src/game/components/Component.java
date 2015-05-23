@@ -2,9 +2,18 @@ package game.components;
 
 import game.entities.Entity;
 
+/**
+ * Component abstract class
+ */
 public abstract class Component
 {
-	public Component(Entity owner) {
+	/**
+	 * Component constructor
+	 * @param name Component name
+	 * @param owner Component owner entity
+	 */
+	public Component(String name, Entity owner) {
+		_name = name;
 		_owner = owner;
 		_isEnabled = true;
 	}
@@ -17,6 +26,10 @@ public abstract class Component
 		return _owner;
 	}
 	
+	public String getName() {
+		return _name;
+	}
+	
 	public void SetEnabled(boolean enabled) {
 	    _isEnabled = enabled;
 	}
@@ -25,6 +38,7 @@ public abstract class Component
 	    return _isEnabled;
 	}
 	
+	protected String _name;
 	protected Entity _owner;
 	protected boolean _isEnabled;
 }

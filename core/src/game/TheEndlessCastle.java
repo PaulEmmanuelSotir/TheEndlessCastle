@@ -27,7 +27,7 @@ public class TheEndlessCastle extends Game
 
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(1.0f, 0.5f, 0.125f, 1.0f);
+		Gdx.gl.glClearColor(0.93333f, 0.921569f, 0.90980f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		super.render();

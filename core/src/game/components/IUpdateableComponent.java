@@ -1,8 +1,15 @@
 package game.components;
 
-import game.World;
+import game.GameWorld;
 
+/**
+ * Updateable component interface
+ */
 public interface IUpdateableComponent
 {
-	public void update(World world);
+	/**
+	 * Updates component
+	 * @param world GameWorld to which the component belongs to
+	 */
+	public void update(GameWorld world);
 }

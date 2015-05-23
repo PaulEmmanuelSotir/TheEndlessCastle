@@ -1,6 +1,7 @@
 package game.screens;
 
 import game.TheEndlessCastle;
+import game.GameWorld;
 import game.dataAccessLayer.AssetsHandler;
 
 import com.badlogic.gdx.Gdx;
@@ -17,7 +18,7 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 
 		_ratio = (float)Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 		_camera = new OrthographicCamera(32f, 32f*_ratio);
-		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
+		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 3f);
 		_camera.update();
 	}
 
@@ -36,7 +37,6 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		update();
 
 		// Render
-		// TODO: savoir si il faudrait pas laisser _batch.begin(); et _batch.end(); dans draw
 		_batch.begin();
 		draw();
 		_batch.end();
@@ -48,8 +48,8 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 	@Override
 	public void resize(int width, int height) {
 		_ratio = (float)height/width;
-		_camera.viewportWidth = 32f;
-		_camera.viewportHeight = 32f * _ratio;
+		_camera.viewportWidth = GameWorld.METERS_TO_PIXELS;
+		_camera.viewportHeight = GameWorld.METERS_TO_PIXELS * _ratio;
 		_camera.position.set(_camera.viewportWidth / 2f, _camera.viewportHeight / 2f, 0);
 		_camera.update();
 	}

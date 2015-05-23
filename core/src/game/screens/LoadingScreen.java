@@ -1,9 +1,13 @@
 package game.screens;
 
-import game.TheEndlessCastle;
-import game.dataAccessLayer.AssetsHandler;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
+import game.TheEndlessCastle;
+import game.GameWorld;
+import game.utils.Position;
 
 /**
  * Loading screen showing at the beginning of the game when AssetHandler loads assets
@@ -13,6 +17,18 @@ public class LoadingScreen extends Screen
 	public LoadingScreen(TheEndlessCastle game)
 	{
 		super(game);
+
+		// We need to use raw path to assets and load it without assetsHandler as we are loading assets and reading ressources xml file
+		Texture INSATexture = new Texture(Gdx.files.internal(_INSA_LOGO_TEXTURE_PATH), true);
+		INSATexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+		Texture OpenTexture = new Texture(Gdx.files.internal(_OPEN_LOGO_TEXTURE_PATH), true);
+		OpenTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+		_INSALogoSprite = new Sprite(INSATexture);
+		_openLogoSprite = new Sprite(OpenTexture);
+		_openLogoSprite.setSize(7, 7f *_openLogoSprite.getHeight()/_openLogoSprite.getWidth());
+		_INSALogoSprite.setSize(7, 7f *_INSALogoSprite.getHeight()/_INSALogoSprite.getWidth());
+		_INSALogoSprite.setCenter(_camera.viewportWidth/2f, 2.5f);
+		_openLogoSprite.setCenter(_camera.viewportWidth/2f, 11f);
 	}
 
 	@Override
@@ -24,6 +40,13 @@ public class LoadingScreen extends Screen
 
 	@Override
 	protected void draw() {
-		// TODO: draw a loading view
+		_INSALogoSprite.draw(_batch);
+		_openLogoSprite.draw(_batch);
 	}
+
+	Sprite _INSALogoSprite;
+	Sprite _openLogoSprite;
+
+	private final static String _INSA_LOGO_TEXTURE_PATH = "textures/LogoINSALyon.png";
+	private final static String _OPEN_LOGO_TEXTURE_PATH = "textures/openSourceInitiative.png";
 }
