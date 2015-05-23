@@ -18,7 +18,6 @@ public class PlayerComponent extends Component implements InputProcessor
 	
 	public PlayerComponent(String name, Entity owner) {
 		super(name, owner);
-		Gdx.input.setInputProcessor(this);
 	}
 
 	public void SetMoveListenner(MoveListener moveListener)
