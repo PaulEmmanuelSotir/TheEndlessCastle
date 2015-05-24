@@ -107,8 +107,8 @@ public class GameScreen extends Screen
 		_world.setViewRatio(_ratio);
 
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
-		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - _soundButton.getHeight() - 3f);
+		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - _pauseButton.getHeight() - 3f);
 	}
 
 	@Override
