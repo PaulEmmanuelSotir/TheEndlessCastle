@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.physics.box2d.Box2D;
 
 import game.dataAccessLayer.AssetsHandler;
 import game.screens.LoadingScreen;
@@ -15,6 +16,8 @@ public class TheEndlessCastle extends Game
 {
 	@Override
 	public void create() {
+		Box2D.init();
+		
 		_spriteBatch = new SpriteBatch();
 		_modelBatch = new ModelBatch();
 		_assetsHndlr = new AssetsHandler(_ASSETS_LIST_FILE_NAME);
