@@ -69,6 +69,11 @@ public class TheEndlessCastle extends Game
 	public AssetsHandler getAssetsHandler() {
 		return _assetsHndlr;
 	}
+	
+	public Settings GetSettings()
+	{
+		return _settings;
+	}
 
 	public static final Color MAIN_GAME_COLOR = new Color(0.93333f, 0.921569f, 0.90980f, 1.0f);
 

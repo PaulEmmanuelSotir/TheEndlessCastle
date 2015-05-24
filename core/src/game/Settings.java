@@ -44,7 +44,7 @@ public class Settings
 
 	// Volume
 	private int _volume;
-	private static final int DEFAULT_VOLUME = 10;
+	private static final int DEFAULT_VOLUME = 50;
 	private static final String VOL_SETTING_NAME = "volume";
 	
 	// Difficulty
