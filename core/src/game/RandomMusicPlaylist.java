@@ -78,6 +78,9 @@ public class RandomMusicPlaylist
 	{
 		_GAME_MUSIC_NAMES = new ArrayList<String>();
 		_GAME_MUSIC_NAMES.add("GameMusicKnight");
+		_GAME_MUSIC_NAMES.add("GameMusicKnight");
+		_GAME_MUSIC_NAMES.add("GameMusicKnight");
+		_GAME_MUSIC_NAMES.add("GameMusicKnight");
 		_GAME_MUSIC_NAMES.add("GameMusicTrailer");
 		_GAME_MUSIC_NAMES.add("GameMusicRapture");
 	}
