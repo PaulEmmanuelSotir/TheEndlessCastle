@@ -21,8 +21,10 @@ public class GameScreen extends Screen
 			// World events ...
 		});
 		
-		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
-		//_randomPlaylist.Start();
+		// Random music
+		_randomPlaylist = new RandomMusicPlaylist(_game.GetSettings().getVolume()/100f,_assetsHndlr);
+		_randomPlaylist.Start();
+		
 		// Menu button
 		_menuButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
 			@Override
@@ -111,7 +113,7 @@ public class GameScreen extends Screen
 
 	@Override
 	public void dispose() {
-		//_randomPlaylist.Stop();
+		_randomPlaylist.Stop();
 	}
 
 	private RandomMusicPlaylist _randomPlaylist;

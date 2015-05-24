@@ -4,24 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.dataAccessLayer.AssetsHandler;
-import game.dataAccessLayer.TypedAssetDescriptor.AssetTypeEnum;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Music.OnCompletionListener;
 
 public class RandomMusicPlaylist
 {
 	public RandomMusicPlaylist(AssetsHandler assetsHndlr){
+		this(100, assetsHndlr);
+	}
+	
+	public RandomMusicPlaylist(float volume, AssetsHandler assetsHndlr){
 		_assetsHndlr = assetsHndlr;
 		_musics = new ArrayList<Music>();
+		_volume = volume;
 		for(String name : _GAME_MUSIC_NAMES)
 			_musics.add((Music)_assetsHndlr.get(name));
 		
-		_musicListener = new FinishedMusicListener();
+		_musicListener = new OnCompletionListener() {
+			@Override
+			public void onCompletion(Music music) {
+				if(music.isPlaying())
+					music.stop();
+			
+				PlayRandomMusic();	
+			}
+		};
 	}
 	
 	public void Start()
 	{
-		PlayRandomMusic();
+		if(_playingMusic == null)
+			PlayRandomMusic();
 	}
 	
 	public void Stop()
@@ -33,19 +47,12 @@ public class RandomMusicPlaylist
 			_playingMusic = null;
 		}
 	}
-
-	private class FinishedMusicListener implements Music.OnCompletionListener
+	
+	public void SetVolume(float volume)
 	{
-		@Override
-		public void onCompletion(Music music)
-		{
-			if(music.isPlaying())
-			{
-				music.stop();
-			}
-			
-			PlayRandomMusic();	
-		}
+		_volume = volume;
+		if(_playingMusic != null)
+			_playingMusic.setVolume(volume);
 	}
 
 	private void PlayRandomMusic() {
@@ -55,14 +62,16 @@ public class RandomMusicPlaylist
 				int random = (int) (Math.random() * _musics.size());
 				_playingMusic = _musics.get(random);
 				_playingMusic.setOnCompletionListener(_musicListener);
+				_playingMusic.setVolume(_volume);
 				_playingMusic.play();
 			}
 	}
 
 	private List<Music> _musics;
-	private FinishedMusicListener _musicListener;
+	private OnCompletionListener _musicListener;
 	private AssetsHandler _assetsHndlr;
 	private Music _playingMusic;
+	private float _volume;
 	
 	private static final List<String> _GAME_MUSIC_NAMES;
 	static
