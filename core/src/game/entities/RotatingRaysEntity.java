@@ -1,8 +1,5 @@
 package game.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -16,9 +13,9 @@ public class RotatingRaysEntity extends SpriteEntity
 {
 	public RotatingRaysEntity(String name, AssetsHandler assetsHndlr) {
 		super(name, new Position(0, 0), assetsHndlr);
-		SpriteComponent compo = SetSprite(_RANDOM_TEXTURE_NAME);
+		SetSprite(_DEFAULT_TEXTURE_NAME);
 		
-		SetShader((ShaderProgram)_assetsHndlr.get("GameRaysShader"));
+		SetShader((ShaderProgram)_assetsHndlr.get(_ROTATING_RAYS_SHADER_NAME));
 		ShaderProgram backgroundShader = GetShader();
 		_timeLocaction = backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = backgroundShader.getUniformLocation("u_ratio");
@@ -29,8 +26,8 @@ public class RotatingRaysEntity extends SpriteEntity
 		super.update(world);
 		_ratio = world.getViewRatio();
 		Position pos = world.GetCameraPosition();
-		pos.x -= world.WORLD_VIEW_WIDTH/2f;
-		pos.y -= _ratio*world.WORLD_VIEW_WIDTH/2f;
+		pos.x -= GameWorld.WORLD_VIEW_WIDTH/2f;
+		pos.y -= _ratio*GameWorld.WORLD_VIEW_WIDTH/2f;
 		this.setPosition(pos);
 		_time = world.GetTime();
 	}
@@ -56,5 +53,6 @@ public class RotatingRaysEntity extends SpriteEntity
 	private float _time;
 	private float _ratio;
 
-	private static final String _RANDOM_TEXTURE_NAME = "DefaultTexture";
+	private static final String _DEFAULT_TEXTURE_NAME = "DefaultTexture";
+	private static final String _ROTATING_RAYS_SHADER_NAME = "GameRaysShader";
 }
