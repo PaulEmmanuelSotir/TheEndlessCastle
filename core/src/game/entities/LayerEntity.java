@@ -87,6 +87,5 @@ public class LayerEntity extends Entity
 
 	private long _layerSpriteCount;
 	private float _parallax;
-	private float _lastUpdateTime;
 	private static final Range<Float> _parallaxRange = new Range<Float>(-1f, 1f);
 }

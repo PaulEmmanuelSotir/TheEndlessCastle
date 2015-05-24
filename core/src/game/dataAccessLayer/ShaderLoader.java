@@ -4,13 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.AssetLoader;
-import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.SynchronousAssetLoader;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
@@ -39,11 +35,12 @@ public class ShaderLoader extends SynchronousAssetLoader<ShaderProgram, ShaderLo
 		if(parameter != null)
 			_shader = new ShaderProgram(Gdx.files.internal(parameter.VertexShaderPath), Gdx.files.internal(fileName));
 		else
-			_shader = new ShaderProgram(Gdx.files.internal(parameter.VertexShaderPath).readString(), DefaultShader.getDefaultVertexShader());
+			_shader = new ShaderProgram(DefaultShader.getDefaultVertexShader(), Gdx.files.internal(fileName).readString());
 		
 		return _shader;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, ShaderLoader.ShaderParameter parameter) {
 		return null;

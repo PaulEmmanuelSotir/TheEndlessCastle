@@ -8,9 +8,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ObjectMap;
 
+@SuppressWarnings("rawtypes")
+/**
+ * Not a good name for this class >.< (due to JAVA generics and reflexion issues)
+ */
 public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 {
 	public String AssetName;
@@ -29,6 +32,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		this(assetName, fileName, assetType, params, null);
 	}
 
+	@SuppressWarnings("unchecked")
 	public TypedAssetDescriptor(String assetName, String fileName, AssetTypeEnum assetType, AssetLoaderParameters<T> params, AssetLicense license) {
 		// AssetDescriptor<T>.FileName is actually an internal path >.<
 		super(_ASSETS_TYPES.get(assetType).directory + fileName, _ASSETS_TYPES.get(assetType).assetClass, params);
@@ -60,6 +64,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		return buffer.toString();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> Class<T> getAssetClass(AssetTypeEnum type)
 	{
 		return _ASSETS_TYPES.get(type).assetClass;

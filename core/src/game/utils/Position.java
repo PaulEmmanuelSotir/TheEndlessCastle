@@ -3,6 +3,9 @@ package game.utils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Position vector2 warper class
+ */
 public class Position extends Vector2
 {
 	public Position(float x, float y)
@@ -27,7 +30,7 @@ public class Position extends Vector2
 	{
 		return new Position(pos1.x + pos2.x, pos1.y + pos2.y);
 	}
-
-	//TODO: add getters and setters for x and y coordinates in meters + toString in metters
+	
+	private static final long serialVersionUID = 1L;
 	
 }

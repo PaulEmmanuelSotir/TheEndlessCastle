@@ -2,8 +2,6 @@ package game.components;
 
 import game.utils.Position;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-
 /**
  * Renderable component interface
  * T must be a ModelBatch or a Batch

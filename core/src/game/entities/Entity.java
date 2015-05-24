@@ -3,14 +3,12 @@ package game.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.GameWorld;
 import game.components.Component;
-import game.components.IRenderableComponent;
 import game.components.IUpdateableComponent;
 import game.components.ModelComponent;
 import game.components.SpriteComponent;

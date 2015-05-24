@@ -3,7 +3,6 @@ package game.entities;
 import com.badlogic.gdx.graphics.Texture;
 
 import game.components.SpriteComponent;
-import game.components.StaticBodyComponent;
 import game.dataAccessLayer.AssetsHandler;
 import game.utils.Position;
 

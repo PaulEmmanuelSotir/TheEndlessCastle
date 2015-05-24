@@ -165,6 +165,7 @@ public class CreditsScreen extends Screen
 		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
 	}
 
+	@SuppressWarnings("rawtypes")
 	private ArrayList<TypedAssetDescriptor> _assetsDescriptors;
 
 	// Stone sprites

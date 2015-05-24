@@ -3,31 +3,22 @@ package game.dataAccessLayer;
 import game.dataAccessLayer.ShaderLoader.ShaderParameter;
 import game.dataAccessLayer.TypedAssetDescriptor.AssetTypeEnum;
 
-import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.UBJsonReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -37,6 +28,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+@SuppressWarnings("rawtypes")
 public class AssetsHandler implements Disposable
 {
 	/**
@@ -51,6 +43,7 @@ public class AssetsHandler implements Disposable
 	 * Loads all listed assets in given XML file.
 	 * @param AssetsListFileName The name of the XML file listing all assets to be loaded by assets handler.
 	 */
+	@SuppressWarnings("unchecked")
 	public void Load(String AssetsListFileName)
 	{
 		_assetsManager = new AssetManager();

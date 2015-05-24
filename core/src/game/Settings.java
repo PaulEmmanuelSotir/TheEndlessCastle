@@ -1,7 +1,6 @@
 package game;
 
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Application;
 
 public class Settings
 {
