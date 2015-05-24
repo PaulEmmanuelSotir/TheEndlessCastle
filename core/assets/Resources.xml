@@ -52,9 +52,18 @@
 		<texture Name="TourDepartTexture" License="CC0 1.0">tourdepart.png</texture>
 		<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
-		<texture Name="normalTexture" License="CC0 1.0">normal.png</texture>
-		<texture Name="overTexture" License="CC0 1.0">over.png</texture>
-		<texture Name="pressedTexture" License="CC0 1.0">pressed.png</texture>
+		<!-- Pause button -->
+		<texture Name="PauseNormalTexture" License="CC0 1.0">pauseNormal.png</texture>
+		<texture Name="PauseOverTexture" License="CC0 1.0">pauseOver.png</texture>
+		<texture Name="PausePressedTexture" License="CC0 1.0">pausePressed.png</texture>
+		<!-- Menu button -->		
+		<!--<texture Name="MenuNormalTexture" License="CC0 1.0">menuNormal.png</texture>
+		<texture Name="MenuOverTexture" License="CC0 1.0">menuOver.png</texture>
+		<texture Name="MenuPressedTexture" License="CC0 1.0">menuPressed.png</texture>-->
+		<!-- Sound button -->		
+		<texture Name="Sound3NormalTexture" License="CC0 1.0">Sound3Normal.png</texture>
+		<texture Name="Sound3OverTexture" License="CC0 1.0">Sound3Over.png</texture>
+		<texture Name="Sound3PressedTexture" License="CC0 1.0">Sound3Pressed.png</texture>
 		
 		<!-- FONTS -->
 		<font Name="XoloniumFont" License="GNU GPL 3.0">Xolonium-Regular.otf</font>
