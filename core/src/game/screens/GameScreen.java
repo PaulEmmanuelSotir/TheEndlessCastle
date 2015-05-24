@@ -31,6 +31,42 @@ public class GameScreen extends Screen
 				_game.setScreen(new MenuScreen(_game));
 			}
 		});
+
+		// Sound button
+		_soundButton = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), new ButtonClickListener() {
+			@Override
+			public void MouseRelease() {
+				if(_game.GetSettings().getVolume() > 80)
+				{
+					_randomPlaylist.SetVolume(0.75f);
+					_game.GetSettings().setVolume(75);
+				}
+				else if(_game.GetSettings().getVolume() > 50)
+				{
+					_randomPlaylist.SetVolume(0.25f);
+					_game.GetSettings().setVolume(25);
+				}
+				else if(_game.GetSettings().getVolume() > 10)
+				{
+					_randomPlaylist.SetVolume(0);
+					_game.GetSettings().setVolume(0);
+				}
+				else
+				{
+					_randomPlaylist.SetVolume(1);					
+					_game.GetSettings().setVolume(100);
+				}
+				// TODO: change button textures
+			}
+		});
+		
+		// Pause button
+		_pauseButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
+			@Override
+			public void MouseRelease() {
+				// TODO: pause
+			}
+		});
 	}
 
 	@Override
@@ -44,6 +80,8 @@ public class GameScreen extends Screen
 		
 		// Update HUD
 		_menuButton.update(_camera);
+		_soundButton.update(_camera);
+		_pauseButton.update(_camera);
 	}
 
 	@Override
@@ -55,9 +93,11 @@ public class GameScreen extends Screen
 		// Render HUD
 		_spriteBatch.begin();
 		_menuButton.render(_spriteBatch);
+		_soundButton.render(_spriteBatch);
+		_pauseButton.render(_spriteBatch);
 		_spriteBatch.end();
 	}
-	
+
 	@Override
 	public void resize(int width, int height)
 	{
@@ -65,6 +105,8 @@ public class GameScreen extends Screen
 		_world.setViewRatio(_ratio);
 		
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
+		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - _soundButton.getHeight() - 3f);
 	}
 
 	@Override
@@ -78,4 +120,6 @@ public class GameScreen extends Screen
 	private GameWorld.WorldListener _worldListener;
 	
 	private Button _menuButton;
+	private Button _soundButton;
+	private Button _pauseButton;
 }
