@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import aurelienribon.bodyeditor.BodyEditorDAL;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.assets.AssetManager;
@@ -49,6 +51,7 @@ public class AssetsHandler implements Disposable
 		_assetsManager = new AssetManager();
 		_assetsManager.setLoader(ShaderProgram.class, new ShaderLoader(new InternalFileHandleResolver()));
 		_assetsManager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+		_assetsManager.setLoader(BodyEditorDAL.class, new BodyEditorLoader(new InternalFileHandleResolver()));
 		
 		_assets = new HashMap<String, TypedAssetDescriptor>();
 		//_assetsByType = new EnumMap<TypedAssetDescriptor.AssetTypeEnum, ArrayList<TypedAssetDescriptor>>(TypedAssetDescriptor.AssetTypeEnum.class);

@@ -1,5 +1,7 @@
 package game.dataAccessLayer;
 
+import aurelienribon.bodyeditor.BodyEditorDAL;
+
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.audio.Music;
@@ -83,6 +85,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		_ASSETS_TYPES.put(AssetTypeEnum.shader, new AssetType<ShaderProgram>(ShaderProgram.class, "shaders/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.font, new AssetType<FreeTypeFontGenerator>(FreeTypeFontGenerator.class, "fonts/"));
 		_ASSETS_TYPES.put(AssetTypeEnum.model, new AssetType<Model>(Model.class, "models/"));
+		_ASSETS_TYPES.put(AssetTypeEnum.bodyEditorDAL, new AssetType<BodyEditorDAL>(BodyEditorDAL.class, ""));
 	}
 
 	protected static class AssetType<T>
@@ -104,6 +107,7 @@ public class TypedAssetDescriptor<T> extends AssetDescriptor<T>
 		shader,
 		texture,
 		font,
-		model
+		model,
+		bodyEditorDAL
 	}
 }

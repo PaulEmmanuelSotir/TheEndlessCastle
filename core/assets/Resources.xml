@@ -83,6 +83,8 @@
 		<!-- MODELS -->
 		<model Name="KnightModel" License="CCby 3.0" CreditsText="'SNES-Style Knight' model by SecondBake (http://www.blendswap.com/blends/view/67701)">knight.g3db</model>
 		
+		<!-- Box2D bodies DAL -->
+		<bodyEditorDAL Name="BodiesDAL">bodies.json</bodyEditorDAL>
 	</Assets>
 	
 	<!-- LICENSES USED BY ASSETS -->

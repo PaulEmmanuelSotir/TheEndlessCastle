@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @author Aurelien Ribon | http://www.aurelienribon.com
  */
-public class BodyEditorLoader {
+public class BodyEditorDAL {
 
 	// Model
 	private final Model model;
@@ -35,12 +35,12 @@ public class BodyEditorLoader {
 	// Ctors
 	// -------------------------------------------------------------------------
 
-	public BodyEditorLoader(FileHandle file) {
+	public BodyEditorDAL(FileHandle file) {
 		if (file == null) throw new NullPointerException("file is null");
 		model = readJson(file.readString());
 	}
 
-	public BodyEditorLoader(String str) {
+	public BodyEditorDAL(String str) {
 		if (str == null) throw new NullPointerException("str is null");
 		model = readJson(str);
 	}
