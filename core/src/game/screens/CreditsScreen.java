@@ -36,7 +36,7 @@ public class CreditsScreen extends Screen
 		parameter.magFilter = TextureFilter.Linear;
 		parameter.color = TheEndlessCastle.MAIN_GAME_COLOR;
 		_font = generator.generateFont(parameter);
-		//_font.setScale(0.01f, 0.01f);
+		_font.getData().setScale(0.01f, 0.01f);
 
 		// Lava background
 		_lavaShader = _assetsHndlr.get(_LAVA_SHADER_NAME);
@@ -120,6 +120,7 @@ public class CreditsScreen extends Screen
 		// End of the credits
 		if(-_camera.position.y > _assetsDescriptors.size()*_STEP + 5f)
 		{
+			_creditsMusic.stop();
 			_game.setScreen(new MenuScreen(_game));
 		}
 	}
@@ -193,5 +194,5 @@ public class CreditsScreen extends Screen
 	
 	// Music
 	private Music _creditsMusic;
-	private static final String _CREDITS_MUSIC_NAME = "MenuMusicHeroic";
+	private static final String _CREDITS_MUSIC_NAME = "CreditsMusic";
 }

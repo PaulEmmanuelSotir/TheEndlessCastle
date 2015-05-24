@@ -22,6 +22,9 @@
 		<music 	Name="MenuMusicHeroic"
 				CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
 				License="CCby 3.0">HeroicAge.mp3</music>
+		<music 	Name="CreditsMusic"
+				CreditsText="'Hall of the Mountain King' by Kevin MacLeod (incompetech.com)"
+				License="CCby 3.0">HallOfTheMountainKing.mp3</music>
 		
 		<!-- SOUNDS -->
 		<sound	Name="DefaultSound" License="CC0 1.0">blank.wav</sound>
