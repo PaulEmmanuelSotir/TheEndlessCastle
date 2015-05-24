@@ -24,14 +24,13 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		_camera.update();
 	}
 
-
 	@Override
 	public void render(float delta) {
 		// Update time
 		if(_time > 0.8f * Float.MAX_VALUE)
 			_time = 0f;
 		_time += delta;
-		
+
 		// Update camera
 		_camera.update();
 		_spriteBatch.setProjectionMatrix(_camera.combined);
@@ -41,7 +40,7 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 		// Render
 		draw();
 	}
-	
+
 	protected abstract void update();
 	protected abstract void draw();
 
@@ -60,25 +59,25 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 	public void dispose() {
 		// TODO: dispose disposables or die !
 	}
-	
+
 	@Override
 	public void show() {
-		
+
 	}
 
 	@Override
 	public void pause() {
-		
+
 	}
 
 	@Override
 	public void resume() {
-		
+
 	}
 
 	@Override
 	public void hide() {
-		
+
 	}
 
 	protected TheEndlessCastle _game;

@@ -12,7 +12,7 @@ import game.GameWorld;
  * Game screen class
  */
 public class GameScreen extends Screen
-{	
+{
 	public GameScreen(TheEndlessCastle game)
 	{
 		super(game);
@@ -20,11 +20,11 @@ public class GameScreen extends Screen
 		_world = new GameWorld(_assetsHndlr, _camera, new GameWorld.WorldListener() {
 			// World events ...
 		});
-		
+
 		// Random music
 		_randomPlaylist = new RandomMusicPlaylist(_game.GetSettings().getVolume()/100f,_assetsHndlr);
 		_randomPlaylist.Start();
-		
+
 		// Menu button
 		_menuButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
 			@Override
@@ -61,7 +61,7 @@ public class GameScreen extends Screen
 				// TODO: change button textures
 			}
 		});
-		
+
 		// Pause button
 		_pauseButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
 			@Override
@@ -76,10 +76,10 @@ public class GameScreen extends Screen
 	{
 		// Temporary continuous camera scrolling
 		_camera.position.x = _time + _camera.viewportWidth/2f;
-		
+
 		//Update world
 		_world.update(_time);
-		
+
 		// Update HUD
 		_menuButton.update(_camera);
 		_soundButton.update(_camera);
@@ -91,7 +91,7 @@ public class GameScreen extends Screen
 	{
 		// Render world
 		_world.render(_spriteBatch, _modelBatch);
-		
+
 		// Render HUD
 		_spriteBatch.begin();
 		_menuButton.render(_spriteBatch);
@@ -105,7 +105,7 @@ public class GameScreen extends Screen
 	{
 		super.resize(width, height);
 		_world.setViewRatio(_ratio);
-		
+
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
 		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
 		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - _soundButton.getHeight() - 3f);
@@ -120,7 +120,7 @@ public class GameScreen extends Screen
 
 	private GameWorld _world;
 	private GameWorld.WorldListener _worldListener;
-	
+
 	private Button _menuButton;
 	private Button _soundButton;
 	private Button _pauseButton;
