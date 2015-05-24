@@ -3,7 +3,6 @@ package game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -14,8 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.BackgroundLayerEntity;
@@ -32,10 +29,10 @@ public class GameWorld
 	public static final float WORLD_VIEW_WIDTH = 32f;
 
 	public interface WorldListener {
-		// TODO: mettre les évenements du world ici...
+		// World events ...
 	}
-
-	public GameWorld(WorldListener listener, AssetsHandler assetsHandler, Camera camera)
+	
+	public GameWorld(AssetsHandler assetsHandler, Camera camera, WorldListener listener)
 	{
 		_ratio = 1f;
 		_listener = listener;
@@ -46,6 +43,7 @@ public class GameWorld
 		_box2DWorld = new World(_GRAVITY, true);
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer = new Box2DDebugRenderer();
+		
 		// Input multiplexer
 		_inputMultiplexer = new InputMultiplexer();
 		Gdx.input.setInputProcessor(_inputMultiplexer);

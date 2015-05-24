@@ -13,10 +13,9 @@ public class GameScreen extends Screen
 	{
 		super(game);
 
-		_worldListener = new GameWorld.WorldListener() {
-			// TODO: implémenter les callcack du world ici...
-		};
-		_world = new GameWorld(_worldListener, _assetsHndlr, _camera);
+		_world = new GameWorld(_assetsHndlr, _camera, new GameWorld.WorldListener() {
+			// World events ...
+		});
 		
 		_randomPlaylist = new RandomMusicPlaylist(_assetsHndlr);
 		//_randomPlaylist.Start();
