@@ -27,9 +27,8 @@ public class BackgroundLayerEntity extends LayerEntity {
 
 	public void ScaleToHeight(float height)
 	{
-		_landscapeWidth = height*_backSpriteComponent1.GetWidth()/_backSpriteComponent1.GetHeight();
-		_backSpriteComponent1.SetSize(_landscapeWidth, height);
-		_backSpriteComponent2.SetSize(_landscapeWidth, height);
+		_landscapeWidth = _backSpriteComponent1.ScaleToHeight(height);
+		_backSpriteComponent2.ScaleToHeight(height);
 		_backSpriteComponent1.SetRelativePosition(new Position((_backgroundLandscapeCount-2)*_landscapeWidth, 0));
 		_backSpriteComponent2.SetRelativePosition(new Position((_backgroundLandscapeCount-1)*_landscapeWidth, 0));
 	}

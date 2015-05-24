@@ -52,6 +52,17 @@ public class SpriteComponent extends Component implements IRenderableComponent<S
 		_sprite.setOrigin(scale*_sprite.getWidth()/2f,scale*_sprite.getHeight()/2f);
 	}
 	
+	/**
+	 * Scales image to given height
+	 * @return New sprite component width
+	 */
+	public float ScaleToHeight(float height)
+	{
+		float NewWidth = height*_sprite.getWidth()/_sprite.getHeight();
+		_sprite.setSize(NewWidth, height);
+		return NewWidth;
+	}
+	
 	public void SetOrigin(Position origin)
 	{
 		_sprite.setOrigin(origin.x, origin.y);
