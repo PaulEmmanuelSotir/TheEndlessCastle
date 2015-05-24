@@ -57,25 +57,37 @@
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		<texture Name="MenuBackgroundTexture" License="CC0 1.0">MenuBackground.png</texture>
 		<!-- Pause button -->
-		<texture Name="PauseNormalTexture" License="CC0 1.0">pauseNormal.png</texture>
-		<texture Name="PauseOverTexture" License="CC0 1.0">pauseOver.png</texture>
-		<texture Name="PausePressedTexture" License="CC0 1.0">pausePressed.png</texture>
+		<texture Name="PauseNormalTexture" License="CC0 1.0">buttons/pauseNormal.png</texture>
+		<texture Name="PauseOverTexture" License="CC0 1.0">buttons/pauseOver.png</texture>
+		<texture Name="PausePressedTexture" License="CC0 1.0">buttons/pausePressed.png</texture>
 		<!-- Menu button -->		
-		<!--<texture Name="MenuNormalTexture" License="CC0 1.0">menuNormal.png</texture>
-		<texture Name="MenuOverTexture" License="CC0 1.0">menuOver.png</texture>
-		<texture Name="MenuPressedTexture" License="CC0 1.0">menuPressed.png</texture>-->
+		<!--<texture Name="MenuNormalTexture" License="CC0 1.0">buttons/menuNormal.png</texture>
+		<texture Name="MenuOverTexture" License="CC0 1.0">buttons/menuOver.png</texture>
+		<texture Name="MenuPressedTexture" License="CC0 1.0">buttons/menuPressed.png</texture>-->
 		<!-- Sound button -->		
-		<texture Name="Sound3NormalTexture" License="CC0 1.0">Sound3Normal.png</texture>
-		<texture Name="Sound3OverTexture" License="CC0 1.0">Sound3Over.png</texture>
-		<texture Name="Sound3PressedTexture" License="CC0 1.0">Sound3Pressed.png</texture>
+		<texture Name="Sound3NormalTexture" License="CC0 1.0">buttons/Sound3Normal.png</texture>
+		<texture Name="Sound3OverTexture" License="CC0 1.0">buttons/Sound3Over.png</texture>
+		<texture Name="Sound3PressedTexture" License="CC0 1.0">buttons/Sound3Pressed.png</texture>
 		<!-- Credits button -->		
-		<texture Name="CreditsNormalTexture" License="CC0 1.0">CreditsNormal.png</texture>
-		<texture Name="CreditsOverTexture" License="CC0 1.0">CreditsOver.png</texture>
-		<texture Name="CreditsPressedTexture" License="CC0 1.0">CreditsPressed.png</texture>
+		<texture Name="CreditsNormalTexture" License="CC0 1.0">buttons/CreditsNormal.png</texture>
+		<texture Name="CreditsOverTexture" License="CC0 1.0">buttons/CreditsOver.png</texture>
+		<texture Name="CreditsPressedTexture" License="CC0 1.0">buttons/CreditsPressed.png</texture>
 		<!-- Play button -->		
-		<texture Name="PlayNormalTexture" License="CC0 1.0">PlayNormal.png</texture>
-		<texture Name="PlayOverTexture" License="CC0 1.0">PlayOver.png</texture>
-		<texture Name="PlayPressedTexture" License="CC0 1.0">PlayPressed.png</texture>
+		<texture Name="PlayNormalTexture" License="CC0 1.0">buttons/PlayNormal.png</texture>
+		<texture Name="PlayOverTexture" License="CC0 1.0">buttons/PlayOver.png</texture>
+		<texture Name="PlayPressedTexture" License="CC0 1.0">buttons/PlayPressed.png</texture>
+		<!-- Segments -->
+		<texture Name="SegmentCastle1Texture" License="CC0 1.0">segments/SegmentCastle1.png</texture>
+		<texture Name="SegmentCastle2Texture" License="CC0 1.0">segments/SegmentCastle2.png</texture>
+		<texture Name="SegmentCastle3Texture" License="CC0 1.0">segments/SegmentCastle3.png</texture>
+		<texture Name="SegmentGround1Texture" License="CC0 1.0">segments/SegmentGround1.png</texture>
+		<texture Name="SegmentGround2Texture" License="CC0 1.0">segments/SegmentGround2.png</texture>
+		<texture Name="SegmentGround3Texture" License="CC0 1.0">segments/SegmentGround3.png</texture>		
+		<!-- Obstacles -->
+		<texture Name="ArrowVObstacleTexture" License="CC0 1.0">obstacles/projectile_flecheV.png</texture>
+		<texture Name="ArrowHObstacleTexture" License="CC0 1.0">obstacles/projectile_flecheH.png</texture>
+		<texture Name="StoneObstacleTexture" License="CC0 1.0">obstacles/projectile_pierre.png</texture>
+		<texture Name="PieuObstacleTexture" License="CC0 1.0">obstacles/projectile_pieu.png</texture>
 		
 		<!-- FONTS -->
 		<font Name="XoloniumFont" License="GNU GPL 3.0">Xolonium-Regular.otf</font>
