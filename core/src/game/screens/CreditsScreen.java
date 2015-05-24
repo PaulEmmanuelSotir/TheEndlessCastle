@@ -71,10 +71,10 @@ public class CreditsScreen extends Screen
 
 	@Override
 	protected void update() {
-		_camera.position.y = -2*_time + _camera.viewportHeight/2f;
+		_camera.position.y = -4f*(_time + (float)Math.pow(Math.sin((_time-10f)*4f*Math.PI/_STEP), 2)) + _camera.viewportHeight/2f;
 		_lavaSprite.setCenter(_camera.position.x , _camera.position.y);
 		
-		if(-_camera.position.y > _assetsDescriptors.size()*15f + 5f)
+		if(-_camera.position.y > _assetsDescriptors.size()*_STEP + 5f)
 		{
 			_game.setScreen(new MenuScreen(_game));
 		}
@@ -96,7 +96,7 @@ public class CreditsScreen extends Screen
 		{
 			Sprite sprite = _stoneSprites.get(idx);
 			sprite.draw(_spriteBatch);
-			_font.drawWrapped(_spriteBatch, _assetsDescriptors.get(idx).toString(), _camera.viewportWidth/2f - sprite.getWidth()*sprite.getScaleX()/2f + 1.5f, -idx*15f + 2f, sprite.getWidth()*sprite.getScaleX() - 3f, HAlignment.CENTER);
+			_font.drawWrapped(_spriteBatch, _assetsDescriptors.get(idx).toString(), _camera.viewportWidth/2f - sprite.getWidth()*sprite.getScaleX()/2f + 1.5f, -idx*_STEP + 2f, sprite.getWidth()*sprite.getScaleX() - 3f, HAlignment.CENTER);
 		}
 		
 		_spriteBatch.end();
@@ -113,6 +113,7 @@ public class CreditsScreen extends Screen
 	// Stone sprites
 	private List<Sprite> _stoneSprites;
 	private static final String _CREDITS_STONE_TEXTURE_NAME = "CreditsStoneTexture";
+	private static final float _STEP = 15f;
 	
 	// Credits font
 	private BitmapFont _font;
