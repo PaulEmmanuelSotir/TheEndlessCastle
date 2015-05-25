@@ -41,3 +41,7 @@
 * [Spriter](http://www.brashmonkey.com/index.htm)
 * [Spriter github](https://github.com/Trixt0r/spriter)
 * [Importing Blender models in LibGDX](https://github.com/libgdx/libgdx/wiki/Importing-Blender-models-in-LibGDX)
+
+## Code license ##
+Code released under the MIT license.
+Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see core/assets/Ressources.xml)
