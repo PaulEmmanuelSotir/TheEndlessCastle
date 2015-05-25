@@ -45,7 +45,3 @@
 ## Code license ##
 Code released under the MIT license.
 Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see core/assets/Ressources.xml)
-
-## Code license ##
-Code released under the MIT license.
-Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see core/assets/Ressources.xml)
