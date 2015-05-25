@@ -56,6 +56,7 @@
 		<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		<texture Name="MenuBackgroundTexture" License="CC0 1.0">MenuBackground.png</texture>
+		<texture Name="ScorePanel" License="CCO 1.0">ScorePanel.png</texture>
 		<!-- Pause button -->
 		<texture Name="PauseNormalTexture" License="CC0 1.0">buttons/pauseNormal.png</texture>
 		<texture Name="PauseOverTexture" License="CC0 1.0">buttons/pauseOver.png</texture>
@@ -76,6 +77,15 @@
 		<texture Name="PlayNormalTexture" License="CC0 1.0">buttons/PlayNormal.png</texture>
 		<texture Name="PlayOverTexture" License="CC0 1.0">buttons/PlayOver.png</texture>
 		<texture Name="PlayPressedTexture" License="CC0 1.0">buttons/PlayPressed.png</texture>
+		<!-- Play again button -->
+		<texture Name="PlayAgainNormalTexture" License="CC0 1.0">buttons/PlayAgainNormal.png</texture>
+		<texture Name="PlayAgainOverTexture" License="CC0 1.0">buttons/PlayAgainOver.png</texture>
+		<texture Name="PlayAgainPressedTexture" License="CC0 1.0">buttons/PlayAgainPressed.png</texture>
+		<!-- Quit button -->
+		<texture Name="QuitNormalTexture" License="CC0 1.0">buttons/QuitNormal.png</texture>
+		<texture Name="QuitOverTexture" License="CC0 1.0">buttons/QuitOver.png</texture>
+		<texture Name="QuitPressedTexture" License="CC0 1.0">buttons/QuitPressed.png</texture>
+		
 		<!-- Segments -->
 		<texture Name="SegmentCastle1Texture" License="CC0 1.0">segments/SegmentCastle1.png</texture>
 		<texture Name="SegmentCastle2Texture" License="CC0 1.0">segments/SegmentCastle2.png</texture>

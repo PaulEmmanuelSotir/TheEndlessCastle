@@ -1,5 +1,6 @@
 package game.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -65,7 +66,7 @@ public class MenuScreen  extends Screen
 		});
 
 		// Play button
-		_playButton = new Button(0.02f, (Texture)_assetsHndlr.get("PlayNormalTexture"), (Texture)_assetsHndlr.get("PlayOverTexture"), (Texture)_assetsHndlr.get("PlayPressedTexture"), new ButtonClickListener() {
+		_playButton = new Button(0.015f, (Texture)_assetsHndlr.get("PlayNormalTexture"), (Texture)_assetsHndlr.get("PlayOverTexture"), (Texture)_assetsHndlr.get("PlayPressedTexture"), new ButtonClickListener() {
 			@Override
 			public void MouseRelease() {
 				_menuMusic.stop();
@@ -74,13 +75,22 @@ public class MenuScreen  extends Screen
 		});
 		
 		// Credits button
-		_creditsButton = new Button(0.02f, (Texture)_assetsHndlr.get("CreditsNormalTexture"), (Texture)_assetsHndlr.get("CreditsOverTexture"), (Texture)_assetsHndlr.get("CreditsPressedTexture"), new ButtonClickListener() {
+		_creditsButton = new Button(0.015f, (Texture)_assetsHndlr.get("CreditsNormalTexture"), (Texture)_assetsHndlr.get("CreditsOverTexture"), (Texture)_assetsHndlr.get("CreditsPressedTexture"), new ButtonClickListener() {
 			@Override
 			public void MouseRelease() {
 				_menuMusic.stop();
 				_game.setScreen(new CreditsScreen(_game));
 			}
 		});
+		
+		// Quit button
+		_quitButton = new Button(0.015f, (Texture)_assetsHndlr.get("QuitNormalTexture"), (Texture)_assetsHndlr.get("QuitOverTexture"), (Texture)_assetsHndlr.get("QuitPressedTexture"), new ButtonClickListener() {
+			@Override
+			public void MouseRelease() {
+				Gdx.app.exit();
+			}
+		});
+		
 	}
 
 	@Override
@@ -89,6 +99,7 @@ public class MenuScreen  extends Screen
 		_soundButton.update(_camera);
 		_playButton.update(_camera);
 		_creditsButton.update(_camera);
+		_quitButton.update(_camera);
 	}
 
 	@Override
@@ -110,6 +121,7 @@ public class MenuScreen  extends Screen
 		_soundButton.render(_spriteBatch);
 		_playButton.render(_spriteBatch);
 		_creditsButton.render(_spriteBatch);
+		_quitButton.render(_spriteBatch);
 		_spriteBatch.end();
 	}
 
@@ -127,8 +139,9 @@ public class MenuScreen  extends Screen
 
 		// Update buttons position
 		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_creditsButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f - 4f);
-		_playButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f + _creditsButton.getHeight()-1.5f);
+		_creditsButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f - 0.7f);
+		_playButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f + _creditsButton.getHeight());
+		_quitButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f - _playButton.getHeight() - 1.4f);
 	}
 
 	@Override
@@ -150,6 +163,7 @@ public class MenuScreen  extends Screen
 	private Button _playButton;
 	private Button _soundButton;
 	private Button _creditsButton;
+	private Button _quitButton;
 
 	private Music _menuMusic;
 
