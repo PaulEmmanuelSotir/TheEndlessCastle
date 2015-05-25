@@ -5,7 +5,9 @@ import java.util.List;
 
 import game.Button;
 import game.TheEndlessCastle;
+import game.VolumeButtonListener;
 import game.Button.ButtonClickListener;
+import game.VolumeButtonListener.VolumeSettingListener;
 import game.dataAccessLayer.TypedAssetDescriptor;
 
 import com.badlogic.gdx.audio.Music;
@@ -68,35 +70,21 @@ public class CreditsScreen extends Screen
 		}
 
 		// Sound button
-		_soundButton = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), new ButtonClickListener() {
+		VolumeButtonListener _volumeListener = new VolumeButtonListener(_game.GetSettings(), new VolumeSettingListener() {			
 			@Override
-			public void MouseRelease() {
-				if(_game.GetSettings().getVolume() > 80)
-				{
-					_creditsMusic.setVolume(0.75f);
-					_game.GetSettings().setVolume(75);
-				}
-				else if(_game.GetSettings().getVolume() > 50)
-				{
-					_creditsMusic.setVolume(0.25f);
-					_game.GetSettings().setVolume(25);
-				}
-				else if(_game.GetSettings().getVolume() > 10)
-				{
-					_creditsMusic.setVolume(0);
-					_game.GetSettings().setVolume(0);
-				}
-				else
-				{
-					_creditsMusic.setVolume(1);		
-					_game.GetSettings().setVolume(100);
-				}
-				// TODO: change button textures
+			public void SetVolume(float volume) {
+				_creditsMusic.setVolume(volume);
 			}
 		});
+		_sound100Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), _volumeListener);
+		_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
+		_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
+		_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
+		_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		
 		
 		// Menu button
-		_menuButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
+		_menuButton = new Button(0.006f, (Texture)_assetsHndlr.get("MenuNormalTexture"), (Texture)_assetsHndlr.get("MenuOverTexture"), (Texture)_assetsHndlr.get("MenuPressedTexture"), new ButtonClickListener() {
 			@Override
 			public void MouseRelease() {
 				_creditsMusic.stop();
@@ -115,7 +103,10 @@ public class CreditsScreen extends Screen
 		
 		// Update buttons
 		_menuButton.update(_camera);
-		_soundButton.update(_camera);
+		_sound100Button.update(_camera);
+		_sound75Button.update(_camera);
+		_sound25Button.update(_camera);
+		_sound0Button.update(_camera);
 		
 		// End of the credits
 		if(-_camera.position.y > _assetsDescriptors.size()*_STEP + 5f)
@@ -144,12 +135,14 @@ public class CreditsScreen extends Screen
 			_font.draw(_spriteBatch, _assetsDescriptors.get(idx).toString(),
 					_camera.viewportWidth/2f - sprite.getWidth()*sprite.getScaleX()/2f + 1.5f, -idx*_STEP + 2f,
 					sprite.getWidth()*sprite.getScaleX() - 3f, Align.center, true);
-		//	_font.drawWrapped(_spriteBatch, _assetsDescriptors.get(idx).toString(), _camera.viewportWidth/2f - sprite.getWidth()*sprite.getScaleX()/2f + 1.5f, -idx*_STEP + 2f, sprite.getWidth()*sprite.getScaleX() - 3f, Align.center);
 		}
 
 		// Render buttons
 		_menuButton.render(_spriteBatch);
-		_soundButton.render(_spriteBatch);
+		_sound100Button.render(_spriteBatch);
+		_sound75Button.render(_spriteBatch);
+		_sound25Button.render(_spriteBatch);
+		_sound0Button.render(_spriteBatch);
 
 		_spriteBatch.end();
 	}
@@ -163,7 +156,16 @@ public class CreditsScreen extends Screen
 		
 		// Update buttons position
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
-		_soundButton.SetPosition(_camera.viewportWidth - _soundButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+	}
+
+	@Override
+	public void dispose()
+	{
+		_font.dispose();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -189,7 +191,10 @@ public class CreditsScreen extends Screen
 	private static final String _RANDOM_NOISE_TEXTURE = "RandomNoiseTexture";
 
 	// Buttons
-	private Button _soundButton;
+	private Button _sound100Button;
+	private Button _sound75Button;
+	private Button _sound25Button;
+	private Button _sound0Button;
 	private Button _menuButton;
 	
 	// Music

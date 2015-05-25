@@ -45,7 +45,6 @@ public class SpriteEntity extends Entity
 	 */
 	public SpriteComponent SetSprite(String textureName)
 	{
-		// TODO: remove the old one if any
 		SpriteComponent NewComponent = new SpriteComponent(getName() + "_" + textureName, this, _assetsHndlr.<Texture>get(textureName));
 		addComponent(NewComponent);
 		return NewComponent;

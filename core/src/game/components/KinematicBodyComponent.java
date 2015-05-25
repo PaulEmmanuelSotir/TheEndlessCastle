@@ -1,5 +1,11 @@
 package game.components;
 
+import aurelienribon.bodyeditor.BodyEditorDAL;
+
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
+
 import game.entities.Entity;
 
 /**
@@ -7,18 +13,11 @@ import game.entities.Entity;
  */
 public class KinematicBodyComponent extends BodyComponent
 {
-	public KinematicBodyComponent(String name, Entity owner) {
-		super(name, owner);
+	public KinematicBodyComponent(String name, Entity owner, World box2DWorld, BodyEditorDAL bodyDAL, BodyDef bodyDef, FixtureDef fixtureDef, float scale) {
+		super(name, owner, box2DWorld, bodyDAL, bodyDef, fixtureDef, scale);
 	}
 	
-	/**
-	 * Kinematic body component constructor with shape information
-	 * @param name Kinematic body component name
-	 * @param owner Kinematic body component owner entity
-	 * @param shape Kinematic body component shape
-	 */
-//	public KinematicBodyComponent(String name, Entity owner, Shape shape) {
-//		super(name, owner, shape);
-//	}
-	
+	public KinematicBodyComponent(String name, Entity owner, World box2DWorld, BodyEditorDAL bodyDAL, BodyDef bodyDef, FixtureDef fixtureDef) {
+		this(name, owner, box2DWorld, bodyDAL, bodyDef, fixtureDef, 1f);
+	}
 }

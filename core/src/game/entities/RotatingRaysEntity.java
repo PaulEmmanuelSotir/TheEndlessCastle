@@ -29,7 +29,7 @@ public class RotatingRaysEntity extends SpriteEntity
 		pos.x -= GameWorld.WORLD_VIEW_WIDTH/2f;
 		pos.y -= _ratio*GameWorld.WORLD_VIEW_WIDTH/2f;
 		this.setPosition(pos);
-		_time = world.GetTime();
+		_time = world.GetCameraPosition().x * 0.8f;
 	}
 
 	@Override

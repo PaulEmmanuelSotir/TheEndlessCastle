@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.physics.box2d.Box2D;
 
 import game.dataAccessLayer.AssetsHandler;
+import game.dataAccessLayer.Settings;
 import game.screens.LoadingScreen;
 
 public class TheEndlessCastle extends Game

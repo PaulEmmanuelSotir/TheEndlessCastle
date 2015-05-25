@@ -3,7 +3,9 @@ package game.components;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
+import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.List;
 
 import game.entities.Entity;
 
@@ -13,35 +15,66 @@ public class PlayerComponent extends Component implements InputProcessor
 	{
 		public void MoveForward();
 		public void MoveBackward();
-	}
-	
-	public PlayerComponent(String name, Entity owner) {
-		super(name, owner);
+		public void Jump();
+		public void Uncrouch();
+		public void Crouch();
 	}
 
-	public void SetMoveListenner(MoveListener moveListener)
-	{
-		_MoveListener = moveListener;
+	public PlayerComponent(String name, Entity owner) {
+		super(name, owner);
+		_MoveListeners = new ArrayList<MoveListener>();
 	}
-	
+
+	public void AddMoveListener(MoveListener moveListener)
+	{
+		if(moveListener != null)
+			_MoveListeners.add(moveListener);
+	}
+
+	public void RemoveMoveListener(MoveListener moveListener)
+	{
+		_MoveListeners.remove(moveListener);
+	}
+
 	@Override
 	public boolean keyDown(int keycode) {
-		switch (keycode)
+		if(_MoveListeners.size() > 0)
 		{
-		case Keys.LEFT:
-			if(_MoveListener != null)
-				_MoveListener.MoveBackward();
-			return true;
-		case Keys.RIGHT:
-			if(_MoveListener != null)
-				_MoveListener.MoveForward();
-			return true;
+			switch (keycode)
+			{
+			case Keys.LEFT:
+				for(MoveListener listener : _MoveListeners)
+					listener.MoveBackward();
+				return true;
+			case Keys.RIGHT:
+				for(MoveListener listener : _MoveListeners)
+					listener.MoveForward();
+				return true;
+			case Keys.UP:
+				for(MoveListener listener : _MoveListeners)
+					listener.Jump();
+				return true;
+			case Keys.DOWN:
+				for(MoveListener listener : _MoveListeners)
+					listener.Crouch();
+				return true;
+			}
 		}
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
+		if(_MoveListeners.size() > 0)
+		{
+			switch (keycode)
+			{
+			case Keys.DOWN:
+				for(MoveListener listener : _MoveListeners)
+					listener.Uncrouch();
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -79,6 +112,6 @@ public class PlayerComponent extends Component implements InputProcessor
 	public boolean scrolled(int amount) {
 		return false;
 	}
-	
-	private MoveListener _MoveListener;
+
+	private List<MoveListener> _MoveListeners;
 }
