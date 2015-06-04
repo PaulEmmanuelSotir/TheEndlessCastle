@@ -27,34 +27,35 @@ public class Button
 		public void MouseRelease();
 		public void MouseExit();
 	}
-	
+
 	public static abstract class ButtonClickListener implements ButtonListener
 	{
 		public void MouseOver() { }
 		public void MouseClick() { }
 		public void MouseExit() { }
 	}
-	
+
 	public Button(Texture normalTexture, Texture overTexture, Texture pressedTexture, ButtonListener buttonListener)
 	{
 		this(0f, 0f, 1f, normalTexture, overTexture, pressedTexture, buttonListener);
 	}
-	
+
 	public Button(float x, float y, Texture normalTexture, Texture overTexture, Texture pressedTexture, ButtonListener buttonListener)
 	{
 		this(x, y, 1f, normalTexture, overTexture, pressedTexture, buttonListener);
 	}
-	
+
 	public Button(float textureScale, Texture normalTexture, Texture overTexture, Texture pressedTexture, ButtonListener buttonListener)
 	{
 		this(0f, 0f, textureScale, normalTexture, overTexture, pressedTexture, buttonListener);
 	}
-	
+
 	public Button(float x, float y, float textureScale, Texture normalTexture, Texture overTexture, Texture pressedTexture, ButtonListener buttonListener)
 	{		
 		_x = x;
 		_y = y;
 		_bounds = new Rectangle();
+		_enabled = true;
 
 		// Button normal Sprite
 		_buttonNormalSprite = new Sprite(normalTexture);
@@ -67,7 +68,7 @@ public class Button
 		// Button pressed Sprite
 		_buttonPressedSprite = new Sprite(pressedTexture);
 		_buttonPressedSpriteEnabled = false;
-		
+
 		SetSpritesScale(textureScale);
 
 		// Set initial bounds and sprites position assuming initial camera position is (viewportWidth/2f, camera.viewportHeight/2f) (center)
@@ -85,144 +86,174 @@ public class Button
 				_buttonOverSpriteEnabled = false;
 				_buttonPressedSpriteEnabled = false;
 			}
-			
+
 			@Override
 			public void MouseOver() {
 				_buttonNormalSpriteEnabled = false;
 				_buttonOverSpriteEnabled = true;
 				_buttonPressedSpriteEnabled = false;
 			}
-			
+
 			@Override
 			public void MouseClick() {
 				_buttonNormalSpriteEnabled = false;
 				_buttonOverSpriteEnabled = false;
 				_buttonPressedSpriteEnabled = true;
 			}
-	
+
 			@Override
 			public void MouseExit() { MouseRelease(); }
 		});
 		addButtonListener(buttonListener);
 	}
-	
+
 	public void addButtonListener(ButtonListener listener) {
 		if(listener != null)
 			_buttonListeners.add(listener);
 	}
-	
+
+	public void SetTextures(Texture normalTexture, Texture overTexture, Texture pressedTexture)
+	{
+		if(_buttonOverSprite != null && _buttonOverSprite != null && _buttonPressedSprite != null)
+		{
+			_buttonOverSprite.setTexture(normalTexture);
+			_buttonOverSprite.setTexture(overTexture);
+			_buttonPressedSprite.setTexture(pressedTexture);
+		}
+	}
+
 	public void render(SpriteBatch batch)
 	{
-		if(_buttonNormalSpriteEnabled)
-			_buttonNormalSprite.draw(batch);
-		else if(_buttonOverSpriteEnabled)
-			_buttonOverSprite.draw(batch);
-		else if(_buttonPressedSpriteEnabled)
-			_buttonPressedSprite.draw(batch);
-	}
-	
-	public void update(Camera camera) {
-		// Correct sprites position modifications due to camera moves
-		_buttonNormalSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
-		_buttonOverSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
-		_buttonPressedSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
-		
-		// Raise appropriate events depending on mouse action
-		if(_buttonListeners.size() > 0)
+		if(_enabled)
 		{
-			// Get mouse position in world coords and get button bounding rectangle
-			Vector2 MousePos = new Position(camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0)));
-			_bounds = new Rectangle(_x + camera.position.x-camera.viewportWidth/2f, _y + camera.position.y-camera.viewportHeight/2f, _buttonNormalSprite.getWidth()*_buttonNormalSprite.getScaleX(), _buttonNormalSprite.getHeight()*_buttonNormalSprite.getScaleY());
-			
-			if(_bounds.contains(MousePos.x, MousePos.y))
+			if(_buttonNormalSpriteEnabled)
+				_buttonNormalSprite.draw(batch);
+			else if(_buttonOverSpriteEnabled)
+				_buttonOverSprite.draw(batch);
+			else if(_buttonPressedSpriteEnabled)
+				_buttonPressedSprite.draw(batch);
+		}
+	}
+
+	public void update(Camera camera) {
+		if(_enabled)
+		{
+			// Correct sprites position modifications due to camera moves
+			_buttonNormalSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
+			_buttonOverSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
+			_buttonPressedSprite.setPosition(camera.position.x-camera.viewportWidth/2f + _x, camera.position.y-camera.viewportHeight/2f + _y);
+
+			// Raise appropriate events depending on mouse action
+			if(_buttonListeners.size() > 0)
 			{
-				if(!Gdx.input.isButtonPressed(Buttons.LEFT))
+				// Get mouse position in world coords and get button bounding rectangle
+				Vector2 MousePos = new Position(camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0)));
+				_bounds = new Rectangle(_x + camera.position.x-camera.viewportWidth/2f, _y + camera.position.y-camera.viewportHeight/2f, _buttonNormalSprite.getWidth()*_buttonNormalSprite.getScaleX(), _buttonNormalSprite.getHeight()*_buttonNormalSprite.getScaleY());
+
+				if(_bounds.contains(MousePos.x, MousePos.y))
 				{
-					if(!_buttonOver)
+					if(!Gdx.input.isButtonPressed(Buttons.LEFT))
 					{
-						_buttonOver = true;
-						for(ButtonListener listener : _buttonListeners)
-							listener.MouseOver();
+						if(!_buttonOver)
+						{
+							_buttonOver = true;
+							for(ButtonListener listener : _buttonListeners)
+								listener.MouseOver();
+						}
+
+						if(_buttonPressed)
+						{
+							_buttonPressed = false;
+							for(ButtonListener listener : _buttonListeners)
+								listener.MouseRelease();
+						}
 					}
-					
-					if(_buttonPressed)
+					else
 					{
-						_buttonPressed = false;
-						for(ButtonListener listener : _buttonListeners)
-							listener.MouseRelease();
+						if(!_buttonPressed)
+						{
+							_buttonPressed = true;
+							for(ButtonListener listener : _buttonListeners)
+								listener.MouseClick();
+						}
+						if(!_buttonOver)
+						{
+							_buttonOver = true;
+							for(ButtonListener listener : _buttonListeners)
+								listener.MouseOver();
+						}
 					}
 				}
 				else
 				{
-					if(!_buttonPressed)
-					{
-						_buttonPressed = true;
-						for(ButtonListener listener : _buttonListeners)
-							listener.MouseClick();
-					}
-					if(!_buttonOver)
-					{
-						_buttonOver = true;
-						for(ButtonListener listener : _buttonListeners)
-							listener.MouseOver();
-					}
-				}
-			}
-			else
-			{
-				if(_buttonPressed)
-				{
-					_buttonPressed = false;
 					if(_buttonPressed)
+					{
+						_buttonPressed = false;
+						if(_buttonPressed)
+							for(ButtonListener listener : _buttonListeners)
+								listener.MouseRelease();
+					}
+					if(_buttonOver)
+					{
+						_buttonOver = false;
 						for(ButtonListener listener : _buttonListeners)
-							listener.MouseRelease();
-				}
-				if(_buttonOver)
-				{
-					_buttonOver = false;
-					for(ButtonListener listener : _buttonListeners)
-						listener.MouseExit();
+							listener.MouseExit();
+					}
 				}
 			}
 		}
 	}
-	
+
 	public void SetSpritesScale(float scale)
 	{
 		_buttonNormalSprite.setScale(scale);
 		_buttonNormalSprite.setOrigin(0,0);
 		_buttonNormalSprite.setCenter(scale*_buttonNormalSprite.getWidth()/2f, scale*_buttonNormalSprite.getHeight()/2f);
-		
+
 		_buttonOverSprite.setScale(scale);
 		_buttonOverSprite.setOrigin(0,0);
 		_buttonOverSprite.setCenter(scale*_buttonOverSprite.getWidth()/2f, scale*_buttonOverSprite.getHeight()/2f);
-		
+
 		_buttonPressedSprite.setScale(scale);
 		_buttonPressedSprite.setOrigin(0,0);
 		_buttonPressedSprite.setCenter(scale*_buttonPressedSprite.getWidth()/2f, scale*_buttonPressedSprite.getHeight()/2f);
 	}
-	
+
+	public void Disable()
+	{
+		_enabled = false;
+	}
+
+	public void Enable()
+	{
+		_enabled = true;
+		_buttonNormalSpriteEnabled = false;
+		_buttonOverSpriteEnabled = true;
+		_buttonPressedSpriteEnabled = false;
+	}
+
 	public void SetPosition(float x, float y)
 	{
 		_x = x;
 		_y = y;
 	}
-	
+
 	public float getWidth()
 	{
 		return _bounds.width;
 	}
-	
+
 	public float getHeight()
 	{
 		return _bounds.height;
 	}
 
 	private ArrayList<ButtonListener> _buttonListeners;
-	
+
 	private boolean _buttonPressed;
 	private boolean _buttonOver;
-	
+	private boolean _enabled;
+
 	private boolean _buttonPressedSpriteEnabled;
 	private boolean _buttonOverSpriteEnabled;
 	private boolean _buttonNormalSpriteEnabled;

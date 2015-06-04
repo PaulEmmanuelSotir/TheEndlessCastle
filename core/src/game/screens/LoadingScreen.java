@@ -43,6 +43,13 @@ public class LoadingScreen extends Screen
 		_openLogoSprite.draw(_spriteBatch);
 		_spriteBatch.end();
 	}
+	
+	@Override
+	public void dispose()
+	{
+		_INSALogoSprite.getTexture().dispose();
+		_openLogoSprite.getTexture().dispose();
+	}
 
 	Sprite _INSALogoSprite;
 	Sprite _openLogoSprite;

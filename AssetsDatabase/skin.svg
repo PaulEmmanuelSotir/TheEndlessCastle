@@ -151,11 +151,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12374369"
-     inkscape:cx="1477.7709"
-     inkscape:cy="-73.978365"
+     inkscape:zoom="0.35000001"
+     inkscape:cx="4013.1636"
+     inkscape:cy="2341.2045"
      inkscape:document-units="px"
-     inkscape:current-layer="g4294"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -447,7 +447,7 @@
          ry="0"
          rx="0" />
       <path
-         style="fill:#a02c2c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 2485.1293,-1873.5414 -0.2013,16.5739 33.6015,0.2069 -7.2587,-6.3245 6.8485,-6.8834 -18.6925,-0.033 c -7.6198,-0.014 -25.0261,-2.6038 -5.1274,-5.5633 19.8988,-2.9596 -0.9792,-4.0179 -9.9829,-4.0339 l -93.6908,-0.1667 0.025,13.6801 94.3852,0.2655"
          id="path4243"
          inkscape:connector-curvature="0"
@@ -501,7 +501,7 @@
          inkscape:connector-curvature="0"
          id="path4263"
          d="m 2485.1293,-1873.5414 -0.2013,16.5739 33.6015,0.2069 -7.2587,-6.3245 6.8485,-6.8834 -18.6925,-0.033 c -7.6198,-0.014 -25.0261,-2.6038 -5.1274,-5.5633 19.8988,-2.9596 -0.9792,-4.0179 -9.9829,-4.0339 l -93.6908,-0.1667 0.025,13.6801 94.3852,0.2655"
-         style="fill:#a02c2c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:8.372159px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -572,7 +572,7 @@
          inkscape:connector-curvature="0"
          id="path4283"
          d="m 4292.7326,-1281.8064 -0.4596,128.4255 260.3534,-0.627 -56.6592,-48.5196 52.6043,-53.7862 -144.829,0.985 c -59.038,0.3972 -194.0714,-18.5129 -40.0955,-42.7634 153.9766,-24.2512 -7.8535,-31.0651 -77.6138,-30.5915 l -725.9141,4.9267 1.1016,105.9898 731.3007,-4.2073"
-         style="fill:#a02c2c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:64.86867523px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -604,7 +604,7 @@
          rx="0"
          transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)" />
       <path
-         style="fill:#a02c2c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 2762.1199,-1284.8636 -0.4297,120.0542 243.3824,-0.5862 -52.9658,-45.3568 49.1753,-50.2801 -135.3884,0.9207 c -55.1896,0.3713 -181.4209,-17.3061 -37.4819,-39.9758 143.9397,-22.6705 -7.3415,-29.0402 -72.5547,-28.5975 l -678.5954,4.6056 1.0299,99.0809 683.631,-3.9331"
          id="path4299"
          inkscape:connector-curvature="0"
@@ -631,5 +631,113 @@
        id="image6368-1"
        x="-177.63634"
        y="817.07739" />
+    <g
+       id="g4533-0"
+       transform="translate(1267.5172,-490.28799)"
+       inkscape:export-filename="D:\Programation\JAVA\TheEndlessCastle\core\assets\textures\QuitNormal.png"
+       inkscape:export-xdpi="79.457954"
+       inkscape:export-ydpi="79.457954">
+      <rect
+         style="fill:#661c1c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4271-3"
+         width="170.84314"
+         height="90.215759"
+         x="1624.8998"
+         y="-1302.9316"
+         ry="0"
+         rx="0"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)" />
+      <path
+         style="fill:#a02c2c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 1623.0466,-1281.8067 -0.4596,128.4256 235.0997,-0.627 -56.6591,-48.5195 52.6044,-53.7862 -144.829,0.985 c -59.0382,0.3972 -154.6755,-18.5126 -0.6996,-42.763 153.9766,-24.2513 39.1183,-31.0654 -30.642,-30.5918 l -725.91416,4.9267 1.10165,105.9898 670.18661,-4.2075"
+         id="path4273-4"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccczzzccc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:64.86867523px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="1290.2671"
+         y="-1241.3945"
+         id="text4235-3-0"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)"><tspan
+           sodipodi:role="line"
+           x="1290.2671"
+           y="-1241.3945"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:ultra-expanded;font-size:65.04381561px;font-family:'Wide Latin';-inkscape-font-specification:'Wide Latin Ultra-Expanded';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           id="tspan4237-9-2">QUIT</tspan></text>
+    </g>
+    <g
+       id="g4545-5"
+       transform="translate(-211.34623,-494.32859)"
+       inkscape:export-filename="D:\Programation\JAVA\TheEndlessCastle\core\assets\textures\QuitOver.png"
+       inkscape:export-xdpi="79.457954"
+       inkscape:export-ydpi="79.457954">
+      <rect
+         rx="0"
+         ry="0"
+         y="-1278.1711"
+         x="4233.8945"
+         height="87.799904"
+         width="205.1765"
+         id="rect4281-4"
+         style="fill:#661c1c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)" />
+      <path
+         sodipodi:nodetypes="ccccczzzccc"
+         inkscape:connector-curvature="0"
+         id="path4283-2"
+         d="m 4292.7326,-1281.8064 -0.4596,128.4255 260.3534,-0.627 -56.6592,-48.5196 52.6043,-53.7862 -144.829,0.985 c -59.038,0.3972 -194.0714,-18.5129 -40.0955,-42.7634 153.9766,-24.2512 -7.8535,-31.0651 -77.6138,-30.5915 l -725.9141,4.9267 1.1016,105.9898 731.3007,-4.2073"
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:64.86867523px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="3898.7429"
+         y="-1219.0498"
+         id="text4235-7-7"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)"><tspan
+           sodipodi:role="line"
+           x="3898.7429"
+           y="-1219.0498"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:ultra-expanded;font-size:65.04381561px;font-family:'Wide Latin';-inkscape-font-specification:'Wide Latin Ultra-Expanded';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           id="tspan4237-3-6">QUIT</tspan></text>
+    </g>
+    <g
+       id="g4539-9"
+       transform="translate(2495.8627,-484.22709)"
+       inkscape:export-filename="D:\Programation\JAVA\TheEndlessCastle\core\assets\textures\QuitPressed.png"
+       inkscape:export-xdpi="79.457954"
+       inkscape:export-ydpi="79.457954">
+      <rect
+         style="fill:#661c1c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4297-3"
+         width="191.80211"
+         height="82.076675"
+         x="2707.9048"
+         y="-1292.1763"
+         ry="0"
+         rx="0"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)" />
+      <path
+         style="fill:#822424;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 2762.1199,-1284.8636 -0.4297,120.0542 243.3824,-0.5862 -52.9658,-45.3568 49.1753,-50.2801 -135.3884,0.9207 c -55.1896,0.3713 -181.4209,-17.3061 -37.4819,-39.9758 143.9397,-22.6705 -7.3415,-29.0402 -72.5547,-28.5975 l -678.5954,4.6056 1.0299,99.0809 683.631,-3.9331"
+         id="path4299-6"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccczzzccc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:64.86867523px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="2415.9399"
+         y="-1231.7518"
+         id="text4235-8-9"
+         sodipodi:linespacing="125%"
+         transform="matrix(0.99996331,-0.00856591,0.00856591,0.99996331,0,0)"><tspan
+           sodipodi:role="line"
+           x="2415.9399"
+           y="-1231.7518"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:ultra-expanded;font-size:65.04380798px;font-family:'Wide Latin';-inkscape-font-specification:'Wide Latin Ultra-Expanded';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
+           id="tspan4237-0-4">QUIT</tspan></text>
+    </g>
   </g>
 </svg>

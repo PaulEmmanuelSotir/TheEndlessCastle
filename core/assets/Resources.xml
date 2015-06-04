@@ -56,18 +56,28 @@
 		<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		<texture Name="MenuBackgroundTexture" License="CC0 1.0">MenuBackground.png</texture>
+		<texture Name="ScorePanel" License="CCO 1.0">ScorePanel.png</texture>
 		<!-- Pause button -->
 		<texture Name="PauseNormalTexture" License="CC0 1.0">buttons/pauseNormal.png</texture>
 		<texture Name="PauseOverTexture" License="CC0 1.0">buttons/pauseOver.png</texture>
 		<texture Name="PausePressedTexture" License="CC0 1.0">buttons/pausePressed.png</texture>
 		<!-- Menu button -->		
-		<!--<texture Name="MenuNormalTexture" License="CC0 1.0">buttons/menuNormal.png</texture>
+		<texture Name="MenuNormalTexture" License="CC0 1.0">buttons/menuNormal.png</texture>
 		<texture Name="MenuOverTexture" License="CC0 1.0">buttons/menuOver.png</texture>
-		<texture Name="MenuPressedTexture" License="CC0 1.0">buttons/menuPressed.png</texture>-->
+		<texture Name="MenuPressedTexture" License="CC0 1.0">buttons/menuPressed.png</texture>
 		<!-- Sound button -->		
 		<texture Name="Sound3NormalTexture" License="CC0 1.0">buttons/Sound3Normal.png</texture>
 		<texture Name="Sound3OverTexture" License="CC0 1.0">buttons/Sound3Over.png</texture>
 		<texture Name="Sound3PressedTexture" License="CC0 1.0">buttons/Sound3Pressed.png</texture>
+		<texture Name="Sound2NormalTexture" License="CC0 1.0">buttons/Sound2Normal.png</texture>
+		<texture Name="Sound2OverTexture" License="CC0 1.0">buttons/Sound2Over.png</texture>
+		<texture Name="Sound2PressedTexture" License="CC0 1.0">buttons/Sound2Pressed.png</texture>
+		<texture Name="Sound1NormalTexture" License="CC0 1.0">buttons/Sound1Normal.png</texture>
+		<texture Name="Sound1OverTexture" License="CC0 1.0">buttons/Sound1Over.png</texture>
+		<texture Name="Sound1PressedTexture" License="CC0 1.0">buttons/Sound1Pressed.png</texture>
+		<texture Name="Sound0NormalTexture" License="CC0 1.0">buttons/Sound0Normal.png</texture>
+		<texture Name="Sound0OverTexture" License="CC0 1.0">buttons/Sound0Over.png</texture>
+		<texture Name="Sound0PressedTexture" License="CC0 1.0">buttons/Sound0Pressed.png</texture>
 		<!-- Credits button -->		
 		<texture Name="CreditsNormalTexture" License="CC0 1.0">buttons/CreditsNormal.png</texture>
 		<texture Name="CreditsOverTexture" License="CC0 1.0">buttons/CreditsOver.png</texture>
@@ -76,13 +86,24 @@
 		<texture Name="PlayNormalTexture" License="CC0 1.0">buttons/PlayNormal.png</texture>
 		<texture Name="PlayOverTexture" License="CC0 1.0">buttons/PlayOver.png</texture>
 		<texture Name="PlayPressedTexture" License="CC0 1.0">buttons/PlayPressed.png</texture>
+		<!-- Play again button -->
+		<texture Name="PlayAgainNormalTexture" License="CC0 1.0">buttons/PlayAgainNormal.png</texture>
+		<texture Name="PlayAgainOverTexture" License="CC0 1.0">buttons/PlayAgainOver.png</texture>
+		<texture Name="PlayAgainPressedTexture" License="CC0 1.0">buttons/PlayAgainPressed.png</texture>
+		<!-- Quit button -->
+		<texture Name="QuitNormalTexture" License="CC0 1.0">buttons/QuitNormal.png</texture>
+		<texture Name="QuitOverTexture" License="CC0 1.0">buttons/QuitOver.png</texture>
+		<texture Name="QuitPressedTexture" License="CC0 1.0">buttons/QuitPressed.png</texture>
+		
 		<!-- Segments -->
 		<texture Name="SegmentCastle1Texture" License="CC0 1.0">segments/SegmentCastle1.png</texture>
 		<texture Name="SegmentCastle2Texture" License="CC0 1.0">segments/SegmentCastle2.png</texture>
 		<texture Name="SegmentCastle3Texture" License="CC0 1.0">segments/SegmentCastle3.png</texture>
 		<texture Name="SegmentGround1Texture" License="CC0 1.0">segments/SegmentGround1.png</texture>
 		<texture Name="SegmentGround2Texture" License="CC0 1.0">segments/SegmentGround2.png</texture>
-		<texture Name="SegmentGround3Texture" License="CC0 1.0">segments/SegmentGround3.png</texture>		
+		<texture Name="SegmentGround3Texture" License="CC0 1.0">segments/SegmentGround3.png</texture>
+		<texture Name="SegmentFallingStairsTexture" License="CC0 1.0">segments/SegmentFallingStairs.png</texture>
+		<texture Name="SegmentClimbingStairsTexture" License="CC0 1.0">segments/SegmentClimbingStairs.png</texture>
 		<!-- Obstacles -->
 		<texture Name="ArrowVObstacleTexture" License="CC0 1.0">obstacles/projectile_flecheV.png</texture>
 		<texture Name="ArrowHObstacleTexture" License="CC0 1.0">obstacles/projectile_flecheH.png</texture>
