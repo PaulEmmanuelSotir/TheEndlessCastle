@@ -31,11 +31,11 @@ public abstract class Screen implements com.badlogic.gdx.Screen
 			_time = 0f;
 		_time += delta;
 
+		update();
+		
 		// Update camera
 		_camera.update();
 		_spriteBatch.setProjectionMatrix(_camera.combined);
-
-		update();
 
 		// Render
 		draw();
