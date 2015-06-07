@@ -1,6 +1,8 @@
 package game.components;
 
+import game.GameWorld;
 import game.entities.Entity;
+import game.utils.Position;
 import aurelienribon.bodyeditor.BodyEditorDAL;
 
 import com.badlogic.gdx.physics.box2d.Body;
@@ -11,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * Body component abstract class
  */
-public class BodyComponent extends Component
+public class BodyComponent extends Component implements IUpdateableComponent
 {
 	private World _box2DWorld;
 	private BodyEditorDAL _bodyDAL;
@@ -21,11 +23,7 @@ public class BodyComponent extends Component
 	 * @param name Body component name (must be the same name as corresponding JSON file Body name)
 	 */
 	public BodyComponent(String name, Entity owner, World box2DWorld, BodyEditorDAL bodyDAL, BodyDef bodyDef, FixtureDef fixtureDef) {
-		super(name, owner);
-		_box2DWorld = box2DWorld;
-		_bodyDAL = bodyDAL;
-	    _body = _box2DWorld.createBody(bodyDef);
-	    _bodyDAL.attachFixture(_body, name, fixtureDef, 1f);
+		this(name, owner, box2DWorld, bodyDAL, bodyDef, fixtureDef, 1f);
 	}
 
 	/**
@@ -36,24 +34,33 @@ public class BodyComponent extends Component
 		super(name, owner);
 		_box2DWorld = box2DWorld;
 		_bodyDAL = bodyDAL;
-	    _body = _box2DWorld.createBody(bodyDef);
-	    _bodyDAL.attachFixture(_body, name, fixtureDef, scale);
+		_body = _box2DWorld.createBody(bodyDef);
+		_bodyDAL.attachFixture(_body, name, fixtureDef, scale);
+		_relativePosition = new Position(0, 0);
 	}
-	
-	/**
-	 * Body component constructor with shape information
-	 * @param name Body component name
-	 * @param owner Body component owner entity
-	 * @param shape Body component shape
-	 */
-//	public BodyComponent(String name, Entity owner, Shape shape) {
-//		super(name, owner);
-//		_shape = Shape;
-//	}
+
+	@Override
+	public void update(GameWorld world) {
+		// Update position
+		Position OwnerPos = _owner.getPosition();
+		_body.setTransform(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y, 0);
+	}
+
+	public void SetRelativePosition(Position pos)
+	{
+		if(pos != null)
+			_relativePosition = pos;		
+	}
+
+	public Position GetRelativePosition()
+	{
+		return _relativePosition;		
+	}
 	
 	public Body getBody() {
 		return _body;
 	}
-	
+
 	protected Body _body;
+	protected Position _relativePosition;
 }

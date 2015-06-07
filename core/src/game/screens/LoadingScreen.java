@@ -22,11 +22,11 @@ public class LoadingScreen extends Screen
 		Texture OpenTexture = new Texture(Gdx.files.internal(_OPEN_LOGO_TEXTURE_PATH), true);
 		OpenTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
 		_INSALogoSprite = new Sprite(INSATexture);
-		_openLogoSprite = new Sprite(OpenTexture);
-		_openLogoSprite.setSize(7, 7f *_openLogoSprite.getHeight()/_openLogoSprite.getWidth());
-		_INSALogoSprite.setSize(7, 7f *_INSALogoSprite.getHeight()/_INSALogoSprite.getWidth());
-		_INSALogoSprite.setCenter(_camera.viewportWidth/2f, 2.5f);
-		_openLogoSprite.setCenter(_camera.viewportWidth/2f, 11f);
+		_mainLogoSprite = new Sprite(OpenTexture);
+		_mainLogoSprite.setSize(9, 9f *_mainLogoSprite.getHeight()/_mainLogoSprite.getWidth());
+		_INSALogoSprite.setSize(4, 4f *_INSALogoSprite.getHeight()/_INSALogoSprite.getWidth());
+		_INSALogoSprite.setCenter(_camera.viewportWidth/2f, 1f);
+		_mainLogoSprite.setCenter(_camera.viewportWidth/2f+1f, 9.5f);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class LoadingScreen extends Screen
 	protected void draw() {
 		_spriteBatch.begin();
 		_INSALogoSprite.draw(_spriteBatch);
-		_openLogoSprite.draw(_spriteBatch);
+		_mainLogoSprite.draw(_spriteBatch);
 		_spriteBatch.end();
 	}
 	
@@ -48,12 +48,12 @@ public class LoadingScreen extends Screen
 	public void dispose()
 	{
 		_INSALogoSprite.getTexture().dispose();
-		_openLogoSprite.getTexture().dispose();
+		_mainLogoSprite.getTexture().dispose();
 	}
 
 	Sprite _INSALogoSprite;
-	Sprite _openLogoSprite;
+	Sprite _mainLogoSprite;
 
 	private final static String _INSA_LOGO_TEXTURE_PATH = "textures/LogoINSALyon.png";
-	private final static String _OPEN_LOGO_TEXTURE_PATH = "textures/openSourceInitiative.png";
+	private final static String _OPEN_LOGO_TEXTURE_PATH = "textures/MainLogo.png";
 }

@@ -17,6 +17,7 @@ public class Settings
 		
 		_volume = _preferences.getInteger(VOL_SETTING_NAME, DEFAULT_VOLUME);
 		_highScore = _preferences.getInteger(SCORE_SETTING_NAME, DEFAULT_SCORE);
+		_isBloomShaderEnabled = _preferences.getBoolean(BLOOM_SETTING_NAME, DEFAULT_BLOOM);
 		_difficulty = Difficulty.valueOf(_preferences.getString(DIF_SETTING_NAME, DEFAULT_DIFF.name()));
 	}
 		
@@ -62,6 +63,15 @@ public class Settings
 		_difficulty = difficulty;
 		_preferences.putString(DIF_SETTING_NAME, _difficulty.name());
 	}
+	
+	public boolean IsBloomShaderEnabled() {
+		return _isBloomShaderEnabled;
+	}
+	
+	public void SetIsBloomShaderEnabled(boolean isEnabled) {
+		_isBloomShaderEnabled = isEnabled;
+		_preferences.putBoolean(BLOOM_SETTING_NAME, _isBloomShaderEnabled);
+	}
 
 	private Preferences _preferences;
 
@@ -74,6 +84,11 @@ public class Settings
 	private int _highScore;
 	private static final int DEFAULT_SCORE = 0;
 	private static final String SCORE_SETTING_NAME = "highScore";
+	
+	// Bloom shader
+	private boolean _isBloomShaderEnabled;
+	private static final boolean DEFAULT_BLOOM = false;
+	private static final String BLOOM_SETTING_NAME = "bloomEnabled";
 	
 	// Difficulty
 	private Difficulty _difficulty;

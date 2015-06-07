@@ -77,10 +77,11 @@ public class CreditsScreen extends Screen
 			}
 		});
 		_sound100Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), _volumeListener);
-		_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
-		_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
-		_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
-		_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		//_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
+		//_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
+		//_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
+		//_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		_volumeListener.SetButton(_sound100Button);
 		
 		
 		// Menu button
@@ -104,9 +105,9 @@ public class CreditsScreen extends Screen
 		// Update buttons
 		_menuButton.update(_camera);
 		_sound100Button.update(_camera);
-		_sound75Button.update(_camera);
-		_sound25Button.update(_camera);
-		_sound0Button.update(_camera);
+	//	_sound75Button.update(_camera);
+	//	_sound25Button.update(_camera);
+	//	_sound0Button.update(_camera);
 		
 		// End of the credits
 		if(-_camera.position.y > _assetsDescriptors.size()*_STEP + 5f)
@@ -140,9 +141,9 @@ public class CreditsScreen extends Screen
 		// Render buttons
 		_menuButton.render(_spriteBatch);
 		_sound100Button.render(_spriteBatch);
-		_sound75Button.render(_spriteBatch);
-		_sound25Button.render(_spriteBatch);
-		_sound0Button.render(_spriteBatch);
+		//_sound75Button.render(_spriteBatch);
+		//_sound25Button.render(_spriteBatch);
+		//_sound0Button.render(_spriteBatch);
 
 		_spriteBatch.end();
 	}
@@ -157,9 +158,9 @@ public class CreditsScreen extends Screen
 		// Update buttons position
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
 		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		//_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		//_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		//_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
 	}
 
 	@Override
@@ -192,9 +193,9 @@ public class CreditsScreen extends Screen
 
 	// Buttons
 	private Button _sound100Button;
-	private Button _sound75Button;
-	private Button _sound25Button;
-	private Button _sound0Button;
+	//private Button _sound75Button;
+	//private Button _sound25Button;
+	//private Button _sound0Button;
 	private Button _menuButton;
 	
 	// Music

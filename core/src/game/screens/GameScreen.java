@@ -43,14 +43,14 @@ public class GameScreen extends Screen
 			_score = Score;
 
 			// Play again button
-			_playAgainButton = new Button(0.015f, (Texture)_assetsHndlr.get("PlayAgainNormalTexture"), (Texture)_assetsHndlr.get("PlayAgainOverTexture"), (Texture)_assetsHndlr.get("PlayAgainPressedTexture"), new ButtonClickListener() {
+			/*_playAgainButton = new Button(0.015f, (Texture)_assetsHndlr.get("PlayAgainNormalTexture"), (Texture)_assetsHndlr.get("PlayAgainOverTexture"), (Texture)_assetsHndlr.get("PlayAgainPressedTexture"), new ButtonClickListener() {
 				@Override
 				public void MouseRelease() {
 					_randomPlaylist.Stop();
 					_game.setScreen(new GameScreen(_game));
 					dispose();
 				}
-			});
+			});*/
 			
 			resize();
 			_died = true;
@@ -60,18 +60,18 @@ public class GameScreen extends Screen
 			_ScorePanelSprite.draw(_spriteBatch);
 			float TextWidth = _ScorePanelSprite.getWidth()*_ScorePanelSprite.getScaleX() - 0.5f;
 			_font.draw(_spriteBatch, (_highScore ? "NEW SCORE !!\nSCORE: " : ("BEST SCORE: " + _game.GetSettings().getHighScore() + "\nSCORE: ")) + _score, _highScorePosX -TextWidth/2f, _camera.viewportHeight/2f + 1f, TextWidth, Align.center, true);
-			_playAgainButton.render(_spriteBatch);
+			//_playAgainButton.render(_spriteBatch);
 		}
 		
 		public void update()
 		{
 			_ScorePanelSprite.setPosition(_camera.position.x-_ScorePanelSprite.getWidth()*_ScorePanelSprite.getScaleX()/2f, _camera.position.y -_ScorePanelSprite.getHeight()*_ScorePanelSprite.getScaleY()/2f);
 			_highScorePosX = _camera.position.x;
-			_playAgainButton.update(_camera);
+			//_playAgainButton.update(_camera);
 		}
 		
 		public void resize() {
-			_playAgainButton.SetPosition(_camera.viewportWidth/2f - _playAgainButton.getWidth()/2f, _camera.viewportHeight/2f - 4f);
+			//_playAgainButton.SetPosition(_camera.viewportWidth/2f - _playAgainButton.getWidth()/2f, _camera.viewportHeight/2f - 4f);
 		}
 
 		public boolean IsPlayerDied() {
@@ -79,7 +79,7 @@ public class GameScreen extends Screen
 		}
 
 		private Sprite _ScorePanelSprite;
-		private Button _playAgainButton;
+		//private Button _playAgainButton;
 		private float _highScorePosX;
 		private int _score;
 		private boolean _highScore;
@@ -92,7 +92,7 @@ public class GameScreen extends Screen
 		super(game);
 
 		_worldListener = new ScoreListener();
-		_world = new GameWorld(_assetsHndlr, _camera, _worldListener);
+		_world = new GameWorld(_assetsHndlr, _camera, _worldListener, _game.GetSettings().IsBloomShaderEnabled());
 
 		// Random music
 		_randomPlaylist = new RandomMusicPlaylist(_game.GetSettings().getVolume()/100f,_assetsHndlr);
@@ -126,10 +126,11 @@ public class GameScreen extends Screen
 			}
 		});
 		_sound100Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), _volumeListener);
-		_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
-		_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
-		_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
-		_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		//_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
+		//_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
+		//_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
+		//_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		_volumeListener.SetButton(_sound100Button);
 		
 		// Pause button
 		_pauseButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
@@ -165,9 +166,9 @@ public class GameScreen extends Screen
 		// Update HUD
 		_menuButton.update(_camera);
 		_sound100Button.update(_camera);
-		_sound75Button.update(_camera);
-		_sound25Button.update(_camera);
-		_sound0Button.update(_camera);
+		//_sound75Button.update(_camera);
+		//_sound25Button.update(_camera);
+		//_sound0Button.update(_camera);
 		_pauseButton.update(_camera);
 		
 		// High score panel
@@ -185,9 +186,9 @@ public class GameScreen extends Screen
 		// Render HUD
 		_menuButton.render(_spriteBatch);
 		_sound100Button.render(_spriteBatch);
-		_sound75Button.render(_spriteBatch);
-		_sound25Button.render(_spriteBatch);
-		_sound0Button.render(_spriteBatch);
+		//_sound75Button.render(_spriteBatch);
+		//_sound25Button.render(_spriteBatch);
+		//_sound0Button.render(_spriteBatch);
 		_pauseButton.render(_spriteBatch);
 		// Score
 		_font.draw(_spriteBatch, "SCORE: " + _world.GetScore(), _scorePosX-1.5f, _camera.viewportHeight - 0.5f, 3f,  Align.center, false);
@@ -206,9 +207,9 @@ public class GameScreen extends Screen
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
 		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
 		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
-		_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
-		_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
-		_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
+		//_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
+		//_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
+		//_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
 		
 		if(_worldListener.IsPlayerDied())
 			_worldListener.resize();
@@ -232,9 +233,9 @@ public class GameScreen extends Screen
 	private Button _menuButton;
 	private Button _pauseButton;
 	private Button _sound100Button;
-	private Button _sound75Button;
-	private Button _sound25Button;
-	private Button _sound0Button;
+	//private Button _sound75Button;
+	//private Button _sound25Button;
+	//private Button _sound0Button;
 	
 	private BitmapFont _font;
 	private float _scorePosX = _camera.viewportWidth/2f;

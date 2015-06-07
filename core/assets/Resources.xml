@@ -13,12 +13,12 @@
 		<music	Name="GameMusicKnight"
 				CreditsText="'Crunk Knight' by Kevin MacLeod (incompetech.com)"
 				License="CCby 3.0">CrunkKnight.mp3</music>
-		<music 	Name="GameMusicTrailer"
+		<!--<music 	Name="GameMusicTrailer"
 				CreditsText="'Exciting trailer' by Kevin MacLeod (incompetech.com)"
 				License="CCby 3.0">ExcitingTrailer.mp3</music>
 		<music 	Name="GameMusicRapture"
 				License="CCby 3.0" 
-				CreditsText="'Rapture', by Ross Bugden with FL Studio and Symphonic Orchestra (https://www.youtube.com/channel/UCQKGLOK2FqmVgVwYferltKQ)">Rapture.mp3</music>
+				CreditsText="'Rapture', by Ross Bugden with FL Studio and Symphonic Orchestra (https://www.youtube.com/channel/UCQKGLOK2FqmVgVwYferltKQ)">Rapture.mp3</music>-->
 		<music 	Name="MenuMusicHeroic"
 				CreditsText="'Heroic Age', by Kevin MacLeod (incompetech.com)"
 				License="CCby 3.0">HeroicAge.mp3</music>
@@ -27,7 +27,7 @@
 				License="CCby 3.0">HallOfTheMountainKing.mp3</music>
 		
 		<!-- SOUNDS -->
-		<sound	Name="DefaultSound" License="CC0 1.0">blank.wav</sound>
+		<!--<sound	Name="DefaultSound" License="CC0 1.0">blank.wav</sound>
 		<sound	Name="ArrowWooshSound"
 				CreditsText="Arrow whoosh sound made by smcameron (http://www.freesound.org/people/smcameron)"
 				License="CCby 3.0">arrowWhoosh.ogg</sound>
@@ -39,12 +39,13 @@
 				License="CCby 3.0">earthLowFrequency4.wav</sound>
 		<sound	Name="ScreamSound"
 				CreditsText="Scream sound made by LittleRobotSoundFactory (http://www.freesound.org/people/LittleRobotSoundFactory/)"
-				License="CCby 3.0">scream.wav</sound>	
+				License="CCby 3.0">scream.wav</sound>-->
 
 		<!-- SHADERS -->
 		<shader Name="MenuRaysShader" License="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays.glsl</shader>
 		<shader Name="GameRaysShader" License="CC0 1.0" VertexShaderFileName="vertex.glsl">rotatingRays2.glsl</shader>
 		<shader Name="Lava2Shader" License="CCby 3.0" CreditsText="Lava fragment shader from nimitz (https://www.shadertoy.com/user/nimitz)" VertexShaderFileName="vertex.glsl">lava2.glsl</shader>
+		<shader Name="BloomShader" License="CCby 3.0" CreditsText="Bloom fragment shader from mAlk (https://www.shadertoy.com/user/mAlk" VertexShaderFileName="vertex.glsl">bloom.glsl</shader>
 		
 		<!-- TEXTURES -->
 		<texture Name="DefaultTexture" License="CC0 1.0">defaultTexture.png</texture>
@@ -53,10 +54,11 @@
 		<texture Name="RandomNoiseTexture" License="CC0 1.0">randomNoise.png</texture>
 		<texture Name="RempartsMiddeTexture" License="CC0 1.0">rempartsMidde.png</texture>
 		<texture Name="TourDepartTexture" License="CC0 1.0">tourdepart.png</texture>
-		<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>
+		<!--<texture Name="OpenSourceLogoTexture" License="CCby 4.0" CreditsText="Open source logo by Open Source Initiative (http://opensource.org/)">openSourceInitiative.png</texture>-->
+		<texture Name="MainLogoTexture" License="CC0 1.0">mainLogo.png</texture>
 		<texture Name="INSALyonLogoTexture" License="CTM" CreditsText="INSA Lyon logo is a trademark subject to copyright. (http://www.insa-lyon.fr/)">LogoINSALyon.png</texture>
 		<texture Name="MenuBackgroundTexture" License="CC0 1.0">MenuBackground.png</texture>
-		<texture Name="ScorePanel" License="CCO 1.0">ScorePanel.png</texture>
+		<texture Name="ScorePanel" License="CCO 1.0">parchemin.png</texture>
 		<!-- Pause button -->
 		<texture Name="PauseNormalTexture" License="CC0 1.0">buttons/pauseNormal.png</texture>
 		<texture Name="PauseOverTexture" License="CC0 1.0">buttons/pauseOver.png</texture>
@@ -69,7 +71,7 @@
 		<texture Name="Sound3NormalTexture" License="CC0 1.0">buttons/Sound3Normal.png</texture>
 		<texture Name="Sound3OverTexture" License="CC0 1.0">buttons/Sound3Over.png</texture>
 		<texture Name="Sound3PressedTexture" License="CC0 1.0">buttons/Sound3Pressed.png</texture>
-		<texture Name="Sound2NormalTexture" License="CC0 1.0">buttons/Sound2Normal.png</texture>
+		<!--<texture Name="Sound2NormalTexture" License="CC0 1.0">buttons/Sound2Normal.png</texture>
 		<texture Name="Sound2OverTexture" License="CC0 1.0">buttons/Sound2Over.png</texture>
 		<texture Name="Sound2PressedTexture" License="CC0 1.0">buttons/Sound2Pressed.png</texture>
 		<texture Name="Sound1NormalTexture" License="CC0 1.0">buttons/Sound1Normal.png</texture>
@@ -77,7 +79,7 @@
 		<texture Name="Sound1PressedTexture" License="CC0 1.0">buttons/Sound1Pressed.png</texture>
 		<texture Name="Sound0NormalTexture" License="CC0 1.0">buttons/Sound0Normal.png</texture>
 		<texture Name="Sound0OverTexture" License="CC0 1.0">buttons/Sound0Over.png</texture>
-		<texture Name="Sound0PressedTexture" License="CC0 1.0">buttons/Sound0Pressed.png</texture>
+		<texture Name="Sound0PressedTexture" License="CC0 1.0">buttons/Sound0Pressed.png</texture>-->
 		<!-- Credits button -->		
 		<texture Name="CreditsNormalTexture" License="CC0 1.0">buttons/CreditsNormal.png</texture>
 		<texture Name="CreditsOverTexture" License="CC0 1.0">buttons/CreditsOver.png</texture>
@@ -87,9 +89,9 @@
 		<texture Name="PlayOverTexture" License="CC0 1.0">buttons/PlayOver.png</texture>
 		<texture Name="PlayPressedTexture" License="CC0 1.0">buttons/PlayPressed.png</texture>
 		<!-- Play again button -->
-		<texture Name="PlayAgainNormalTexture" License="CC0 1.0">buttons/PlayAgainNormal.png</texture>
+		<!--<texture Name="PlayAgainNormalTexture" License="CC0 1.0">buttons/PlayAgainNormal.png</texture>
 		<texture Name="PlayAgainOverTexture" License="CC0 1.0">buttons/PlayAgainOver.png</texture>
-		<texture Name="PlayAgainPressedTexture" License="CC0 1.0">buttons/PlayAgainPressed.png</texture>
+		<texture Name="PlayAgainPressedTexture" License="CC0 1.0">buttons/PlayAgainPressed.png</texture>-->
 		<!-- Quit button -->
 		<texture Name="QuitNormalTexture" License="CC0 1.0">buttons/QuitNormal.png</texture>
 		<texture Name="QuitOverTexture" License="CC0 1.0">buttons/QuitOver.png</texture>

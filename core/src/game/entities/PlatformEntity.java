@@ -29,7 +29,7 @@ public class PlatformEntity extends PhysicalEntity
 	public PlatformEntity(String name, Position position, float scale, String textureName, String bodyName, AssetsHandler assetsHndlr, BodyEditorDAL bodyDAL, World box2DWorld) {
 		super(name, position, assetsHndlr, bodyDAL, box2DWorld);
 		SetSprite(textureName, scale);
-		SetBody(bodyName, scale);
+		SetBody(bodyName);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class PlatformEntity extends PhysicalEntity
 		return _spriteComponent;
 	}
 	
-	private BodyComponent SetBody(String name, float scale)
+	private BodyComponent SetBody(String name)
 	{
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(_position.x, _position.y);

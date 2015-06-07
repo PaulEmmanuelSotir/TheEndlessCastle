@@ -13,6 +13,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -23,6 +24,7 @@ import game.Segment.SegmentDescriptor;
 import game.Segment.SegmentTypeEnum;
 import game.components.PlayerComponent.MoveListener;
 import game.dataAccessLayer.AssetsHandler;
+import game.dataAccessLayer.Settings;
 import game.dataAccessLayer.Settings.Difficulty;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
@@ -34,18 +36,19 @@ import game.utils.Position;
  * GameWorld class containing all objects rendered in game and their corresponding Box2D bodies
  */
 public class GameWorld implements Disposable
-{
+{	
 	public static final float WORLD_VIEW_WIDTH = 32f;
 
 	public interface WorldListener {
 		public void PlayerDied(int Score, int DistanceTraveled);
 	}
-	
-	public GameWorld(AssetsHandler assetsHandler, Camera camera, WorldListener listener) {
+
+	public GameWorld(AssetsHandler assetsHandler, Camera camera, WorldListener listener, boolean isBloomShaderEnabled) {
 		_ratio = 1f;
 		_listener = listener;
 		_assetsHndlr = assetsHandler;
 		_camera = camera;
+		_isBloomShaderEnabled = isBloomShaderEnabled;
 
 		// Box 2D initialization
 		_box2DWorld = new World(_GRAVITY, true);
@@ -57,6 +60,12 @@ public class GameWorld implements Disposable
 		_inputMultiplexer = new InputMultiplexer();
 		Gdx.input.setInputProcessor(_inputMultiplexer);
 
+		// Bloom shader
+		if(_isBloomShaderEnabled) {
+		_bloomShader = _assetsHndlr.get(_BLOOM_SAHDER_NAME);
+		_ratioLocation = _bloomShader.getUniformLocation(_RATIO_UNIFORM_NAME);
+		}
+		
 		// Entities initialization
 		_entities = new ArrayList<Entity>();
 		// Rotating rays
@@ -66,6 +75,8 @@ public class GameWorld implements Disposable
 		// Background
 		_backgroundLayerEntity = new BackgroundLayerEntity(_assetsHndlr);
 		_backgroundLayerEntity.setZIndex(1);
+//		if(_isBloomShaderEnabled)
+//			_backgroundLayerEntity.SetShader(_bloomShader);
 		_entities.add(_backgroundLayerEntity);
 		// Segments
 		_semgentsFIFO = new LinkedList<Segment>();
@@ -73,15 +84,17 @@ public class GameWorld implements Disposable
 			AddSegment();
 		Segment FirstSeg = _semgentsFIFO.peek();
 		// Knight
-		_knightEntity = new KnightEntity("KnightEntity", new Position(10f, FirstSeg.GetBodyHeight()), this);
+		_knightEntity = new KnightEntity("KnightEntity", new Position(18f, 8f), this);
 		_knightEntity.setZIndex(10);
+//		if(_isBloomShaderEnabled)
+//			_knightEntity.SetShader(_bloomShader);
 		_knightEntity.SetMoveListenner(new MoveListener() {
 			@Override
 			public void MoveForward() {
 				_score++;
 				_distanceTraveled += KnightEntity._JUMP_STEP;
 			}
-			
+
 			@Override
 			public void MoveBackward() {
 				if(_score >= 2)
@@ -90,7 +103,7 @@ public class GameWorld implements Disposable
 					_score = 0;
 				_distanceTraveled -= KnightEntity._JUMP_STEP;
 			}
-			
+
 			@Override
 			public void Jump() { }
 			@Override
@@ -116,14 +129,14 @@ public class GameWorld implements Disposable
 
 		for(Entity e : _entities)
 			e.update(this);
-		
+
 		// Add a new random segment if the player/camera is near the end of the last segment
 		if(_camera.position.x + _camera.viewportWidth + 10f > _lastSegment.GetEndXPosition())
 		{
 			AddSegment();
 			Collections.sort(_entities, _entitiesZindexComparator); // update Z indexes
 		}
-		
+
 		// If player can't follow the camera, let's kill him !
 		if(_camera.position.x -  _camera.viewportWidth/2f >  _knightEntity.getPosition().x)
 		{
@@ -133,14 +146,14 @@ public class GameWorld implements Disposable
 	}
 
 	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch) {
-		if(!_DEBUG_RENDERING_ENABLED)
-		{
-			spriteBatch.begin();
-			for(Entity e : _entities)
-				e.render(spriteBatch, modelBatch, this);
-			endBatch(spriteBatch, modelBatch);
-		}
-		else
+		spriteBatch.begin();
+	//	_bloomShader.setUniformf(_ratioLocation, _ratio);
+	//	SetCurrentShader(_bloomShader);
+		for(Entity e : _entities)
+			e.render(spriteBatch, modelBatch, this);
+		endBatch(spriteBatch, modelBatch);
+
+		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer.render(_box2DWorld, _camera.combined);
 	}
 
@@ -161,7 +174,7 @@ public class GameWorld implements Disposable
 	public float GetDeltaTime() {
 		return Gdx.graphics.getDeltaTime(); 
 	}
-	
+
 	public float GetPlayerXPosition() {
 		return _knightEntity.getPosition().x;
 	}
@@ -173,7 +186,7 @@ public class GameWorld implements Disposable
 	public ShaderProgram GetCurrentShader() {
 		return _currentShader;
 	}
-	
+
 	public void SetCurrentShader(ShaderProgram currentShader) {
 		_currentShader = currentShader;
 	}
@@ -181,22 +194,22 @@ public class GameWorld implements Disposable
 	/**
 	 *  Gets the current segment , i.e. the segment where the player is.
 	 */
-	public SegmentDescriptor GetCurrentSegmentDescriptor(float playerPosX) {
+	public final SegmentDescriptor GetCurrentSegmentDescriptor(float playerPosX) {
 		for(Segment seg : _semgentsFIFO)
 			if(seg.GetEndXPosition() > playerPosX && seg.GetBeginningXPosition() <= playerPosX)
 				return seg.GetSegmentDescriptor();
 		return null;
 	}
-	
+
 	public InputMultiplexer GetInputMultiplexer() {
 		return _inputMultiplexer;
 	}
-	
+
 	public int GetScore()
 	{
 		return _score;
 	}
-	
+
 	public AssetsHandler GetAssetsHandler() {
 		return _assetsHndlr;
 	}
@@ -208,15 +221,15 @@ public class GameWorld implements Disposable
 	public World GetBox2DWorld() {
 		return _box2DWorld;
 	}
-	
+
 	public boolean IsCurrentModelBatch() {
 		return _isModelBatch;
 	}
-	
+
 	public boolean IsCurrentSpriteBatch() {
 		return !_isModelBatch;
 	}
-	
+
 	public void SetCurrentBatchToModel(SpriteBatch spriteBatch, ModelBatch modelBatch) {
 		if(!_isModelBatch)
 		{
@@ -236,14 +249,14 @@ public class GameWorld implements Disposable
 			_isModelBatch = false;
 		}
 	}
-	
+
 	private void endBatch(SpriteBatch spriteBatch, ModelBatch modelBatch) {
 		if(_isModelBatch)
 			modelBatch.end();
 		else if(spriteBatch.isDrawing())
 			spriteBatch.end();
 	}
-	
+
 	/**
 	 * Generates randomly a new part of the level by choosing a Segment next the current one
 	 */
@@ -253,7 +266,7 @@ public class GameWorld implements Disposable
 			Segment OldSegment = _semgentsFIFO.poll();
 			_entities.removeAll(OldSegment.GetEntities());
 		}
-		
+
 		// Determines the new segment type
 		SegmentTypeEnum NewSegmentType = SegmentTypeEnum.high;
 		SegmentDescriptor NewSegmentDesc = Segment._HIGH_SEGMENTS_TYPE_LIST.get(0);
@@ -286,7 +299,7 @@ public class GameWorld implements Disposable
 					NewSegmentType = SegmentTypeEnum.low;
 				break;
 			}
-			
+
 			if(NewSegmentType == SegmentTypeEnum.low)
 			{
 				int rand = (int)(Math.random()*Segment._LOW_SEGMENTS_TYPE_LIST.size());
@@ -302,10 +315,12 @@ public class GameWorld implements Disposable
 		}
 		else
 			_lastSegment = new Segment(new Position(0, -0.08f), NewSegmentDesc, _assetsHndlr, _bodyDAL, _box2DWorld);
-		
+
+		if(_isBloomShaderEnabled)
+			_lastSegment.SetShader(_bloomShader);
 		_lastSegment.SetZIndex(5, 6);
 		_entities.addAll(_lastSegment.GetEntities());
-		
+
 		_semgentsFIFO.add(_lastSegment);
 	}
 
@@ -321,11 +336,14 @@ public class GameWorld implements Disposable
 			_debugRenderer.dispose();
 		_debugRenderer = null;
 	}
-	
+
 	private WorldListener _listener;
 	private AssetsHandler _assetsHndlr;
 	private Camera _camera;
 	private BodyEditorDAL _bodyDAL;
+	private ShaderProgram _bloomShader;
+	private boolean _isBloomShaderEnabled;
+	private int _ratioLocation;
 
 	private int _score;
 	private int _distanceTraveled;
@@ -338,7 +356,7 @@ public class GameWorld implements Disposable
 
 	private World _box2DWorld;
 	private Box2DDebugRenderer _debugRenderer;
-	
+
 	private InputMultiplexer _inputMultiplexer;
 
 	private Comparator<Entity> _entitiesZindexComparator;
@@ -350,6 +368,8 @@ public class GameWorld implements Disposable
 
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";
-	private static final boolean _DEBUG_RENDERING_ENABLED = false;
+	private static final boolean _DEBUG_RENDERING_ENABLED = true;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
+	private static final String _RATIO_UNIFORM_NAME = "u_ratio";
+	private static final String _BLOOM_SAHDER_NAME = "BloomShader";
 }

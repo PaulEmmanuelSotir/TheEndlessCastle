@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.scenes.scene2d.Event;
 
 import game.Button;
 import game.TheEndlessCastle;
@@ -48,10 +47,11 @@ public class MenuScreen  extends Screen
 			}
 		});
 		_sound100Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound3NormalTexture"), (Texture)_assetsHndlr.get("Sound3OverTexture"), (Texture)_assetsHndlr.get("Sound3PressedTexture"), _volumeListener);
-		_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
-		_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
-		_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
-		_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		//_sound75Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound2NormalTexture"), (Texture)_assetsHndlr.get("Sound2OverTexture"), (Texture)_assetsHndlr.get("Sound2PressedTexture"), _volumeListener);
+		//_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
+		//_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
+		//_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
+		_volumeListener.SetButton(_sound100Button);
 		
 		// Play button
 		_playButton = new Button(0.015f, (Texture)_assetsHndlr.get("PlayNormalTexture"), (Texture)_assetsHndlr.get("PlayOverTexture"), (Texture)_assetsHndlr.get("PlayPressedTexture"), new ButtonClickListener() {
@@ -85,9 +85,9 @@ public class MenuScreen  extends Screen
 	protected void update()
 	{
 		_sound100Button.update(_camera);
-		_sound75Button.update(_camera);
-		_sound25Button.update(_camera);
-		_sound0Button.update(_camera);
+		//_sound75Button.update(_camera);
+		//_sound25Button.update(_camera);
+		//_sound0Button.update(_camera);
 		_playButton.update(_camera);
 		_creditsButton.update(_camera);
 		_quitButton.update(_camera);
@@ -110,9 +110,9 @@ public class MenuScreen  extends Screen
 
 		// Buttons
 		_sound100Button.render(_spriteBatch);
-		_sound75Button.render(_spriteBatch);
-		_sound25Button.render(_spriteBatch);
-		_sound0Button.render(_spriteBatch);
+		//_sound75Button.render(_spriteBatch);
+		//_sound25Button.render(_spriteBatch);
+		//_sound0Button.render(_spriteBatch);
 		_playButton.render(_spriteBatch);
 		_creditsButton.render(_spriteBatch);
 		_quitButton.render(_spriteBatch);
@@ -133,9 +133,9 @@ public class MenuScreen  extends Screen
 
 		// Update buttons position
 		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
-		_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
-		_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
-		_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
+		//_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
+		//_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
+		//_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);;
 		_creditsButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f - 0.7f);
 		_playButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f + _creditsButton.getHeight());
 		_quitButton.SetPosition(_camera.viewportWidth/2f - 11.08f*_ratio, _camera.viewportHeight/2f - _playButton.getHeight() - 1.4f);
@@ -159,9 +159,9 @@ public class MenuScreen  extends Screen
 	// Buttons
 	private Button _playButton;
 	private Button _sound100Button;
-	private Button _sound75Button;
-	private Button _sound25Button;
-	private Button _sound0Button;
+	//private Button _sound75Button;
+	//private Button _sound25Button;
+	//private Button _sound0Button;
 	private Button _creditsButton;
 	private Button _quitButton;
 

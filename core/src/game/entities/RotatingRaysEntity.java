@@ -14,9 +14,9 @@ public class RotatingRaysEntity extends SpriteEntity
 	public RotatingRaysEntity(String name, AssetsHandler assetsHndlr) {
 		super(name, new Position(0, 0), assetsHndlr);
 		SetSprite(_DEFAULT_TEXTURE_NAME);
-		
-		SetShader((ShaderProgram)_assetsHndlr.get(_ROTATING_RAYS_SHADER_NAME));
-		ShaderProgram backgroundShader = GetShader();
+
+		ShaderProgram backgroundShader = _assetsHndlr.get(_ROTATING_RAYS_SHADER_NAME);
+		SetShader(backgroundShader);
 		_timeLocaction = backgroundShader.getUniformLocation("u_globalTime");
 		_ratioLocaction = backgroundShader.getUniformLocation("u_ratio");
 	}

@@ -9,6 +9,7 @@ import game.utils.Position;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -71,12 +72,19 @@ public class Segment
 	{
 		return _segmentDescriptor.MaxHeight*_platformEntity.GetHeight()*_SEGMENT_SCALE;
 	}
+	
+	public void SetShader(ShaderProgram shader)
+	{
+		for(Entity e : _segmentEntities)
+			e.SetShader(shader);
+	}
 
 	private float _posX;
 	private SegmentDescriptor _segmentDescriptor;
 	private List<Entity> _segmentEntities;
 	private PlatformEntity _platformEntity;
 	private AssetsHandler _assetsHndlr;
+	
 	
 	public final static List<SegmentDescriptor> _HIGH_SEGMENTS_TYPE_LIST;
 	static {
@@ -89,12 +97,12 @@ public class Segment
 	static {
 		_LOW_SEGMENTS_TYPE_LIST = new ArrayList<SegmentDescriptor>(6);
 		_LOW_SEGMENTS_TYPE_LIST.add(new SegmentDescriptor("SegmentGround1Texture", "SegmentGroundBody", 0.94f, SegmentTypeEnum.low));
-		_LOW_SEGMENTS_TYPE_LIST.add(new SegmentDescriptor("SegmentGround2Texture", "SegmentGroundBody", 0.95f, SegmentTypeEnum.low));
-		_LOW_SEGMENTS_TYPE_LIST.add(new SegmentDescriptor("SegmentGround3Texture", "SegmentGroundBody", 0.95f, SegmentTypeEnum.low));
+		_LOW_SEGMENTS_TYPE_LIST.add(new SegmentDescriptor("SegmentGround2Texture", "SegmentGroundBody", 0.94f, SegmentTypeEnum.low));
+		_LOW_SEGMENTS_TYPE_LIST.add(new SegmentDescriptor("SegmentGround3Texture", "SegmentGroundBody", 0.94f, SegmentTypeEnum.low));
 	}
 
-	public final static SegmentDescriptor _FALLING_SEGMENT = new SegmentDescriptor("SegmentFallingStairsTexture", "SegmentFallingStairsBody", 0.95f, SegmentTypeEnum.falling);
-	public final static SegmentDescriptor _CLIMBING_SEGMENT = new SegmentDescriptor("SegmentClimbingStairsTexture", "SegmentClimbingStairsBody", 0.95f, SegmentTypeEnum.climbing);
+	public final static SegmentDescriptor _FALLING_SEGMENT = new SegmentDescriptor("SegmentFallingStairsTexture", "SegmentFallingStairsBody", 0.94f, SegmentTypeEnum.falling);
+	public final static SegmentDescriptor _CLIMBING_SEGMENT = new SegmentDescriptor("SegmentClimbingStairsTexture", "SegmentClimbingStairsBody", 0.94f, SegmentTypeEnum.climbing);
 	
 	public static enum SegmentTypeEnum
 	{
@@ -134,5 +142,5 @@ public class Segment
 		public boolean IsChangingHeight;
 	}
 	
-	private static final float _SEGMENT_SCALE = 0.008f;
+	private static final float _SEGMENT_SCALE = 27/3366f;
 }

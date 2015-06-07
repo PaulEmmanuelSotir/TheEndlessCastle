@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 import game.GameWorld;
@@ -163,8 +164,8 @@ public abstract class Entity
 		return _name + "_pos=" + _position;
 	}
 
-	private ShaderProgram _shader;
 	private String _name;
+	private ShaderProgram _shader;
 	protected int _zIndex;
 	protected AssetsHandler _assetsHndlr;
 	protected Position _position;

@@ -25,8 +25,9 @@ public class KnightEntity extends PhysicalEntity
 		public void MoveForward() {
 			if((_jumpForeAnimation != _controller.current && _controller.current != _jumpBackAnimation) || _controller.current == null)
 			{
-				SegmentDescriptor seg =  _world.GetCurrentSegmentDescriptor(_position.x + _JUMP_STEP);
-				_jumpForeAnimation = _controller.setAnimation(seg.IsChangingHeight ? ( seg.IsClimbing ? _KNIGHT_JUMPFOREUP_ANIMATION : _KNIGHT_JUMPFOREDOWN_ANIMATION) : _KNIGHT_JUMPFORE_ANIMATION, new AnimationListener() {
+				final SegmentDescriptor currentSeg =  _world.GetCurrentSegmentDescriptor(_position.x);
+				
+				_jumpForeAnimation = _controller.setAnimation(currentSeg.IsChangingHeight ? ( currentSeg.IsClimbing ? _KNIGHT_JUMPFOREUP_ANIMATION : _KNIGHT_JUMPFOREDOWN_ANIMATION) : _KNIGHT_JUMPFORE_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						_breathNow = true;
@@ -34,9 +35,9 @@ public class KnightEntity extends PhysicalEntity
 						ClearAnimations();
 						
 						// update player position
-						if(seg.IsChangingHeight)
+						if(currentSeg.IsChangingHeight)
 						{
-							if( seg.IsClimbing)
+							if( currentSeg.IsClimbing)
 							{
 								_position.x +=  _JUMPUP_STEP;
 								_position.y += _JUMPUP_STEP;
@@ -63,8 +64,9 @@ public class KnightEntity extends PhysicalEntity
 		public void MoveBackward() {
 			if((_jumpBackAnimation != _controller.current && _controller.current != _jumpForeAnimation) || _controller.current == null)
 			{
-				SegmentDescriptor seg =  _world.GetCurrentSegmentDescriptor(_position.x - _JUMP_STEP);
-				_jumpBackAnimation = _controller.setAnimation(seg.IsChangingHeight ? ( seg.IsClimbing ? _KNIGHT_JUMPBACKDOWN_ANIMATION : _KNIGHT_JUMPBACKUP_ANIMATION) : _KNIGHT_JUMPBACK_ANIMATION, new AnimationListener() {
+				final SegmentDescriptor currentSeg =  _world.GetCurrentSegmentDescriptor(_position.x-0.5f);
+				
+				_jumpBackAnimation = _controller.setAnimation(currentSeg.IsChangingHeight ? ( currentSeg.IsClimbing ? _KNIGHT_JUMPBACKDOWN_ANIMATION : _KNIGHT_JUMPBACKUP_ANIMATION) : _KNIGHT_JUMPBACK_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						_breathNow = true;
@@ -72,9 +74,9 @@ public class KnightEntity extends PhysicalEntity
 						ClearAnimations();
 
 						// update player position
-						if(seg.IsChangingHeight)
+						if(currentSeg.IsChangingHeight)
 						{
-							if( seg.IsClimbing)
+							if(currentSeg.IsClimbing)
 							{
 								_position.x -=  _JUMPUP_STEP;
 								_position.y -= _JUMPUP_STEP;
@@ -99,9 +101,9 @@ public class KnightEntity extends PhysicalEntity
 
 		@Override
 		public void Jump() {
-			if(_jumpAnimation != _controller.current || _controller.current == null)
+			if((_jumpAnimation != _controller.current  && _controller.current != _jumpForeAnimation && _controller.current != _jumpBackAnimation)|| _controller.current == null)
 			{
-				_jumpAnimation = _controller.setAnimation(_turnedBack ? _KNIGHT_JUMPB_ANIMATION : _KNIGHT_JUMPF_ANIMATION, new AnimationListener() {
+				_jumpAnimation = _controller.setAnimation(_turnedBack ? _KNIGHT_JUMPB_ANIMATION : _KNIGHT_JUMPF_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						_breathNow = true;
@@ -121,7 +123,7 @@ public class KnightEntity extends PhysicalEntity
 			if((_crouchAnimation != _controller.current && _controller.current != _jumpForeAnimation && _controller.current != _jumpBackAnimation) || _controller.current == null)
 			{
 				ClearAnimations();
-				_crouchAnimation = _controller.setAnimation(_turnedBack ? _KNIGHT_CROUCHBACK_ANIMATION : _KNIGHT_CROUCHFORE_ANIMATION);
+				_crouchAnimation = _controller.setAnimation(_turnedBack ? _KNIGHT_CROUCHBACK_ANIMATION : _KNIGHT_CROUCHFORE_ANIMATION, 1, _ANIMATIONS_SPEED, null);
 				if(_realMoveListener != null)
 					_realMoveListener.Crouch();
 			}
@@ -131,7 +133,7 @@ public class KnightEntity extends PhysicalEntity
 		public void Uncrouch() {
 			if(_crouchAnimation == _controller.current)
 			{
-				_controller.setAnimation(_turnedBack ? _KNIGHT_UNCROUCHBACK_ANIMATION : _KNIGHT_UNCROUCHFORE_ANIMATION, new AnimationListener() {
+				_controller.setAnimation(_turnedBack ? _KNIGHT_UNCROUCHBACK_ANIMATION : _KNIGHT_UNCROUCHFORE_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						ClearAnimations();
@@ -181,7 +183,7 @@ public class KnightEntity extends PhysicalEntity
 		// Knight box2D body
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(position.x, position.y);
-		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.type = BodyType.KinematicBody;
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.density = 1;
 		fixtureDef.friction = 0.5f;
@@ -262,4 +264,6 @@ public class KnightEntity extends PhysicalEntity
 	private static final String _KNIGHT_DIEBACK_ANIMATION = "Armature|DieBackward";
 	//private static final String _KNIGHT_HIGHSCORE_ANIMATION = "Armature|HighScore";
 	//private static final String _KNIGHT_LOOSER_ANIMATION = "Armature|Looser";
+	
+	private static final float _ANIMATIONS_SPEED = 1.3f;
 }

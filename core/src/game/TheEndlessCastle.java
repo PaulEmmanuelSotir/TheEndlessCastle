@@ -25,7 +25,9 @@ public class TheEndlessCastle extends Game
 		_settings = new Settings(_SETTINS_NAME);
 
 		// Let shaders not use all available uniforms and attributes
-		ShaderProgram.pedantic = false; 
+		ShaderProgram.pedantic = false;
+		// Disable for now bloom shader
+		_settings.SetIsBloomShaderEnabled(false);
 
 		setScreen(new LoadingScreen(this));
 	}
