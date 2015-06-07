@@ -370,7 +370,7 @@ public class GameWorld implements Disposable
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";
 	private static final boolean _DEBUG_RENDERING_ENABLED = true;
-	private static final boolean _CLASSIC_RENDERING_ENABLED = false;
+	private static final boolean _CLASSIC_RENDERING_ENABLED = true;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 	private static final String _RATIO_UNIFORM_NAME = "u_ratio";
 	private static final String _BLOOM_SAHDER_NAME = "BloomShader";

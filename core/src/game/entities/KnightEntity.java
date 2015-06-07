@@ -238,15 +238,15 @@ public class KnightEntity extends PhysicalEntity
 		{
 			if(_playerMoveListener.IsJumpingForward()) {
 				float x = _JUMP_STEP*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(x, -2f/_JUMP_STEP*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*(x-_JUMP_STEP)));
+				_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x-_JUMP_STEP)*(x-_JUMP_STEP)));
 			}
 			else if(_playerMoveListener.IsJumpingBackward()) {
 				float x = -_JUMP_STEP*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(x, -2f/_JUMP_STEP*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*(x+_JUMP_STEP)));
+				_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x+_JUMP_STEP)*(x+_JUMP_STEP)));
 			}
 			else if(_playerMoveListener.IsJumping()) {
 				float t = 2f*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(0f, -(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*t*(t-2f)));
+				_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT)*t*t*(t-2f)*(t-2f)));
 			}
 			else if(_playerMoveListener.IsCrouching()) {
 				float t = anim.time/anim.duration;
