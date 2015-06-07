@@ -13,7 +13,6 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -24,7 +23,6 @@ import game.Segment.SegmentDescriptor;
 import game.Segment.SegmentTypeEnum;
 import game.components.PlayerComponent.MoveListener;
 import game.dataAccessLayer.AssetsHandler;
-import game.dataAccessLayer.Settings;
 import game.dataAccessLayer.Settings.Difficulty;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
@@ -75,8 +73,8 @@ public class GameWorld implements Disposable
 		// Background
 		_backgroundLayerEntity = new BackgroundLayerEntity(_assetsHndlr);
 		_backgroundLayerEntity.setZIndex(1);
-//		if(_isBloomShaderEnabled)
-//			_backgroundLayerEntity.SetShader(_bloomShader);
+		//if(_isBloomShaderEnabled)
+		//	_backgroundLayerEntity.SetShader(_bloomShader);
 		_entities.add(_backgroundLayerEntity);
 		// Segments
 		_semgentsFIFO = new LinkedList<Segment>();
@@ -86,8 +84,8 @@ public class GameWorld implements Disposable
 		// Knight
 		_knightEntity = new KnightEntity("KnightEntity", new Position(18f, 8f), this);
 		_knightEntity.setZIndex(10);
-//		if(_isBloomShaderEnabled)
-//			_knightEntity.SetShader(_bloomShader);
+		//if(_isBloomShaderEnabled)
+		//	_knightEntity.SetShader(_bloomShader);
 		_knightEntity.SetMoveListenner(new MoveListener() {
 			@Override
 			public void MoveForward() {
@@ -146,13 +144,16 @@ public class GameWorld implements Disposable
 	}
 
 	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch) {
-		spriteBatch.begin();
-	//	_bloomShader.setUniformf(_ratioLocation, _ratio);
-	//	SetCurrentShader(_bloomShader);
-		for(Entity e : _entities)
-			e.render(spriteBatch, modelBatch, this);
-		endBatch(spriteBatch, modelBatch);
-
+		if(_CLASSIC_RENDERING_ENABLED)
+		{
+			spriteBatch.begin();
+			//_bloomShader.setUniformf(_ratioLocation, _ratio);
+			//SetCurrentShader(_bloomShader);
+			for(Entity e : _entities)
+				e.render(spriteBatch, modelBatch, this);
+			endBatch(spriteBatch, modelBatch);
+		}
+		
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer.render(_box2DWorld, _camera.combined);
 	}
@@ -369,6 +370,7 @@ public class GameWorld implements Disposable
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";
 	private static final boolean _DEBUG_RENDERING_ENABLED = true;
+	private static final boolean _CLASSIC_RENDERING_ENABLED = false;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 	private static final String _RATIO_UNIFORM_NAME = "u_ratio";
 	private static final String _BLOOM_SAHDER_NAME = "BloomShader";

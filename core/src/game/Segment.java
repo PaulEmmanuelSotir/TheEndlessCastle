@@ -3,7 +3,6 @@ package game;
 import game.dataAccessLayer.AssetsHandler;
 import game.entities.Entity;
 import game.entities.PlatformEntity;
-import game.utils.Pair;
 import game.utils.Position;
 
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.ObjectMap;
 
 import aurelienribon.bodyeditor.BodyEditorDAL;
 

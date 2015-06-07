@@ -50,6 +50,8 @@ public class KnightEntity extends PhysicalEntity
 						}
 						else
 							_position.x += _JUMP_STEP;
+						_bodyCompo.SetRelativePosition(new Position(0f, 0f));
+						
 						if(_realMoveListener != null)
 							_realMoveListener.MoveForward();
 					}
@@ -89,6 +91,8 @@ public class KnightEntity extends PhysicalEntity
 						}
 						else
 							_position.x -= _JUMP_STEP;
+						_bodyCompo.SetRelativePosition(new Position(0f, 0f));
+						
 						if(_realMoveListener != null)
 							_realMoveListener.MoveBackward();
 					}
@@ -107,6 +111,7 @@ public class KnightEntity extends PhysicalEntity
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						_breathNow = true;
+						_bodyCompo.SetRelativePosition(new Position(0f, 0f));
 						ClearAnimations();
 						if(_realMoveListener != null)
 							_realMoveListener.Jump();
@@ -133,7 +138,7 @@ public class KnightEntity extends PhysicalEntity
 		public void Uncrouch() {
 			if(_crouchAnimation == _controller.current)
 			{
-				_controller.setAnimation(_turnedBack ? _KNIGHT_UNCROUCHBACK_ANIMATION : _KNIGHT_UNCROUCHFORE_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
+				_uncrouchAnimation = _controller.setAnimation(_turnedBack ? _KNIGHT_UNCROUCHBACK_ANIMATION : _KNIGHT_UNCROUCHFORE_ANIMATION, 1, _ANIMATIONS_SPEED, new AnimationListener() {
 					@Override
 					public void onEnd(AnimationDesc animation) {
 						ClearAnimations();
@@ -147,18 +152,44 @@ public class KnightEntity extends PhysicalEntity
 				});
 			}
 		}
+
+		public final AnimationDesc GetCurrentAnimationDesc() {
+			return _controller.current;
+		}
+		
+		public boolean IsJumpingForward() {
+			return _jumpForeAnimation == _controller.current;
+		}
+		
+		public boolean IsJumpingBackward() {
+			return _jumpBackAnimation == _controller.current;
+		}
+		
+		public boolean IsJumping() {
+			return _jumpAnimation == _controller.current;
+		}
+		
+		public boolean IsCrouching() {
+			return _crouchAnimation == _controller.current;
+		}
+		
+		public boolean IsUncrouching() {
+			return _uncrouchAnimation == _controller.current;
+		}
 		
 		private void ClearAnimations() {
 			_jumpForeAnimation = null;
 			_jumpBackAnimation = null;
 			_jumpAnimation = null;
 			_crouchAnimation = null;
+			_uncrouchAnimation = null;
 		}
-		
+			
 		private AnimationDesc _jumpForeAnimation;
 		private AnimationDesc _jumpBackAnimation;
 		private AnimationDesc _jumpAnimation;
 		private AnimationDesc _crouchAnimation;
+		private AnimationDesc _uncrouchAnimation;
 	}
 
 	public KnightEntity(String name, Position position, GameWorld world) {
@@ -188,8 +219,8 @@ public class KnightEntity extends PhysicalEntity
 		fixtureDef.density = 1;
 		fixtureDef.friction = 0.5f;
 		fixtureDef.restitution = 0.3f;
-		BodyComponent bodyCompo = new BodyComponent("knight_body", this, _box2DWorld, _bodyDAL, bodyDef, fixtureDef);
-		addComponent(bodyCompo);
+		_bodyCompo = new BodyComponent("knight_body", this, _box2DWorld, _bodyDAL, bodyDef, fixtureDef);
+		addComponent(_bodyCompo);
 	}
 
 	@Override
@@ -199,6 +230,32 @@ public class KnightEntity extends PhysicalEntity
 		{
 			_controller.setAnimation(_turnedBack ? _KNIGHT_BREATHEBACK_ANIMATION : _KNIGHT_BREATHEFORE_ANIMATION,-1,1f,null);
 			_breathNow = false;
+		}
+		
+		// Move body according to model animations
+		final AnimationDesc anim = _playerMoveListener.GetCurrentAnimationDesc();
+		if(!_world.GetCurrentSegmentDescriptor(_position.x).IsChangingHeight)
+		{
+			if(_playerMoveListener.IsJumpingForward()) {
+				float x = _JUMP_STEP*anim.time/anim.duration;
+				_bodyCompo.SetRelativePosition(new Position(x, -2f/_JUMP_STEP*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*(x-_JUMP_STEP)));
+			}
+			else if(_playerMoveListener.IsJumpingBackward()) {
+				float x = -_JUMP_STEP*anim.time/anim.duration;
+				_bodyCompo.SetRelativePosition(new Position(x, -2f/_JUMP_STEP*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*(x+_JUMP_STEP)));
+			}
+			else if(_playerMoveListener.IsJumping()) {
+				float t = 2f*anim.time/anim.duration;
+				_bodyCompo.SetRelativePosition(new Position(0f, -(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*t*(t-2f)));
+			}
+			else if(_playerMoveListener.IsCrouching()) {
+				float t = anim.time/anim.duration;
+				_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*t*(t-2f)));
+			}
+			else if(_playerMoveListener.IsUncrouching()) {
+				float t = anim.time/anim.duration;
+				_bodyCompo.SetRelativePosition(new Position(0f, -(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f) * (t*(t-2f)+1f) ));
+			}
 		}
 
 		super.update(world);
@@ -222,6 +279,7 @@ public class KnightEntity extends PhysicalEntity
 	}
 
 	private GameWorld _world;
+	private BodyComponent _bodyCompo;
 	private PlayerComponent _playerCompo;
 	private AnimationController _controller;
 	private PlayerMoveListener _playerMoveListener;
@@ -233,7 +291,9 @@ public class KnightEntity extends PhysicalEntity
 	private final String _MODEL_COMPONENT_NAME = getName() + "_ModelComponent";
 	private static final String _KNIGHT_MODEL_NAME = "KnightModel";
 	private static final float _SCALE = 1.5f;
+	public static final float _KNIGHT_HEIGHT = 1f*_SCALE;
 	public static final float _JUMP_STEP = 2f*_SCALE;
+	public static final float _JUMP_HEIGHT = 1.22f*_SCALE;
 	public static final float _JUMPDOWN_STEP = -1f*_SCALE;
 	public static final float _JUMPUP_STEP = 1f*_SCALE;
 	
