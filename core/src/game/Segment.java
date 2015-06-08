@@ -25,7 +25,7 @@ public class Segment implements Disposable
 	/**
 	 * Segment constructor
 	 */
-	public Segment(Position pos, SegmentDescriptor segmentType, final Pool<ProjectileEntity> horizontalProjectilePool, final Pool<ProjectileEntity> fallingProjectilePool, final AssetsHandler assetsHndlr, final BodyEditorDAL bodyDAL, final World box2DWorld) {
+	public Segment(Position pos, SegmentDescriptor segmentType, float difficulty, final Pool<ProjectileEntity> horizontalProjectilePool, final Pool<ProjectileEntity> fallingProjectilePool, final AssetsHandler assetsHndlr, final BodyEditorDAL bodyDAL, final World box2DWorld) {
 		_assetsHndlr = assetsHndlr;
 		_segmentEntities = new ArrayList<Entity>();
 		_posX = pos.x;
@@ -41,7 +41,9 @@ public class Segment implements Disposable
 
 		if(!_segmentDescriptor.IsChangingHeight)
 		{
-			int sourceCount = 4 + (int)Math.abs((Math.random()*_platformEntity.GetWidth()*_SEGMENT_SCALE - 5f)/4f);
+			if( difficulty > 200)
+				difficulty = 200;
+			int sourceCount = 4 + (int)(Math.abs((Math.random()*_platformEntity.GetWidth()*_SEGMENT_SCALE - 5f)/4f)*(1f+difficulty/150f));
 			for(int pIdx = 0; pIdx < sourceCount ; pIdx += 3f*Math.random())
 				_projectilesSources.add(new Position(pos.x + 4*(int)pIdx, GameWorld.WORLD_VIEW_WIDTH));
 		}

@@ -9,6 +9,7 @@ import java.util.Queue;
 import aurelienribon.bodyeditor.BodyEditorDAL;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -60,7 +61,7 @@ public class GameWorld implements Disposable
 
 		// Box 2D initialization
 		_box2DWorld = new World(_GRAVITY, true);
-		if(_DEBUG_RENDERING_ENABLED)
+	//	if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer = new Box2DDebugRenderer();
 		_bodyDAL = _assetsHndlr.get(_BODIES_DAL_NAME);
 
@@ -207,8 +208,19 @@ public class GameWorld implements Disposable
 
 	public void update(float time) {
 		_time = time;
-		_box2DWorld.step(1/45f, 6, 2);
-
+		_box2DWorld.step(1/60f, 6, 2);
+		
+		if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT))
+		{
+			_CLASSIC_RENDERING_ENABLED = false;
+			_DEBUG_RENDERING_ENABLED = true;
+		}
+		else
+		{
+			_CLASSIC_RENDERING_ENABLED = true;
+			_DEBUG_RENDERING_ENABLED = false;
+		}
+			
 		// Add a new random segment if the player/camera is near the end of the last segment
 		if(_camera.position.x + _camera.viewportWidth + 10f > _lastSegment.GetEndXPosition())
 		{
@@ -411,11 +423,11 @@ public class GameWorld implements Disposable
 				int rand = (int)(Math.random()*Segment._HIGH_SEGMENTS_TYPE_LIST.size());
 				NewSegmentDesc = Segment._HIGH_SEGMENTS_TYPE_LIST.get(rand);
 			}
-			Segment NewSegment = new Segment(new Position(_lastSegment.GetEndXPosition(), -0.08f), NewSegmentDesc, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
+			Segment NewSegment = new Segment(new Position(_lastSegment.GetEndXPosition(), -0.08f), NewSegmentDesc, _score, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
 			_lastSegment = NewSegment;
 		}
 		else
-			_lastSegment = new Segment(new Position(0, -0.08f), NewSegmentDesc, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
+			_lastSegment = new Segment(new Position(0, -0.08f), NewSegmentDesc, _score, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
 
 		if(_isBloomShaderEnabled)
 			_lastSegment.SetShader(_bloomShader);
@@ -470,8 +482,8 @@ public class GameWorld implements Disposable
 
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";
-	private static final boolean _DEBUG_RENDERING_ENABLED = false;
-	private static final boolean _CLASSIC_RENDERING_ENABLED = true;
+	private static boolean _DEBUG_RENDERING_ENABLED = false;
+	private static boolean _CLASSIC_RENDERING_ENABLED = true;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 	private static final String _RATIO_UNIFORM_NAME = "u_ratio";
 	private static final String _BLOOM_SAHDER_NAME = "BloomShader";
