@@ -1,0 +1,6 @@
+game
+game.components
+game.dataAccessLayer
+game.entities
+game.screens
+game.utils
