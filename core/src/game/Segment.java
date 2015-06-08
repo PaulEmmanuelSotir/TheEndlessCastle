@@ -33,7 +33,7 @@ public class Segment implements Disposable
 		_horizontalProjectilePool = horizontalProjectilePool;
 		_fallingProjectilePool = fallingProjectilePool;
 
-		_platformEntity = new PlatformEntity("Segment_PlatformEntity", pos, _SEGMENT_SCALE, segmentType.textureName, segmentType.bodyName, assetsHndlr, bodyDAL, box2DWorld);
+		_platformEntity = new PlatformEntity("Segment_PlatformEntity", pos, _SEGMENT_SCALE, segmentType.textureName, segmentType.bodyName, _assetsHndlr, bodyDAL, box2DWorld);
 		_segmentEntities.add(_platformEntity);
 
 		_activeProjectiles = new ArrayList<ProjectileEntity>();

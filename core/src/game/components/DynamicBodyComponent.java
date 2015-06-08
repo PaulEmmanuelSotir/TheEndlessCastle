@@ -34,12 +34,12 @@ public class DynamicBodyComponent extends BodyComponent
 		this(name, owner, box2DWorld, bodyDAL, bodyDef, fixtureDef, 1f);
 	}
 	
-	/**
-	 * Dynamic body component constructor with shape information
-	 * @param name Dynamic body component name
-	 * @param owner Dynamic body component owner entity
-	 * @param shape Dynamic body component shape
-	 */
+//	/**
+//   * Dynamic body component constructor with shape information
+//	 * @param name Dynamic body component name
+//	 * @param owner Dynamic body component owner entity
+//	 * @param shape Dynamic body component shape
+//	 */
 //	public DynamicBodyComponent(String name, Entity owner, Shape shape) {
 //		super(name, owner, shape);
 //	}

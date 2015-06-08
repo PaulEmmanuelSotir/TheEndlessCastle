@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController.AnimationDesc;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController.AnimationListener;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
@@ -324,10 +323,10 @@ public class KnightEntity extends PhysicalEntity
 	private static final String _KNIGHT_UNCROUCHBACK_ANIMATION =  "Armature|UncrouchBackward";
 	private static final String _KNIGHT_UNCROUCHFORE_ANIMATION =  "Armature|UncrouchForward";
 	
-	private static final String _KNIGHT_TURNBACK_ANIMATION = "Armature|TurnBack";
-	private static final String _KNIGHT_TURNFORE_ANIMATION = "Armature|TurnFore";
+	//private static final String _KNIGHT_TURNBACK_ANIMATION = "Armature|TurnBack";
+	//private static final String _KNIGHT_TURNFORE_ANIMATION = "Armature|TurnFore";
 	
-	private static final String _KNIGHT_BREATHE_ANIMATION = "Armature|Breathe";
+	//private static final String _KNIGHT_BREATHE_ANIMATION = "Armature|Breathe";
 	private static final String _KNIGHT_BREATHEBACK_ANIMATION = "Armature|SwordBreathBackward";
 	private static final String _KNIGHT_BREATHEFORE_ANIMATION = "Armature|SwordBreathForeward";
 	

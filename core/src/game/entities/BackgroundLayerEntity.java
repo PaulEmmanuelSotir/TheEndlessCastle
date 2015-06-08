@@ -12,11 +12,6 @@ public class BackgroundLayerEntity extends LayerEntity {
 
 	/**
 	 * Background layer entity constructor
-	 * @param name
-	 * @param bounds
-	 * @param position
-	 * @param assetsHndlr
-	 * @param parallax
 	 */
 	public BackgroundLayerEntity(AssetsHandler assetsHndlr) {
 		super(_BACKGROUND_LAYER_NAME, assetsHndlr, _BACKGROUND_PARALLLAX);

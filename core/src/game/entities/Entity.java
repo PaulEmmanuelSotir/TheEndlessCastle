@@ -19,10 +19,6 @@ public abstract class Entity
 {
 	/**
 	 * Entity constructor
-	 * @param name
-	 * @param bounds
-	 * @param position
-	 * @param assetsHndlr
 	 */
 	public Entity(String name, Position position, final AssetsHandler assetsHndlr) {
 		_assetsHndlr = assetsHndlr;
@@ -72,7 +68,6 @@ public abstract class Entity
 
 	/**
 	 * Renders entity's renderable components
-	 * @param batch
 	 */
 	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world) {
 		if(IsUsingSpriteBatch())
@@ -95,9 +90,6 @@ public abstract class Entity
 	 * Draws entity.
 	 * Shader is already set when this method is called.
 	 * Override this if, for example, you want to supply uniforms to the shader
-	 * @param batch
-	 * @param world
-	 * @param shader
 	 */
 	protected void draw(SpriteBatch spriteBatch, ModelBatch modelBatch, GameWorld world, ShaderProgram shader) {
 		

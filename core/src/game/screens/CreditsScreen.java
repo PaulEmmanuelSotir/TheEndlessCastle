@@ -81,7 +81,7 @@ public class CreditsScreen extends Screen
 		//_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
 		//_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
 		//_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
-		_volumeListener.SetButton(_sound100Button);
+		//_volumeListener.SetButton(_sound100Button);
 		
 		
 		// Menu button

@@ -130,15 +130,15 @@ public class GameScreen extends Screen
 		//_sound25Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound1NormalTexture"), (Texture)_assetsHndlr.get("Sound1OverTexture"), (Texture)_assetsHndlr.get("Sound1PressedTexture"), _volumeListener);
 		//_sound0Button = new Button(0.006f, (Texture)_assetsHndlr.get("Sound0NormalTexture"), (Texture)_assetsHndlr.get("Sound0OverTexture"), (Texture)_assetsHndlr.get("Sound0PressedTexture"), _volumeListener);
 		//_volumeListener.SetButtons(_sound100Button, _sound75Button, _sound25Button, _sound0Button);
-		_volumeListener.SetButton(_sound100Button);
+		//_volumeListener.SetButton(_sound100Button);
 		
 		// Pause button
-		_pauseButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
-			@Override
-			public void MouseRelease() {
+		//_pauseButton = new Button(0.006f, (Texture)_assetsHndlr.get("PauseNormalTexture"), (Texture)_assetsHndlr.get("PauseOverTexture"), (Texture)_assetsHndlr.get("PausePressedTexture"), new ButtonClickListener() {
+		//	@Override
+		//	public void MouseRelease() {
 				// TODO: pause
-			}
-		});
+		//	}
+		//});
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class GameScreen extends Screen
 		//_sound75Button.update(_camera);
 		//_sound25Button.update(_camera);
 		//_sound0Button.update(_camera);
-		_pauseButton.update(_camera);
+		//_pauseButton.update(_camera);
 		
 		// High score panel
 		if(_worldListener.IsPlayerDied())
@@ -189,7 +189,7 @@ public class GameScreen extends Screen
 		//_sound75Button.render(_spriteBatch);
 		//_sound25Button.render(_spriteBatch);
 		//_sound0Button.render(_spriteBatch);
-		_pauseButton.render(_spriteBatch);
+		//_pauseButton.render(_spriteBatch);
 		// Score
 		_font.draw(_spriteBatch, "SCORE: " + _world.GetScore(), _scorePosX-1.5f, _camera.viewportHeight - 0.5f, 3f,  Align.center, false);
 		// High score panel
@@ -205,8 +205,8 @@ public class GameScreen extends Screen
 		_world.setViewRatio(_ratio);
 
 		_menuButton.SetPosition(1f, _camera.viewportHeight - 2.5f);
-		_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
-		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
+		//_pauseButton.SetPosition(_camera.viewportWidth - _pauseButton.getWidth() - 1f, _camera.viewportHeight - 2.5f);
+		_sound100Button.SetPosition(_camera.viewportWidth - _sound100Button.getWidth() - 1f, _camera.viewportHeight - 2.5f);
 		//_sound75Button.SetPosition(_camera.viewportWidth - _sound75Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
 		//_sound25Button.SetPosition(_camera.viewportWidth - _sound25Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
 		//_sound0Button.SetPosition(_camera.viewportWidth - _sound0Button.getWidth() - 1f, _camera.viewportHeight - 3f - _pauseButton.getHeight());
@@ -231,7 +231,7 @@ public class GameScreen extends Screen
 
 	// Buttons
 	private Button _menuButton;
-	private Button _pauseButton;
+	//private Button _pauseButton;
 	private Button _sound100Button;
 	//private Button _sound75Button;
 	//private Button _sound25Button;

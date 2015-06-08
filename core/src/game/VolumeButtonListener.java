@@ -54,10 +54,10 @@ public class VolumeButtonListener extends ButtonClickListener
 		}
 	}*/
 	
-	public void SetButton(Button sound100Button)
-	{
-		_sound100Button = sound100Button;
-	}
+	//public void SetButton(Button sound100Button)
+	//{
+	//	_sound100Button = sound100Button;
+	//}
 	
 	@Override
 	public void MouseRelease() {
@@ -104,7 +104,7 @@ public class VolumeButtonListener extends ButtonClickListener
 		}
 	}
 
-	private Button _sound100Button;
+//	private Button _sound100Button;
 //	private Button _sound75Button;
 //	private Button _sound25Button;
 //	private Button _sound0Button;

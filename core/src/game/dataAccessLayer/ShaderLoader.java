@@ -18,15 +18,12 @@ public class ShaderLoader extends SynchronousAssetLoader<ShaderProgram, ShaderLo
 
 	/**
 	 * Shader loader constructor
-	 * @param resolver
 	 */
 	public ShaderLoader(FileHandleResolver resolver) {
 		super(resolver);
 	}
 
 	/** Loads the asset.
-	 * @param manager
-	 * @param fileName
 	 * @param file the resolved file to load
 	 * @param parameter */
 	@Override
