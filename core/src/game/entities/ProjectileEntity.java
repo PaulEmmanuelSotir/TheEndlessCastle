@@ -46,13 +46,17 @@ public class ProjectileEntity extends PhysicalEntity implements Poolable
 	}
 	
 	/**
-	 * Reset projectile state so that it can be reused in a pool of projectiles, but here we keep ProjectileDescriptor :)
+	 * Reset projectile state so that it can be reused in a pool of projectiles, but here we keep ProjectileDescriptor :) (called by pool)
 	 */
 	@Override
 	public void reset() {
 		_alive = false;
 		_bodyCompo.getBody().setActive(false);
 		_position.set(0, 0);
+	}
+	
+	public void Disable() {
+		_alive = false;
 	}
 	
 	public boolean IsAlive() {
@@ -92,7 +96,8 @@ public class ProjectileEntity extends PhysicalEntity implements Poolable
 		fixtureDef.friction = 0.7f;
 		fixtureDef.restitution = 0f;
 		_bodyCompo = new BodyComponent(name, this, _box2DWorld, _bodyDAL, bodyDef, fixtureDef);
-		_bodyCompo.getBody().setActive(false);
+		_bodyCompo.setActive(false);
+		_bodyCompo.setUserData(this);
 		addComponent(_bodyCompo);
 		return _bodyCompo;
 	}	

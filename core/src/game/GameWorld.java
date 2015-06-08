@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,8 +16,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactFilter;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
 
@@ -28,6 +37,7 @@ import game.dataAccessLayer.Settings.Difficulty;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
 import game.entities.KnightEntity;
+import game.entities.PlatformEntity;
 import game.entities.ProjectileEntity;
 import game.entities.RotatingRaysEntity;
 import game.entities.ProjectileEntity.ProjectileDescriptor;
@@ -104,11 +114,6 @@ public class GameWorld implements Disposable
 			//private int _maxcount = 0;
 		};
 
-		// Segments
-		_semgentsFIFO = new LinkedList<Segment>();
-		for(int n = 0; n < _SEGMENTS_NUMBER; n++)
-			AddSegment();
-
 		// Knight
 		_knightEntity = new KnightEntity("KnightEntity", new Position(18f, 8f), this);
 		_knightEntity.setZIndex(10);
@@ -139,6 +144,12 @@ public class GameWorld implements Disposable
 		});
 		_entities.add(_knightEntity);
 
+		// Segments
+		_semgentsFIFO = new LinkedList<Segment>();
+		for(int n = 0; n < _SEGMENTS_NUMBER; n++)
+			AddSegment();
+
+
 		// Sort entities by their Zindex so that we draw them in the right order
 		_entitiesZindexComparator = new Comparator<Entity>() {
 			@Override
@@ -147,6 +158,54 @@ public class GameWorld implements Disposable
 			}
 		};
 		Collections.sort(_entities, _entitiesZindexComparator);
+
+		// Box 2D World contact listener
+		_box2DWorld.setContactFilter(new ContactFilter() {
+
+			@Override
+			public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
+				if(fixtureA.getBody().getUserData() instanceof ProjectileEntity && fixtureB.getBody().getUserData() instanceof PlatformEntity)
+					return true;
+				// TODO Auto-generated method stub
+				return true;
+			}
+		});
+		_box2DWorld.setContactListener(new ContactListener() {
+
+			@Override
+			public void beginContact(Contact contact) {
+				Object o1 = contact.getFixtureA().getBody().getUserData();
+				Object o2 = contact.getFixtureB().getBody().getUserData();
+				if(o1 != null && o2 != null)
+				{
+					if(o1 instanceof ProjectileEntity && o2 instanceof PlatformEntity)
+					{
+						((ProjectileEntity)o1).Disable();
+						contact.getFixtureA().getBody();
+					}
+					if(o1 instanceof PlatformEntity && o2 instanceof ProjectileEntity)
+					{
+						((ProjectileEntity)o2).Disable();
+					}
+					if(o1 instanceof KnightEntity || o2 instanceof KnightEntity)
+					{
+						// Knight is touched !
+						_knightEntity.Die();
+						_listener.PlayerDied(_score, _distanceTraveled);
+					}
+				}
+			}
+
+			@Override
+			public void endContact(Contact contact) { }
+
+			@Override
+			public void preSolve(Contact contact, Manifold oldManifold) { }
+
+			@Override
+			public void postSolve(Contact contact, ContactImpulse impulse) { }
+
+		});
 	}
 
 	public void update(float time) {
@@ -190,12 +249,12 @@ public class GameWorld implements Disposable
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer.render(_box2DWorld, _camera.combined);
 	}
-	
+
 	public void AddEntity(Entity e) {
 		if(e != null)
 			_entities.add(e);
 	}
-	
+
 	public void RemoveEntity(Entity e) {
 		if(e != null)
 			_entities.remove(e);
@@ -414,7 +473,7 @@ public class GameWorld implements Disposable
 
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";
-	private static final boolean _DEBUG_RENDERING_ENABLED = true;
+	private static final boolean _DEBUG_RENDERING_ENABLED = false;
 	private static final boolean _CLASSIC_RENDERING_ENABLED = true;
 	private static final Vector2 _GRAVITY = new Vector2(0.0f, -9.81f);
 	private static final String _RATIO_UNIFORM_NAME = "u_ratio";

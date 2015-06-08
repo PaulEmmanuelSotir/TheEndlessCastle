@@ -72,6 +72,7 @@ public class PlatformEntity extends PhysicalEntity
 		fixtureDef.friction = 0.5f;
 		fixtureDef.restitution = 0f;
 		BodyComponent bodyCompo = new BodyComponent(name, this, _box2DWorld, _bodyDAL, bodyDef, fixtureDef );
+		bodyCompo.setUserData(this);
 		addComponent(bodyCompo);
 		return bodyCompo;
 	}

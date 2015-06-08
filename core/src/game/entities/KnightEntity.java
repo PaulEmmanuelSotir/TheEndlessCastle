@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g3d.utils.AnimationController;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController.AnimationDesc;
 import com.badlogic.gdx.graphics.g3d.utils.AnimationController.AnimationListener;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
@@ -17,8 +18,14 @@ import game.components.PlayerComponent;
 import game.components.PlayerComponent.MoveListener;
 import game.utils.Position;
 
+/**
+ * Knight entity
+ */
 public class KnightEntity extends PhysicalEntity
 {
+	/**
+	 * Player move listener
+	 */
 	public class PlayerMoveListener implements MoveListener
 	{
 		@Override
@@ -220,6 +227,7 @@ public class KnightEntity extends PhysicalEntity
 		fixtureDef.friction = 0.5f;
 		fixtureDef.restitution = 0.3f;
 		_bodyCompo = new BodyComponent("knight_body", this, _box2DWorld, _bodyDAL, bodyDef, fixtureDef);
+		_bodyCompo.setUserData(this);
 		addComponent(_bodyCompo);
 	}
 

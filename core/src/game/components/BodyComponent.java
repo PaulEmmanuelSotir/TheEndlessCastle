@@ -44,11 +44,10 @@ public class BodyComponent extends Component implements IUpdateableComponent
 
 	@Override
 	public void update(GameWorld world) {
-		// Update position
+		// Update position and rotation
 		if(_bodyType == BodyType.DynamicBody)
 		{
 			_owner.setPosition(new Position(_body.getPosition().x, _body.getPosition().y));
-	        // We need to convert our angle from radians to degrees
 			_owner.setRotation(MathUtils.radiansToDegrees * _body.getAngle());
 		}
 		else
@@ -73,6 +72,16 @@ public class BodyComponent extends Component implements IUpdateableComponent
 		return _body;
 	}
 
+	public void setUserData(Object o)
+	{
+		_body.setUserData(o);
+	}
+	
+	public void setActive(boolean active)
+	{
+		_body.setActive(active);
+	}
+	
 	protected Body _body;
 	protected BodyType _bodyType;
 	protected Position _relativePosition;

@@ -70,6 +70,8 @@ public class Segment implements Disposable
 			ProjectileEntity proj = _activeProjectiles.get(idx);
 			if(!proj.IsAlive())
 			{
+				//world.GetBox2DWorld().destroyBody(proj.GetBody());
+				proj.reset();
 				world.RemoveEntity(proj);
 				_activeProjectiles.remove(idx);
 				if(proj.GetDescriptor().ProjectileType == ProjectileTypeEnum.falling)
