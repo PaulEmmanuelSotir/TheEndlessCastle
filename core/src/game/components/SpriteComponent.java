@@ -113,6 +113,7 @@ public class SpriteComponent extends Component implements IRenderableComponent<S
 		// Update position
 		Position OwnerPos = _owner.getPosition();
 		_sprite.setPosition(_relativePosition.x + OwnerPos.x, _relativePosition.y + OwnerPos.y);
+		_sprite.setRotation(_owner.getRotation());
 	}
 	
 	protected Sprite _sprite;

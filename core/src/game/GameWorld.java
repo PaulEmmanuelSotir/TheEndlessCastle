@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Pool;
 
 import game.Segment.SegmentDescriptor;
 import game.Segment.SegmentTypeEnum;
@@ -27,7 +28,9 @@ import game.dataAccessLayer.Settings.Difficulty;
 import game.entities.BackgroundLayerEntity;
 import game.entities.Entity;
 import game.entities.KnightEntity;
+import game.entities.ProjectileEntity;
 import game.entities.RotatingRaysEntity;
+import game.entities.ProjectileEntity.ProjectileDescriptor;
 import game.utils.Position;
 
 /**
@@ -53,34 +56,59 @@ public class GameWorld implements Disposable
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer = new Box2DDebugRenderer();
 		_bodyDAL = _assetsHndlr.get(_BODIES_DAL_NAME);
-		
+
 		// Input multiplexer
 		_inputMultiplexer = new InputMultiplexer();
 		Gdx.input.setInputProcessor(_inputMultiplexer);
 
 		// Bloom shader
 		if(_isBloomShaderEnabled) {
-		_bloomShader = _assetsHndlr.get(_BLOOM_SAHDER_NAME);
-		_ratioLocation = _bloomShader.getUniformLocation(_RATIO_UNIFORM_NAME);
+			_bloomShader = _assetsHndlr.get(_BLOOM_SAHDER_NAME);
+			_ratioLocation = _bloomShader.getUniformLocation(_RATIO_UNIFORM_NAME);
 		}
-		
+
 		// Entities initialization
 		_entities = new ArrayList<Entity>();
+
 		// Rotating rays
 		_rotatingRaysSpriteEntity = new RotatingRaysEntity("RotatingRaysSpriteEntity", _assetsHndlr);
 		_rotatingRaysSpriteEntity.setZIndex(0);
 		_entities.add(_rotatingRaysSpriteEntity);
+
 		// Background
 		_backgroundLayerEntity = new BackgroundLayerEntity(_assetsHndlr);
 		_backgroundLayerEntity.setZIndex(1);
 		//if(_isBloomShaderEnabled)
 		//	_backgroundLayerEntity.SetShader(_bloomShader);
 		_entities.add(_backgroundLayerEntity);
+
+		// Projectiles pools
+		_randomFallingProjectilePool = new Pool<ProjectileEntity>() {
+			/** Generates a new random falling projectile */
+			@Override
+			protected ProjectileEntity newObject() {
+				ProjectileDescriptor desc = ProjectileEntity._FALLING_PROJECTILES_TYPE_LIST.get((int)(ProjectileEntity._FALLING_PROJECTILES_TYPE_LIST.size()*Math.random()));
+				ProjectileEntity e = new ProjectileEntity("fallingProjectile_" + _maxcount++, desc, _assetsHndlr, _bodyDAL, _box2DWorld);
+				e.setZIndex(20);
+				_entities.add(e);
+				return e;
+			}
+			private int _maxcount = 0;
+		};
+		_randomHorizontalProjectilePool = new Pool<ProjectileEntity>() {
+			/** Generates a new random horizontal projectile */
+			@Override
+			protected ProjectileEntity newObject() {
+				return null;// new ProjectileEntity("HorizontalProjectile_" + Maxcount++, new Position(0, 0), desc, _assetsHndlr, _bodyDAL, _box2DWorld);
+			}
+			//private int _maxcount = 0;
+		};
+
 		// Segments
 		_semgentsFIFO = new LinkedList<Segment>();
 		for(int n = 0; n < _SEGMENTS_NUMBER; n++)
 			AddSegment();
-		Segment FirstSeg = _semgentsFIFO.peek();
+
 		// Knight
 		_knightEntity = new KnightEntity("KnightEntity", new Position(18f, 8f), this);
 		_knightEntity.setZIndex(10);
@@ -123,10 +151,7 @@ public class GameWorld implements Disposable
 
 	public void update(float time) {
 		_time = time;
-		_box2DWorld.step(1/300f, 6, 2);
-
-		for(Entity e : _entities)
-			e.update(this);
+		_box2DWorld.step(1/45f, 6, 2);
 
 		// Add a new random segment if the player/camera is near the end of the last segment
 		if(_camera.position.x + _camera.viewportWidth + 10f > _lastSegment.GetEndXPosition())
@@ -135,12 +160,20 @@ public class GameWorld implements Disposable
 			Collections.sort(_entities, _entitiesZindexComparator); // update Z indexes
 		}
 
+		// Update segments projectile spawning
+		for(Segment seg : _semgentsFIFO)
+			seg.updateProjectilesSpawn(this);
+
 		// If player can't follow the camera, let's kill him !
 		if(_camera.position.x -  _camera.viewportWidth/2f >  _knightEntity.getPosition().x)
 		{
 			_knightEntity.Die();
 			_listener.PlayerDied(_score, _distanceTraveled);
 		}
+
+		// Update all entities in Z index order
+		for(Entity e : _entities)
+			e.update(this);
 	}
 
 	public void render(SpriteBatch spriteBatch, ModelBatch modelBatch) {
@@ -153,9 +186,19 @@ public class GameWorld implements Disposable
 				e.render(spriteBatch, modelBatch, this);
 			endBatch(spriteBatch, modelBatch);
 		}
-		
+
 		if(_DEBUG_RENDERING_ENABLED)
 			_debugRenderer.render(_box2DWorld, _camera.combined);
+	}
+	
+	public void AddEntity(Entity e) {
+		if(e != null)
+			_entities.add(e);
+	}
+	
+	public void RemoveEntity(Entity e) {
+		if(e != null)
+			_entities.remove(e);
 	}
 
 	public void setViewRatio(float ratio) {
@@ -266,6 +309,7 @@ public class GameWorld implements Disposable
 		{
 			Segment OldSegment = _semgentsFIFO.poll();
 			_entities.removeAll(OldSegment.GetEntities());
+			OldSegment.dispose();
 		}
 
 		// Determines the new segment type
@@ -311,11 +355,11 @@ public class GameWorld implements Disposable
 				int rand = (int)(Math.random()*Segment._HIGH_SEGMENTS_TYPE_LIST.size());
 				NewSegmentDesc = Segment._HIGH_SEGMENTS_TYPE_LIST.get(rand);
 			}
-			Segment NewSegment = new Segment(new Position(_lastSegment.GetEndXPosition(), -0.08f), NewSegmentDesc, _assetsHndlr, _bodyDAL, _box2DWorld);
+			Segment NewSegment = new Segment(new Position(_lastSegment.GetEndXPosition(), -0.08f), NewSegmentDesc, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
 			_lastSegment = NewSegment;
 		}
 		else
-			_lastSegment = new Segment(new Position(0, -0.08f), NewSegmentDesc, _assetsHndlr, _bodyDAL, _box2DWorld);
+			_lastSegment = new Segment(new Position(0, -0.08f), NewSegmentDesc, _randomHorizontalProjectilePool, _randomFallingProjectilePool, _assetsHndlr, _bodyDAL, _box2DWorld);
 
 		if(_isBloomShaderEnabled)
 			_lastSegment.SetShader(_bloomShader);
@@ -329,19 +373,17 @@ public class GameWorld implements Disposable
 	public void dispose() {
 		_inputMultiplexer.clear();
 		_listener = null;
-		_assetsHndlr = null;
 		_currentShader = null;
 		_box2DWorld.dispose();
-		_box2DWorld = null;
 		if(_debugRenderer != null)
 			_debugRenderer.dispose();
 		_debugRenderer = null;
 	}
 
 	private WorldListener _listener;
-	private AssetsHandler _assetsHndlr;
-	private Camera _camera;
-	private BodyEditorDAL _bodyDAL;
+	private final AssetsHandler _assetsHndlr;
+	private final Camera _camera;
+	private final BodyEditorDAL _bodyDAL;
 	private ShaderProgram _bloomShader;
 	private boolean _isBloomShaderEnabled;
 	private int _ratioLocation;
@@ -355,17 +397,20 @@ public class GameWorld implements Disposable
 	private boolean _isModelBatch;
 	private Segment _lastSegment;
 
-	private World _box2DWorld;
+	private final World _box2DWorld;
 	private Box2DDebugRenderer _debugRenderer;
 
-	private InputMultiplexer _inputMultiplexer;
+	private final InputMultiplexer _inputMultiplexer;
 
-	private Comparator<Entity> _entitiesZindexComparator;
-	private ArrayList<Entity> _entities;
-	private RotatingRaysEntity _rotatingRaysSpriteEntity;
-	private KnightEntity _knightEntity;
-	private BackgroundLayerEntity _backgroundLayerEntity;
-	private Queue<Segment> _semgentsFIFO;
+	private final Comparator<Entity> _entitiesZindexComparator;
+	private final ArrayList<Entity> _entities;
+	private final RotatingRaysEntity _rotatingRaysSpriteEntity;
+	private final KnightEntity _knightEntity;
+	private final BackgroundLayerEntity _backgroundLayerEntity;
+	private final Queue<Segment> _semgentsFIFO;
+	private final Pool<ProjectileEntity> _randomFallingProjectilePool;
+	private final Pool<ProjectileEntity> _randomHorizontalProjectilePool;
+
 
 	private static final int _SEGMENTS_NUMBER = 5;
 	private static final String _BODIES_DAL_NAME = "BodiesDAL";

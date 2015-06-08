@@ -24,7 +24,7 @@ public abstract class Entity
 	 * @param position
 	 * @param assetsHndlr
 	 */
-	public Entity(String name, Position position, AssetsHandler assetsHndlr) {
+	public Entity(String name, Position position, final AssetsHandler assetsHndlr) {
 		_assetsHndlr = assetsHndlr;
 		_name = name;
 		_position = position;
@@ -143,6 +143,20 @@ public abstract class Entity
 	public void setPosition(Position position) {
 		_position = position;
 	}
+
+	/**
+	 * Get the entity angle in degrees
+	 */
+	public float getRotation() {
+		return _angle;
+	}
+	
+	/**
+	 * Set the entity angle in degrees
+	 */
+	public void setRotation(float angle) {
+		_angle = angle;
+	}
 	
 	public String getName()
 	{
@@ -166,8 +180,9 @@ public abstract class Entity
 	private String _name;
 	private ShaderProgram _shader;
 	protected int _zIndex;
-	protected AssetsHandler _assetsHndlr;
+	protected final AssetsHandler _assetsHndlr;
 	protected Position _position;
+	protected float _angle;
 	protected List<Component> _components;
 	protected List<SpriteComponent> _renderableSpriteComponents;
 	protected List<ModelComponent> _renderableModelComponents;

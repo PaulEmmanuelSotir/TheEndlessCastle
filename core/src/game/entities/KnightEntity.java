@@ -192,7 +192,7 @@ public class KnightEntity extends PhysicalEntity
 		private AnimationDesc _uncrouchAnimation;
 	}
 
-	public KnightEntity(String name, Position position, GameWorld world) {
+	public KnightEntity(String name, Position position, final GameWorld world) {
 		super(name, position, world.GetAssetsHandler(), world.GetBodyDAL(), world.GetBox2DWorld());
 		_world = world;
 
@@ -224,40 +224,42 @@ public class KnightEntity extends PhysicalEntity
 	}
 
 	@Override
-	public void update(GameWorld world)
+	public void update(final GameWorld world)
 	{
-		if(_breathNow)
+		if(!_died)
 		{
-			_controller.setAnimation(_turnedBack ? _KNIGHT_BREATHEBACK_ANIMATION : _KNIGHT_BREATHEFORE_ANIMATION,-1,1f,null);
-			_breathNow = false;
+			if(_breathNow)
+			{
+				_controller.setAnimation(_turnedBack ? _KNIGHT_BREATHEBACK_ANIMATION : _KNIGHT_BREATHEFORE_ANIMATION,-1,1f,null);
+				_breathNow = false;
+			}
+			
+			// Move body according to model animations
+			final AnimationDesc anim = _playerMoveListener.GetCurrentAnimationDesc();
+			if(!_world.GetCurrentSegmentDescriptor(_position.x).IsChangingHeight)
+			{
+				if(_playerMoveListener.IsJumpingForward()) {
+					float x = _JUMP_STEP*anim.time/anim.duration;
+					_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x-_JUMP_STEP)*(x-_JUMP_STEP)));
+				}
+				else if(_playerMoveListener.IsJumpingBackward()) {
+					float x = -_JUMP_STEP*anim.time/anim.duration;
+					_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x+_JUMP_STEP)*(x+_JUMP_STEP)));
+				}
+				else if(_playerMoveListener.IsJumping()) {
+					float t = 2f*anim.time/anim.duration;
+					_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT)*t*t*(t-2f)*(t-2f)));
+				}
+				else if(_playerMoveListener.IsCrouching()) {
+					float t = anim.time/anim.duration;
+					_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*t*(t-2f)));
+				}
+				else if(_playerMoveListener.IsUncrouching()) {
+					float t = anim.time/anim.duration;
+					_bodyCompo.SetRelativePosition(new Position(0f, -(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f) * (t*(t-2f)+1f) ));
+				}
+			}
 		}
-		
-		// Move body according to model animations
-		final AnimationDesc anim = _playerMoveListener.GetCurrentAnimationDesc();
-		if(!_world.GetCurrentSegmentDescriptor(_position.x).IsChangingHeight)
-		{
-			if(_playerMoveListener.IsJumpingForward()) {
-				float x = _JUMP_STEP*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x-_JUMP_STEP)*(x-_JUMP_STEP)));
-			}
-			else if(_playerMoveListener.IsJumpingBackward()) {
-				float x = -_JUMP_STEP*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(x, 4f/(_JUMP_STEP*_JUMP_STEP)*(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*x*x*(x+_JUMP_STEP)*(x+_JUMP_STEP)));
-			}
-			else if(_playerMoveListener.IsJumping()) {
-				float t = 2f*anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT)*t*t*(t-2f)*(t-2f)));
-			}
-			else if(_playerMoveListener.IsCrouching()) {
-				float t = anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(0f, (_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f)*t*(t-2f)));
-			}
-			else if(_playerMoveListener.IsUncrouching()) {
-				float t = anim.time/anim.duration;
-				_bodyCompo.SetRelativePosition(new Position(0f, -(_JUMP_HEIGHT-_KNIGHT_HEIGHT/2f) * (t*(t-2f)+1f) ));
-			}
-		}
-
 		super.update(world);
 	}
 
@@ -271,6 +273,7 @@ public class KnightEntity extends PhysicalEntity
 		_controller.setAnimation(_turnedBack ? _KNIGHT_DIEBACK_ANIMATION : _KNIGHT_DIEFORE_ANIMATION);
 		_playerCompo.RemoveMoveListener(_playerMoveListener);
 		_breathNow = false;
+		_died = true;
 	}
 	
 	public void SetMoveListenner(MoveListener listener)
@@ -278,14 +281,15 @@ public class KnightEntity extends PhysicalEntity
 		_realMoveListener = listener;
 	}
 
-	private GameWorld _world;
-	private BodyComponent _bodyCompo;
-	private PlayerComponent _playerCompo;
-	private AnimationController _controller;
-	private PlayerMoveListener _playerMoveListener;
+	private final GameWorld _world;
+	private final BodyComponent _bodyCompo;
+	private final PlayerComponent _playerCompo;
+	private final AnimationController _controller;
+	private final PlayerMoveListener _playerMoveListener;
 	private MoveListener _realMoveListener;
 	private boolean _breathNow;
 	private boolean _turnedBack;
+	private boolean _died;
 
 	private final String _PLAYER_COMPONENT_NAME = getName() + "_PlayerComponent";
 	private final String _MODEL_COMPONENT_NAME = getName() + "_ModelComponent";

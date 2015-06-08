@@ -23,7 +23,7 @@ public class LayerEntity extends Entity
 	 * @param position
 	 * @param _assetsHndlr
 	 */
-	public LayerEntity(String name, AssetsHandler assetsHndlr) {
+	public LayerEntity(String name, final AssetsHandler assetsHndlr) {
 		super(name, new Position(0, 0), assetsHndlr);
 	}
 	
@@ -35,7 +35,7 @@ public class LayerEntity extends Entity
 	 * @param assetsHndlr
 	 * @param parallax
 	 */
-	public LayerEntity(String name, AssetsHandler assetsHndlr, float parallax) {
+	public LayerEntity(String name, final AssetsHandler assetsHndlr, float parallax) {
 		super(name, new Position(0, 0), assetsHndlr);
 		SetParallax(parallax);
 	}

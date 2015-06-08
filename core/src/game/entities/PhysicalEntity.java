@@ -8,27 +8,22 @@ import game.utils.Position;
 
 public abstract class PhysicalEntity extends Entity
 {
-	public PhysicalEntity(String name, Position position, AssetsHandler assetsHndlr, BodyEditorDAL bodyDAL, World box2DWorld) {
+	public PhysicalEntity(String name, Position position, final AssetsHandler assetsHndlr, final BodyEditorDAL bodyDAL, final World box2DWorld) {
 		super(name, position, assetsHndlr);
 		_bodyDAL = bodyDAL;
 		_box2DWorld = box2DWorld;
 	}
 
-	@Override
-	public boolean IsUsingSpriteBatch() {
-		return false;
-	}
-	
-	public BodyEditorDAL GetBodyEditorDAL()
+	public final BodyEditorDAL GetBodyEditorDAL()
 	{
 		return _bodyDAL;
 	}
 	
-	public World GetBox2DWorld()
+	public final World GetBox2DWorld()
 	{
 		return _box2DWorld;
 	}
 
-	protected BodyEditorDAL _bodyDAL;
-	protected World _box2DWorld;
+	protected final BodyEditorDAL _bodyDAL;
+	protected final World _box2DWorld;
 }

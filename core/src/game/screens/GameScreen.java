@@ -31,7 +31,7 @@ public class GameScreen extends Screen
 		public void PlayerDied(int Score, int DistanceTraveled) {
 			// Score panel
 			_ScorePanelSprite = new Sprite((Texture)_assetsHndlr.get(_SCORE_PANEL_TEXTURE_NAME));
-			_ScorePanelSprite.setScale(0.018f);
+			_ScorePanelSprite.setScale(0.017f);
 			_ScorePanelSprite.setOrigin(0,0);
 			
 			// High score
@@ -144,17 +144,17 @@ public class GameScreen extends Screen
 	@Override
 	protected void update()
 	{
-		// Temporary continuous camera scrolling
+		// Continuous camera scrolling
 		if(_world.GetPlayerXPosition() > _camera.position.x + 3f || _speedUp)
 		{
-			_camera.position.x += 3f*Gdx.graphics.getDeltaTime();
+			_camera.position.x += 4f*Gdx.graphics.getDeltaTime();
 			_speedUp = true;
 			if(_world.GetPlayerXPosition() < _camera.position.x)
 				_speedUp = false;
 		}
 		else
 		{
-			_camera.position.x += 1.5f*Gdx.graphics.getDeltaTime();
+			_camera.position.x += 2.8f*Gdx.graphics.getDeltaTime();
 		}
 		
 		// Update Score display position

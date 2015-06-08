@@ -26,7 +26,7 @@ public class PlatformEntity extends PhysicalEntity
 	 * @param textureName Platform texture name
 	 * @param shapeName Platform body shape name
 	 */
-	public PlatformEntity(String name, Position position, float scale, String textureName, String bodyName, AssetsHandler assetsHndlr, BodyEditorDAL bodyDAL, World box2DWorld) {
+	public PlatformEntity(String name, Position position, float scale, String textureName, String bodyName, final AssetsHandler assetsHndlr, final BodyEditorDAL bodyDAL, final World box2DWorld) {
 		super(name, position, assetsHndlr, bodyDAL, box2DWorld);
 		SetSprite(textureName, scale);
 		SetBody(bodyName);
