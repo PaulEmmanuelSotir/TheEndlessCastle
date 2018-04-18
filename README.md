@@ -2,14 +2,14 @@
 
 ![TheEndlessCastleCONCEPT.png](http://i.imgur.com/4S5ilq0.png)
 
-## Contribution guidelines ##
+A Java libGDX infinite scroller game (Endless medieval runner game).  
+Generated JavaDoc is located at [./thrid-party/doc](./thrid-party/doc)
 
-* Que du code propre respectant l'encapsulation
-* Utiliser les commentaires et tags pour Javadoc (notamment '@Override')
-* Commencer le nom de tout membres privés par un underscrore sauf si c'est un membre static final (nom en majuscules dans ce cas)
-* Ne jamais 'commiter' du code qui ne compile pas
+## Code and assets license ##
+Code released under the MIT license.
+Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see core/assets/Ressources.xml)
 
-## Liens utiles ##
+## Usefull links ##
 #### Documentation ####
 * [LibGDX wiki](https://github.com/libgdx/libgdx/wiki/)
 * [LibGDX game life cycle](https://github.com/libgdx/libgdx/wiki/The-life-cycle)
@@ -34,14 +34,10 @@
 * [Free sound](http://www.freesound.org/)
 * [Icon fonts](https://github.com/showcases/icon-fonts)
 
-#### Outils ####
+#### Tools ####
 * [2D particle editor](https://github.com/libgdx/libgdx/wiki/2D-Particle-Editor/)
 * [ShaderToy](https://www.shadertoy.com/)
 * [Texture Packer](https://github.com/libgdx/libgdx/wiki/Texture-packer/)
 * [Spriter](http://www.brashmonkey.com/index.htm)
 * [Spriter github](https://github.com/Trixt0r/spriter)
 * [Importing Blender models in LibGDX](https://github.com/libgdx/libgdx/wiki/Importing-Blender-models-in-LibGDX)
-
-## Code license ##
-Code released under the MIT license.
-Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see core/assets/Ressources.xml)
