@@ -3,6 +3,7 @@
 ![TheEndlessCastleCONCEPT.png](http://i.imgur.com/4S5ilq0.png)
 
 A Java libGDX infinite scroller game (Endless medieval runner game).  
+Game can be played by unzipping "./TheEndlessCastle_ExecutableJAR.zip" archive and executing "TheEndlessCastle.jar".  
 Generated JavaDoc is located in "./thrid-party/doc" directory.
 
 ## Code and assets license ##
