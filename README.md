@@ -7,7 +7,11 @@ Generated JavaDoc is located in "./thrid-party/doc" directory.
 
 ## Code and assets license ##
 Code released under the MIT license.
+Game can be played by unzipping "./TheEndlessCastle_ExecutableJAR.zip" archive and executing "TheEndlessCastle.jar".  
 Assets realeased under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) or their respective license (see [core/assets/Ressources.xml](https://github.com/PaulEmmanuelSotir/TheEndlessCastle/blob/master/core/assets/Resources.xml))
+
+## Gameplay screenshot:
+![TheEndlessCastleScreenshot.png](https://i.imgur.com/OC1MoiC.png)
 
 ## Usefull links ##
 #### Documentation ####
