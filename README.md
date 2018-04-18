@@ -3,7 +3,7 @@
 ![TheEndlessCastleCONCEPT.png](http://i.imgur.com/4S5ilq0.png)
 
 A Java libGDX infinite scroller game (Endless medieval runner game).  
-Generated JavaDoc is located at ./thrid-party/doc
+Generated JavaDoc is located at [./thrid-party/doc](./thrid-party/doc)
 
 ## Code and assets license ##
 Code released under the MIT license.
